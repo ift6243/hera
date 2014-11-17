@@ -2,6 +2,7 @@ package com.udem.ift6243.dao;
 
 import java.util.ArrayList;
 
+import com.udem.ift6243.sql.schema.SolutionCategorySchema;
 import com.udem.ift6243.sql.schema.SolutionSchema;
 import com.udem.ift6243.sql.schema.UserSchema;
 
@@ -41,12 +42,19 @@ public class DatabaseHandler extends SQLiteOpenHelper
 		/// Create tables
 		db.execSQL(UserSchema.getCreateTableSchema());
 		db.execSQL(SolutionSchema.getCreateTableSchema());
+		db.execSQL(SolutionCategorySchema.getCreateTableSchema());
 		
 		/// Insert data
 		ArrayList<String> solutionQueries = SolutionSchema.getInsertDataList();
 		for(String solutionQuery : solutionQueries)
 		{
 			db.execSQL(solutionQuery);
+		}
+		
+		ArrayList<String> solutionCategoryQueries = SolutionCategorySchema.getInsertDataList();
+		for(String solutionCategoryQuery : solutionCategoryQueries)
+		{
+			db.execSQL(solutionCategoryQuery);
 		}
 	}
 
@@ -57,6 +65,7 @@ public class DatabaseHandler extends SQLiteOpenHelper
 		/// Delete tables
 		db.execSQL(UserSchema.getDropTableSchema());
 		db.execSQL(SolutionSchema.getDropTableSchema());
+		db.execSQL(SolutionCategorySchema.getDropTableSchema());
 		
 		/// Create tables
 		onCreate(db);
