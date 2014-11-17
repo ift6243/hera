@@ -11,12 +11,12 @@ public class User
 	private Integer socioprofessionalCategory;
 	private Boolean sport;
 	private Boolean meditation;
-	private Boolean expression;
+	private Integer expression;
 	
 	public User(Integer id, String firstName, String lastName, 
 			Integer gender, Integer age, Integer maritalStatus,
 			Integer socioprofessionalCategory, Boolean sport,
-			Boolean meditation, Boolean expression)
+			Boolean meditation, Integer expression)
 	{
 		this.id = id;
 		this.firstName = firstName;
@@ -72,7 +72,7 @@ public class User
 		return meditation;
 	}
 
-	public Boolean getExpression() {
+	public Integer getExpression() {
 		return expression;
 	}
 }

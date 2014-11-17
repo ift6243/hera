@@ -2,7 +2,7 @@ package com.udem.ift6243.dao;
 
 import com.udem.ift6243.dao.DatabaseHandler;
 import com.udem.ift6243.model.User;
-import com.udem.ift6243.schema.UserSchema;
+import com.udem.ift6243.sql.schema.UserSchema;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -84,16 +84,16 @@ public class UserDao
 			
 			if (cursor_user != null && cursor_user.moveToLast())
 			{
-				int userId = cursor_user.getInt(0);
+				Integer userId = Integer.valueOf(cursor_user.getInt(0));
 				String firstName = cursor_user.getString(1);
 				String lastName = cursor_user.getString(2);
-				Integer gender = Integer.valueOf(3);
-				Integer age = Integer.valueOf(4);
-				Integer maritalStatus = Integer.valueOf(5);
-				Integer socioprofessionalCategory = Integer.valueOf(6);
-				Boolean sport = Boolean.valueOf(Integer.valueOf(7).equals(Integer.valueOf(1)));
-				Boolean meditation = Boolean.valueOf(Integer.valueOf(8).equals(Integer.valueOf(1)));
-				Boolean expression = Boolean.valueOf(Integer.valueOf(9).equals(Integer.valueOf(1)));
+				Integer gender = Integer.valueOf(cursor_user.getInt(3));
+				Integer age = Integer.valueOf(cursor_user.getInt(4));
+				Integer maritalStatus = Integer.valueOf(cursor_user.getInt(5));
+				Integer socioprofessionalCategory = Integer.valueOf(cursor_user.getInt(6));
+				Boolean sport = Boolean.valueOf(Integer.valueOf(cursor_user.getInt(7)).equals(Integer.valueOf(1)));
+				Boolean meditation = Boolean.valueOf(Integer.valueOf(cursor_user.getInt(8)).equals(Integer.valueOf(1)));
+				Integer expression = Integer.valueOf(cursor_user.getInt(9));
 				
 				user = new User(userId, firstName, lastName, 
 						gender, age, maritalStatus, 
