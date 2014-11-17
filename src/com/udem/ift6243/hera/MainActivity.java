@@ -4,7 +4,9 @@ import com.udem.ift6243.dao.DatabaseHandler;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -22,21 +24,29 @@ public class MainActivity extends Activity {
 					.add(R.id.container, new PlaceholderFragment()).commit();
 		}
 		
-		// Create Database
-		DatabaseHandler db = null;
-    	try  
-        {
-        	db = new DatabaseHandler(this);
-        	db.createDatabase();
-        }
-        catch (Exception e)  
-        {  
-            e.printStackTrace();  
-        }
-        finally
-        {
-        	if(db != null) db.close();
-        }
+		// Create Database for the first run
+//		SharedPreferences p = PreferenceManager.getDefaultSharedPreferences(this);
+//        boolean firstRun = p.getBoolean("preference_first_run", true);
+//        if(firstRun)
+//        {
+        	DatabaseHandler db = null;
+        	try  
+            {
+            	db = new DatabaseHandler(this);
+            	db.createDatabase();
+            }
+            catch (Exception e)  
+            {  
+                e.printStackTrace();  
+            }
+            finally
+            {
+            	if(db != null) db.close();
+            	
+            	// modification des preferences
+//            	p.edit().putBoolean("preference_first_run", false).commit(); 
+            }
+//        }
 	}
 
 	@Override
