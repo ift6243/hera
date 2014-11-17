@@ -2,6 +2,7 @@ package com.udem.ift6243.utility;
 
 public final class Constant
 {
+	/// User profile
 	public static Integer GENDER_FEMALE = Integer.valueOf(1);
 	public static Integer GENDER_MALE = Integer.valueOf(2);
 	
@@ -17,9 +18,15 @@ public final class Constant
 	public static Integer AGE_90_99 = Integer.valueOf(10);
 	public static Integer AGE_100 = Integer.valueOf(11);
 	
+	/// Solution
 	public static Integer SOLUTION_CATEGORY_SPORT = Integer.valueOf(1);
 	public static Integer SOLUTION_CATEGORY_ACTION = Integer.valueOf(2);
 	public static Integer SOLUTION_CATEGORY_MEDICAL = Integer.valueOf(3);
 	public static Integer SOLUTION_CATEGORY_CREATIVITY = Integer.valueOf(4);
 	public static Integer SOLUTION_CATEGORY_MULTIMEDIA = Integer.valueOf(5);
+	
+	/// Stress
+	public static Integer STRESS_LEVEL_NEGATIVE_OR_CONSTANT = Integer.valueOf(1);
+	public static Integer STRESS_LEVEL_LOW = Integer.valueOf(2);
+	public static Integer STRESS_LEVEL_HIGH = Integer.valueOf(3);
 }
