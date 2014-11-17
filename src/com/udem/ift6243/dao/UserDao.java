@@ -1,7 +1,7 @@
 package com.udem.ift6243.dao;
 
-import com.ift6243.test2.DatabaseHandler;
-import com.ift6243.test2.User;
+import com.udem.ift6243.dao.DatabaseHandler;
+import com.udem.ift6243.model.User;
 import com.udem.ift6243.schema.UserSchema;
 
 import android.content.ContentValues;
