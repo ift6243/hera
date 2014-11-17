@@ -1,6 +1,9 @@
 package com.udem.ift6243.dao;
 
-import com.udem.ift6243.schema.UserSchema;
+import java.util.ArrayList;
+
+import com.udem.ift6243.sql.schema.SolutionSchema;
+import com.udem.ift6243.sql.schema.UserSchema;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -37,9 +40,14 @@ public class DatabaseHandler extends SQLiteOpenHelper
 		
 		/// Create tables
 		db.execSQL(UserSchema.getCreateTableSchema());
+		db.execSQL(SolutionSchema.getCreateTableSchema());
 		
 		/// Insert data
-//		db.execSQL(SolutionSchema.getInsertSchema());
+		ArrayList<String> solutionQueries = SolutionSchema.getInsertDataList();
+		for(String solutionQuery : solutionQueries)
+		{
+			db.execSQL(solutionQuery);
+		}
 	}
 
 	// Upgrading database
@@ -48,6 +56,7 @@ public class DatabaseHandler extends SQLiteOpenHelper
 	{
 		/// Delete tables
 		db.execSQL(UserSchema.getDropTableSchema());
+		db.execSQL(SolutionSchema.getDropTableSchema());
 		
 		/// Create tables
 		onCreate(db);
