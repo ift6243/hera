@@ -1,7 +1,8 @@
 package com.udem.ift6243.hera;
 
+import com.udem.ift6243.dao.DatabaseHandler;
+
 import android.app.Activity;
-import android.app.ActionBar;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,7 +10,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.os.Build;
 
 public class MainActivity extends Activity {
 
@@ -20,7 +20,23 @@ public class MainActivity extends Activity {
 		if (savedInstanceState == null) {
 			getFragmentManager().beginTransaction()
 					.add(R.id.container, new PlaceholderFragment()).commit();
-		} 
+		}
+		
+		// Create Database
+		DatabaseHandler db = null;
+    	try  
+        {
+        	db = new DatabaseHandler(this);
+        	db.createDatabase();
+        }
+        catch (Exception e)  
+        {  
+            e.printStackTrace();  
+        }
+        finally
+        {
+        	if(db != null) db.close();
+        }
 	}
 
 	@Override
