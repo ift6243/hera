@@ -14,7 +14,7 @@ public class SolutionCategorySchema
 	public static String getCreateTableSchema()
 	{
 		return "CREATE TABLE `solution_category` ("
-				+ "`id`	INTEGER PRIMARY KEY AUTOINCREMENT,"
+				+ "`id`	INTEGER PRIMARY KEY,"
 				+ "`name`	TEXT UNIQUE"
 				+ ");";
 	}
