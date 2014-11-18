@@ -2,6 +2,9 @@ package com.udem.ift6243.utility;
 
 public final class Constant
 {
+	/// Data source
+	public static String SOURCE_DATA_EDA = "http://192.168.0.51:8888/ift6243/data.eda";
+	
 	/// User profile
 	public static Integer GENDER_FEMALE = Integer.valueOf(1);
 	public static Integer GENDER_MALE = Integer.valueOf(2);
@@ -29,4 +32,7 @@ public final class Constant
 	public static Integer STRESS_LEVEL_NEGATIVE_OR_CONSTANT = Integer.valueOf(1);
 	public static Integer STRESS_LEVEL_LOW = Integer.valueOf(2);
 	public static Integer STRESS_LEVEL_HIGH = Integer.valueOf(3);
+	
+	public static double STRESS_VARIATION_WARNING = 1.5;
+	public static double STRESS_VARIATION_ALERT = 3;
 }
