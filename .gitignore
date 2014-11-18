@@ -1,5 +1,7 @@
 bin
 gen
+R.java
+BuildConfig.java
 .metadata
 .project
 .classpath
