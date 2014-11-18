@@ -1,14 +1,20 @@
 package com.udem.ift6243.sql.schema;
 
-public class ContextSchema
+public class HeraContextSchema
 {
 	public static final String TABLE_NAME = "context";
 	
 	public static final String TABLE_COL_ID = "id";
+	public static final String TABLE_COL_LATITUDE = "latitude";
+	public static final String TABLE_COL_LONGITUDE = "longitude";
+	public static final String TABLE_COL_DAY_PART = "day_part";
+	public static final String TABLE_COL_WEEK_PART = "week_part";
+	public static final String TABLE_COL_YEAR_PART = "year_part";
+	public static final String TABLE_COL_DATE = "date";
 	
 	public static String getCreateTableSchema()
 	{
-		return "CREATE TABLE `context` ("
+		return "CREATE TABLE `" + TABLE_NAME + "` ("
 				+ "`id`	INTEGER PRIMARY KEY AUTOINCREMENT,"
 				+ "`latitude`	REAL,"
 				+ "`longitude`	REAL,"
