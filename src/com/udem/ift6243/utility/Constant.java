@@ -1,6 +1,6 @@
 package com.udem.ift6243.utility;
 
-public final class Constant 
+public final class Constant
 {
 	/// Data source
 	public static String SOURCE_DATA_EDA = "http://192.168.0.51:8888/ift6243/data.eda";
