@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class DayPartSchema
 {
-	public static final String TABLE_NAME = "solution";
+	public static final String TABLE_NAME = "day_part";
 	
 	public static final String TABLE_COL_ID = "id";
 	public static final String TABLE_COL_NAME = "name";
