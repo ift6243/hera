@@ -3,9 +3,12 @@ package com.udem.ift6243.dao;
 import java.util.ArrayList;
 
 import com.udem.ift6243.sql.schema.ContextSchema;
+import com.udem.ift6243.sql.schema.DayPartSchema;
 import com.udem.ift6243.sql.schema.SolutionCategorySchema;
 import com.udem.ift6243.sql.schema.SolutionSchema;
 import com.udem.ift6243.sql.schema.UserSchema;
+import com.udem.ift6243.sql.schema.WeekPartSchema;
+import com.udem.ift6243.sql.schema.YearPartSchema;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -21,12 +24,12 @@ public class DatabaseHandler extends SQLiteOpenHelper
 	private static final String DATABASE_NAME = "Hera";
 	
 	// Others
-	private Context context;
+//	private Context context;
 	
 	public DatabaseHandler(Context context) 
 	{
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
-		this.context = context;
+//		this.context = context;
 	}
 	
 	public void createDatabase()
@@ -44,9 +47,12 @@ public class DatabaseHandler extends SQLiteOpenHelper
 		db.execSQL(UserSchema.getCreateTableSchema());
 		db.execSQL(SolutionSchema.getCreateTableSchema());
 		db.execSQL(SolutionCategorySchema.getCreateTableSchema());
+		db.execSQL(DayPartSchema.getCreateTableSchema());
+		db.execSQL(WeekPartSchema.getCreateTableSchema());
+		db.execSQL(YearPartSchema.getCreateTableSchema());
 		db.execSQL(ContextSchema.getCreateTableSchema());
 		
-		/// Insert data
+		/// Insert datas
 		ArrayList<String> solutionQueries = SolutionSchema.getInsertDataList();
 		for(String solutionQuery : solutionQueries)
 		{
@@ -58,6 +64,24 @@ public class DatabaseHandler extends SQLiteOpenHelper
 		{
 			db.execSQL(solutionCategoryQuery);
 		}
+		
+		ArrayList<String> dayPartQueries = DayPartSchema.getInsertDataList();
+		for(String dayPartQuery : dayPartQueries)
+		{
+			db.execSQL(dayPartQuery);
+		}
+		
+		ArrayList<String> weekPartQueries = WeekPartSchema.getInsertDataList();
+		for(String weekPartQuery : weekPartQueries)
+		{
+			db.execSQL(weekPartQuery);
+		}
+		
+		ArrayList<String> yearPartQueries = YearPartSchema.getInsertDataList();
+		for(String yearPartQuery : yearPartQueries)
+		{
+			db.execSQL(yearPartQuery);
+		}
 	}
 
 	// Upgrading database
@@ -68,6 +92,9 @@ public class DatabaseHandler extends SQLiteOpenHelper
 		db.execSQL(UserSchema.getDropTableSchema());
 		db.execSQL(SolutionSchema.getDropTableSchema());
 		db.execSQL(SolutionCategorySchema.getDropTableSchema());
+		db.execSQL(DayPartSchema.getDropTableSchema());
+		db.execSQL(WeekPartSchema.getDropTableSchema());
+		db.execSQL(YearPartSchema.getDropTableSchema());
 		db.execSQL(ContextSchema.getDropTableSchema());
 		
 		/// Create tables
