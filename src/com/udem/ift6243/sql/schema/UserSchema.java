@@ -1,7 +1,7 @@
 package com.udem.ift6243.sql.schema;
 
 public final class UserSchema
-{
+{ 
 	public static final String TABLE_NAME = "user";
 	
 	public static final String TABLE_COL_ID = "id";
