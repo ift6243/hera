@@ -2,7 +2,7 @@ package com.udem.ift6243.dao;
 
 import java.util.ArrayList;
 
-import com.udem.ift6243.sql.schema.ContextSchema;
+import com.udem.ift6243.sql.schema.HeraContextSchema;
 import com.udem.ift6243.sql.schema.DayPartSchema;
 import com.udem.ift6243.sql.schema.SolutionCategorySchema;
 import com.udem.ift6243.sql.schema.SolutionSchema;
@@ -50,7 +50,7 @@ public class DatabaseHandler extends SQLiteOpenHelper
 		db.execSQL(DayPartSchema.getCreateTableSchema());
 		db.execSQL(WeekPartSchema.getCreateTableSchema());
 		db.execSQL(YearPartSchema.getCreateTableSchema());
-		db.execSQL(ContextSchema.getCreateTableSchema());
+		db.execSQL(HeraContextSchema.getCreateTableSchema());
 		
 		/// Insert datas
 		ArrayList<String> solutionQueries = SolutionSchema.getInsertDataList();
@@ -95,7 +95,7 @@ public class DatabaseHandler extends SQLiteOpenHelper
 		db.execSQL(DayPartSchema.getDropTableSchema());
 		db.execSQL(WeekPartSchema.getDropTableSchema());
 		db.execSQL(YearPartSchema.getDropTableSchema());
-		db.execSQL(ContextSchema.getDropTableSchema());
+		db.execSQL(HeraContextSchema.getDropTableSchema());
 		
 		/// Create tables
 		onCreate(db);
