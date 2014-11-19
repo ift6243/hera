@@ -8,8 +8,8 @@ public class YearPartSchema
 	
 	public static final String TABLE_COL_ID = "id";
 	public static final String TABLE_COL_NAME = "name";
-	public static final String TABLE_COL_START_HOUR = "start_date"; // Format : MM-DD
-	public static final String TABLE_COL_END_HOUR = "end_date"; // Format : MM-DD
+	public static final String TABLE_COL_START_DATE = "start_date"; // Format : MM-DD
+	public static final String TABLE_COL_END_DATE = "end_date"; // Format : MM-DD
 	
 	public static String getCreateTableSchema()
 	{
