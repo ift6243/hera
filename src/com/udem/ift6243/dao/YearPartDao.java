@@ -21,7 +21,7 @@ public class YearPartDao
 	 * @param currentDate Format MM-DD expected
 	 * @return YearPart
 	 */
-	public YearPart getYearPart(Integer currentDate)
+	public YearPart getYearPart(String currentDate)
 	{
 		YearPart yearPart = null;
 		
@@ -36,7 +36,7 @@ public class YearPartDao
 					null, 
 					YearPartSchema.TABLE_COL_START_DATE + " >= ? AND "
 					+ YearPartSchema.TABLE_COL_END_DATE + " <= ?", 
-					new String[] { String.valueOf(currentDate.intValue()) }, 
+					new String[] { currentDate }, 
 					null, null, null, null);
 			
 			if (cursor_year_part != null && cursor_year_part.moveToLast())
