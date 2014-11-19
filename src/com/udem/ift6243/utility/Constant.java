@@ -3,7 +3,10 @@ package com.udem.ift6243.utility;
 public final class Constant 
 {
 	/// Data source
-	public static String SOURCE_DATA_EDA = "http://192.168.0.51:8888/ift6243/data.eda";
+	// Production URL
+//	public static String SOURCE_DATA_EDA = "http://192.168.0.51:8888/ift6243/data.eda";
+	// Development URL
+	public static String SOURCE_DATA_EDA = "http://paul-molins.fr/ift6243/data.eda";
 	
 	/// User profile
 	public static Integer GENDER_FEMALE = Integer.valueOf(1);
