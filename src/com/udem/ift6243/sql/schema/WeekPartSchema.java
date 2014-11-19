@@ -8,8 +8,8 @@ public class WeekPartSchema
 	
 	public static final String TABLE_COL_ID = "id";
 	public static final String TABLE_COL_NAME = "name";
-	public static final String TABLE_COL_START_HOUR = "start_day";
-	public static final String TABLE_COL_END_HOUR = "end_day";
+	public static final String TABLE_COL_START_DAY = "start_day";
+	public static final String TABLE_COL_END_DAY = "end_day";
 	
 	public static String getCreateTableSchema()
 	{
