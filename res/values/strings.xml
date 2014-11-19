@@ -5,17 +5,17 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_user_form">Formulaire</string>
-    <string name="homme">Homme</string>
-    <string name="femme">Femme</string>
-    <string name="prenom">Prénom</string>
-    <string name="nom">Nom</string>
+    <string name="man">Homme</string>
+    <string name="woman">Femme</string>
+    <string name="fname">Prénom</string>
+    <string name="name">Nom</string>
     <string name="age">Tranche d\'âge</string>
-    <string name="sexe">Sexe</string>
+    <string name="sex">Sexe</string>
     <string name="sport">Pratiquez-vous une activité sportive ?</string>
     <string name="expression">Quels sont vos moyens d\'expression ?</string>
     <string name="profession">Quel est votre statut professionnel actuel ?</string>
-    <string name="statut">Quel est votre statut social actuel ?</string>
-    <string name="yoga">Pratiquez-vous la méditation, le yoga ou autres exercices similaires ?</string>
+    <string name="status">Quel est votre statut social actuel ?</string>
+    <string name="meditation">Pratiquez-vous la méditation, le yoga ou autres exercices similaires ?</string>
     <string name="btnSubmit">Soumettre</string>
     <string name="start">Start</string>
 
@@ -44,9 +44,11 @@
         <item>Professions Intermédiaires</item>
         <item>Employés</item>
         <item>Ouvriers</item>
+        <item>Retraités</item>
+        <item>Sans emplois</item>
         <item>Etudiants</item>
-        <item>Autre</item>
     </string-array>
+    
     <string-array name="expressions_arrays">
         <item>Lecture</item>
         <item>Ecriture</item>
@@ -58,7 +60,7 @@
         <item>Oui</item>
         <item>Non</item>
     </string-array>
-    <string-array name="yoga_arrays">
+    <string-array name="meditation_arrays">
         <item>Oui</item>
         <item>Non</item>
     </string-array>
