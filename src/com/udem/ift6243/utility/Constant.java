@@ -28,7 +28,7 @@ public final class Constant
 	public static Integer SOLUTION_CATEGORY_SPORT = Integer.valueOf(1);
 	public static Integer SOLUTION_CATEGORY_ACTION = Integer.valueOf(2);
 	public static Integer SOLUTION_CATEGORY_MEDICAL = Integer.valueOf(3);
-	public static Integer SOLUTION_CATEGORY_CREATIVITY = Integer.valueOf(4);
+	public static Integer SOLUTION_CATEGORY_EXPRESSION = Integer.valueOf(4);
 	public static Integer SOLUTION_CATEGORY_MULTIMEDIA = Integer.valueOf(5);
 	
 	/// Stress

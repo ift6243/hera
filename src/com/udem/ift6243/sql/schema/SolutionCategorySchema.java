@@ -30,7 +30,7 @@ public class SolutionCategorySchema
 		queryList.add("INSERT INTO " + TABLE_NAME + " VALUES (" + 
 				Constant.SOLUTION_CATEGORY_MEDICAL + ", 'Médical');");
 		queryList.add("INSERT INTO " + TABLE_NAME + " VALUES (" + 
-				Constant.SOLUTION_CATEGORY_CREATIVITY + ", 'Créativité');");
+				Constant.SOLUTION_CATEGORY_EXPRESSION + ", 'Expression');");
 		queryList.add("INSERT INTO " + TABLE_NAME + " VALUES (" + 
 				Constant.SOLUTION_CATEGORY_MULTIMEDIA + ", 'Multimédia');");
 		

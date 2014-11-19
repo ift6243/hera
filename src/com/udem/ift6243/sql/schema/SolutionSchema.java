@@ -28,8 +28,19 @@ public final class SolutionSchema
 		ArrayList<String> queryList = new ArrayList<String>();
 		
 		queryList.add("INSERT INTO " + TABLE_NAME + " VALUES (NULL, " + 
-				Constant.SOLUTION_CATEGORY_SPORT + ", 'Course', 'Courrez pendant 2 minutes !');");
+				Constant.SOLUTION_CATEGORY_SPORT + ", 'Courir', 'Courrez pendant 2 minutes.');");
 		
+		queryList.add("INSERT INTO " + TABLE_NAME + " VALUES (NULL, " + 
+				Constant.SOLUTION_CATEGORY_ACTION + ", 'Action', 'Faites une sieste de 15 minutes.');");
+		
+		queryList.add("INSERT INTO " + TABLE_NAME + " VALUES (NULL, " + 
+				Constant.SOLUTION_CATEGORY_MEDICAL + ", 'Consulter un médecin', 'Nous vous conseillons de consulter un médecin.');");
+		
+		queryList.add("INSERT INTO " + TABLE_NAME + " VALUES (NULL, " + 
+				Constant.SOLUTION_CATEGORY_EXPRESSION + ", 'Dessin', 'Faites un petit dessin.');");
+		
+		queryList.add("INSERT INTO " + TABLE_NAME + " VALUES (NULL, " + 
+				Constant.SOLUTION_CATEGORY_SPORT + ", 'Course', 'Courrez pendant 2 minutes !');");
 		return queryList;
 	}
 	
