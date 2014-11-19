@@ -34,7 +34,7 @@ public class SolutionDao
 		{
 			cursor_solution = db.query(SolutionSchema.TABLE_NAME, 
 					null, 
-					SolutionSchema.TABLE_COL_ID + "=?", 
+					SolutionSchema.TABLE_COL_ID + " = ?", 
 					new String[] { String.valueOf(id) }, 
 					null, null, null, null);
 			
