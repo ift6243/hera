@@ -4,4 +4,38 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.udem.ift6243.hera.MainActivity"
-    tools:ignore="MergeRootFrame" />
+    tools:ignore="MergeRootFrame" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Debug activity HERA"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <Button
+            android:id="@+id/paul"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Paul Activity" />
+
+        <Button
+            android:id="@+id/imene"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Imene Activity" />
+
+        <Button
+            android:id="@+id/rene"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="René Activity" />
+
+    </LinearLayout>
+
+</FrameLayout>

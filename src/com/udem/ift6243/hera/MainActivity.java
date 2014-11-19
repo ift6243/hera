@@ -1,9 +1,11 @@
 package com.udem.ift6243.hera;
 
+//import com.example.notificationdemo.R;
 import com.udem.ift6243.dao.DatabaseHandler;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -12,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 public class MainActivity extends Activity {
 
@@ -23,6 +26,22 @@ public class MainActivity extends Activity {
 			getFragmentManager().beginTransaction()
 					.add(R.id.container, new PlaceholderFragment()).commit();
 		}
+		
+		Button paulBtn = (Button) findViewById(R.id.paul);
+	      paulBtn.setOnClickListener(new View.OnClickListener() {
+	    	  public void onClick(View v) {
+	    			Intent intent = new Intent(MainActivity.this, PaulActivity.class);
+	    			startActivity(intent);
+	    			}
+	      });
+	      
+	      Button imeneBtn = (Button) findViewById(R.id.imene);
+	      imeneBtn.setOnClickListener(new View.OnClickListener() {
+	    	  public void onClick(View v) {
+	    			Intent intent = new Intent(MainActivity.this, UserFormActivity.class);
+	    			startActivity(intent);
+	    			}
+	      });
 		
 		// Create Database for the first run
 //		SharedPreferences p = PreferenceManager.getDefaultSharedPreferences(this);
