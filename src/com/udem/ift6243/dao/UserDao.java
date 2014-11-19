@@ -46,7 +46,7 @@ public class UserDao
 			
 		    long insertedId = db.insert(UserSchema.TABLE_NAME, null, values);
 			
-			db.setTransactionSuccessful(); // marks a commit
+			db.setTransactionSuccessful();
 			
 			if(insertedId > 0L)
 			{

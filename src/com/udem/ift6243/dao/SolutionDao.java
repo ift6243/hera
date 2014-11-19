@@ -48,7 +48,7 @@ public class SolutionDao
 				solution = new Solution(solutionId, categoryId, name, description);
 			}
 			
-			db.setTransactionSuccessful(); // marks a commit
+			db.setTransactionSuccessful();
 		}
 		finally
 		{
