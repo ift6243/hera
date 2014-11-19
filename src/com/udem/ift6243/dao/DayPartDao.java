@@ -17,7 +17,7 @@ public class DayPartDao
 	}
 	
 	/**
-	 * 
+	 * Get DayPart from current hour
 	 * @param currentHour Heure courante
 	 * @return
 	 */
