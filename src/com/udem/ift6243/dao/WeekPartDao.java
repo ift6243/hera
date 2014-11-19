@@ -18,8 +18,8 @@ public class WeekPartDao
 	
 	/**
 	 * Get WeekPart from current day
-	 * @param currentHour Heure courante
-	 * @return
+	 * @param currentDay today
+	 * @return WeekPart
 	 */
 	public WeekPart getWeekPart(Integer currentDay)
 	{
