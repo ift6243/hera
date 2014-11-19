@@ -2,7 +2,3 @@ hera
 ====
 
 Hera project
-
-rené
-
-
