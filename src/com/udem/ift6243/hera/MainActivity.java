@@ -1,9 +1,12 @@
 package com.udem.ift6243.hera;
 
+
+
 import com.udem.ift6243.dao.DatabaseHandler;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -12,13 +15,20 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements OnClickListener {
 
+	private Button btnForm;
+	
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		btnForm = (Button) findViewById(R.id.button1);
+	    btnForm.setOnClickListener(this);
 		if (savedInstanceState == null) {
 			getFragmentManager().beginTransaction()
 					.add(R.id.container, new PlaceholderFragment()).commit();
@@ -83,5 +93,12 @@ public class MainActivity extends Activity {
 					false);
 			return rootView;
 		}
+	}
+
+	@Override
+	public void onClick(View v) {
+		// TODO Auto-generated method stub
+		Intent i = new Intent(getApplicationContext(),UserFormActivity.class);
+  	    startActivity(i);
 	}
 }
