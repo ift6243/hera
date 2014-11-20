@@ -42,6 +42,14 @@ public class MainActivity extends Activity {
 	    			startActivity(intent);
 	    			}
 	      });
+	      
+	      Button reneBtn = (Button) findViewById(R.id.rene);
+	      reneBtn.setOnClickListener(new View.OnClickListener() {
+	    	  public void onClick(View v) {
+	    			Intent intent = new Intent(MainActivity.this, NotificationActivity.class);
+	    			startActivity(intent);
+	    			}
+	      });
 		
 		// Create Database for the first run
 //		SharedPreferences p = PreferenceManager.getDefaultSharedPreferences(this);

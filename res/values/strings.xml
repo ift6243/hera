@@ -18,7 +18,12 @@
     <string name="meditation">Pratiquez-vous la méditation, le yoga ou autres exercices similaires ?</string>
     <string name="btnSubmit">Soumettre</string>
     <string name="start">Start</string>
-
+    <string name="start_note">Start Notification</string>
+    <string name="cancel_note">Cancel Notification</string>
+    <string name="update_note">Update Notification</string>
+	<string name="accepter">Accepter la solution</string>
+	<string name="refuser">Refuser la solution</string>
+	
     <string-array name="age_arrays">
         <item>0&#8211;9 ans</item>
         <item>10&#8211;19 ans</item>
@@ -48,7 +53,6 @@
         <item>Sans emplois</item>
         <item>Etudiants</item>
     </string-array>
-    
     <string-array name="expressions_arrays">
         <item>Lecture</item>
         <item>Ecriture</item>
@@ -66,5 +70,7 @@
     </string-array>
 
     <string name="title_activity_paul">PaulActivity</string>
+    <string name="title_activity_notification">NotificationActivity</string>
+    <string name="title_activity_notification_receiver">NotificationReceiverActivity</string>
 
 </resources>

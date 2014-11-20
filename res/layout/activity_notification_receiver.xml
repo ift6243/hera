@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"    >
+
+    <TextView
+        android:id="@+id/solution" 
+        android:layout_width="fill_parent"
+        android:layout_height="300dp"
+         />
+<LinearLayout
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal" >
+    <Button 
+      android:id="@+id/refus"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/refuser"
+      android:layout_weight="1" 
+      android:layout_marginLeft="25dip" 
+      android:layout_marginRight="25dip"
+    />
+
+    <Button
+        android:id="@+id/accepter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dip"
+        android:layout_marginRight="25dip"
+        android:layout_weight="1"
+        android:text="@string/accepter" />
+
+  </LinearLayout>
+</LinearLayout>
