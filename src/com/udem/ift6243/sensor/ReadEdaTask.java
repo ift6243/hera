@@ -79,8 +79,7 @@ public class ReadEdaTask extends AsyncTask<String, Integer, String>
 								e.printStackTrace();
 							}
 							
-//							Log.e("i", String.valueOf(i));
-//							Log.e("lastLineNumber", String.valueOf(ReadEdaTask.lastLineNumber));
+//							Log.e("currentLineNumber", String.valueOf(i));
 							Log.e("newValue", String.valueOf(eda.get(eda.size()-1)));
 							
 							ReadEdaTask.lastLineNumber++;
