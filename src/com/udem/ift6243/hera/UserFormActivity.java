@@ -1,6 +1,7 @@
 package com.udem.ift6243.hera;
 
 
+
 import com.udem.ift6243.model.User;
 
 
@@ -8,6 +9,7 @@ import com.udem.ift6243.dao.UserDao;
 import android.app.Activity;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.view.View.OnClickListener;
 import android.view.View;
@@ -20,6 +22,7 @@ public class UserFormActivity extends Activity implements OnClickListener {
 	
 	private Spinner spinner1, spinner2, spinner3, spinner4, spinner5, spinner6;
 	private EditText editText1,editText2;
+	private RadioButton radioButton;
 	private Button btnSubmit;
 	  
 	// get the selected dropdown list value
@@ -33,6 +36,7 @@ public class UserFormActivity extends Activity implements OnClickListener {
 		  	spinner4 = (Spinner) findViewById(R.id.spinner4);
 		  	spinner5 = (Spinner) findViewById(R.id.spinner5);
 		  	spinner6 = (Spinner) findViewById(R.id.spinner6);
+		  	radioButton = (RadioButton) findViewById(R.id.radio_W);
 		  	btnSubmit = (Button) findViewById(R.id.btnSubmit);
 		  	btnSubmit.setOnClickListener(this);
 	   
@@ -90,7 +94,12 @@ public class UserFormActivity extends Activity implements OnClickListener {
 		Integer professionalStatus = 0;
 		Boolean sport = false;
 		Boolean meditation = false;
+		Boolean woman = false;
 		Integer expression = 0;
+		
+		//gender
+		woman = radioButton.isChecked();
+		gender = woman ? 1 : 0;
 		
 		//Age
 		age = spinner1.getSelectedItemPosition();
@@ -113,9 +122,9 @@ public class UserFormActivity extends Activity implements OnClickListener {
 		//expression
 		expression = spinner6.getSelectedItemPosition();
 		
-		User One = new User(null, firstName, lastName, gender, age, maritalStatus, professionalStatus, sport, meditation, expression);
+		User userOne = new User(null, firstName, lastName, gender, age, maritalStatus, professionalStatus, sport, meditation, expression);
 		UserDao user = new UserDao(this);
-		user.createUser(One);
+		user.createUser(userOne);
 		//Intent inten = new Intent(getApplicationContext(),showUser.class);
   	    //startActivity(inten);
 		//Log.e("user", String.valueOf(One.getAge()));
