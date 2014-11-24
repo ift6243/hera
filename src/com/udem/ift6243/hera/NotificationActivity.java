@@ -102,9 +102,12 @@ public class NotificationActivity extends Activity {
 	      
 	      /* Creates an explicit intent for an Activity in your app */
 	      Intent resultIntent = new Intent(this, NotificationReceiverActivity.class);
-	      String TEXTE ="MAMAN" ;
-		  resultIntent.putExtra("keyName", TEXTE);
+	      int id = 1 ;
+	      String s = "solution";
 	      
+		  resultIntent.putExtra("id",id);
+		  resultIntent.putExtra("solution", s);
+		  
 	      TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
 	      stackBuilder.addParentStack(NotificationReceiverActivity.class);
 
