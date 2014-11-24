@@ -25,7 +25,7 @@ public class NotificationReceiverActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_notification_receiver);
 		
-		  int data = getIntent().getIntExtra("id",0);
+		  int data = getIntent().getIntExtra("notificationId",0);
 		  System.out.print(data);
 	      //String dataS = getIntent().getExtras().getString("solution");
 	      
