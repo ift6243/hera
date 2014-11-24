@@ -1,23 +1,63 @@
 package com.udem.ift6243.hera;
 
+import com.udem.ift6243.dao.*;
+import com.udem.ift6243.model.*;
+import com.udem.ift6243.sql.schema.*;
+
 import android.app.Activity;
+import android.content.Context;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
-public class NotificationReceiverActivity extends Activity {
 
+public class NotificationReceiverActivity extends Activity {
+	
+	//private Solution s;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_notification_receiver);
 		
+		  int data = getIntent().getIntExtra("notificationId",0);
+		  System.out.print(data);
+	      //String dataS = getIntent().getExtras().getString("solution");
 	      
-	      String data = getIntent().getExtras().getString("keyName");
 	      TextView solutionDisplay = (TextView) findViewById(R.id.solution);
 	      solutionDisplay.setText(data);
+
+	      
+/*	      Solution s = com.udem.ift6243.dao.SolutionDao.getSolution(data);
+	      Cursor cursor = (Cursor) com.udem.ift6243.dao.SolutionDao.getSolution(data);
+	      
+	      String[] columns = new String[] {
+	    		  	SolutionSchema.TABLE_COL_NAME,
+	    		  	SolutionSchema.TABLE_COL_DESCRIPTION
+	    		  };
+	      int[] to = new int[] { 
+	    		    R.id.name,
+	    		    R.id.description
+	    		  };
+	      
+	      SimpleCursorAdapter dataAdapter = new SimpleCursorAdapter(
+	    		    this, R.layout.notification_list_row, 
+	    		    cursor, 
+	    		    columns, 
+	    		    to,
+	    		    0);
+	    		 
+	    		  ListView listView = (ListView) findViewById(R.id.listView1);
+	    		  // Assign adapter to ListView
+	    		  listView.setAdapter(dataAdapter);
+	    	*/	 
 	}
+
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
