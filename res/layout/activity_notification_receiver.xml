@@ -4,15 +4,15 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"    >
 
-<!--     <ListView
+<!--      <ListView
         android:id="@+id/listView1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true">
-    </ListView>  -->
+    </ListView>    -->
     
- <!--    <TextView
+<!--       <TextView
         android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -30,7 +30,7 @@
         android:layout_alignParentTop="true"
         android:text="Medium Text"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textStyle="bold" /> -->
+        android:textStyle="bold" />    -->
       
             <TextView
                 android:id="@+id/solution"

@@ -71,6 +71,6 @@
 
     <string name="title_activity_paul">PaulActivity</string>
     <string name="title_activity_notification">NotificationActivity</string>
-    <string name="title_activity_notification_receiver">NotificationReceiverActivity</string>
+    <string name="title_activity_notification_receiver">Solution</string>
 
 </resources>

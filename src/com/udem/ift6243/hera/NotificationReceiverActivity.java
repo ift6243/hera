@@ -25,16 +25,26 @@ public class NotificationReceiverActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_notification_receiver);
 		
-		  int data = getIntent().getIntExtra("notificationId",0);
-		  System.out.print(data);
+		  Bundle extras = getIntent().getExtras();
+		  int id = extras.getInt("notificationID");
+		  
+		  //int data = getIntent().getExtras().getInt("notificationId");
+		  //System.out.print(+id);
 	      //String dataS = getIntent().getExtras().getString("solution");
 	      
-	      TextView solutionDisplay = (TextView) findViewById(R.id.solution);
-	      solutionDisplay.setText(data);
-
+	      //TextView solutionDisplay = (TextView) findViewById(R.id.solution);
+	      //solutionDisplay.setText("La solution "+id);
 	      
-/*	      Solution s = com.udem.ift6243.dao.SolutionDao.getSolution(data);
-	      Cursor cursor = (Cursor) com.udem.ift6243.dao.SolutionDao.getSolution(data);
+	      SolutionDao s = new SolutionDao(this);
+	      Solution solution = s.getSolution(id);
+
+	      TextView solutionDisplay = (TextView) findViewById(R.id.solution);
+	      solutionDisplay.setText("Nous vous proposons la solution suivante : \n"+solution.getName());
+/*
+	      Solution printing in a ListView      
+	      Solution s = com.udem.ift6243.dao.SolutionDao.getSolution(id);
+	      SolutionDao s = new SolutionDao(this);
+	      Cursor cursor = s.getSolution(id);
 	      
 	      String[] columns = new String[] {
 	    		  	SolutionSchema.TABLE_COL_NAME,
@@ -46,7 +56,7 @@ public class NotificationReceiverActivity extends Activity {
 	    		  };
 	      
 	      SimpleCursorAdapter dataAdapter = new SimpleCursorAdapter(
-	    		    this, R.layout.notification_list_row, 
+	    		    this, R.layout.activity_list_row, 
 	    		    cursor, 
 	    		    columns, 
 	    		    to,
@@ -54,8 +64,8 @@ public class NotificationReceiverActivity extends Activity {
 	    		 
 	    		  ListView listView = (ListView) findViewById(R.id.listView1);
 	    		  // Assign adapter to ListView
-	    		  listView.setAdapter(dataAdapter);
-	    	*/	 
+	    		  listView.setAdapter(dataAdapter);	
+	    		  */	 
 	}
 
 

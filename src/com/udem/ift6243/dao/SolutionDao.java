@@ -21,7 +21,7 @@ public class SolutionDao
 	 * @param id de la solution
 	 * @return Solution
 	 */
-	public static Solution getSolution(Integer id)
+	public Solution getSolution(Integer id)
 	{
 		Solution solution = null;
 		
