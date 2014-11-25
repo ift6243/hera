@@ -20,7 +20,7 @@ import android.widget.Button;
 @SuppressLint("NewApi")
 public class NotificationActivity extends Activity {
 	   private NotificationManager mNotificationManager;
-	   private int notificationID = 1;
+	   private int notificationID = 4;
 	   private int numMessages = 0;
 	   
 	@Override

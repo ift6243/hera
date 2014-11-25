@@ -6,11 +6,14 @@ import com.udem.ift6243.sql.schema.*;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
@@ -26,7 +29,7 @@ public class NotificationReceiverActivity extends Activity {
 		setContentView(R.layout.activity_notification_receiver);
 		
 		  Bundle extras = getIntent().getExtras();
-		  int id = extras.getInt("notificationID");
+		  final int id = extras.getInt("notificationID");
 		  
 		  //int data = getIntent().getExtras().getInt("notificationId");
 		  //System.out.print(+id);
@@ -40,8 +43,9 @@ public class NotificationReceiverActivity extends Activity {
 
 	      TextView solutionDisplay = (TextView) findViewById(R.id.solution);
 	      solutionDisplay.setText("Nous vous proposons la solution suivante : \n"+solution.getName());
-/*
-	      Solution printing in a ListView      
+
+	      /*Solution printing in a ListView
+	            
 	      Solution s = com.udem.ift6243.dao.SolutionDao.getSolution(id);
 	      SolutionDao s = new SolutionDao(this);
 	      Cursor cursor = s.getSolution(id);
@@ -66,6 +70,21 @@ public class NotificationReceiverActivity extends Activity {
 	    		  // Assign adapter to ListView
 	    		  listView.setAdapter(dataAdapter);	
 	    		  */	 
+	      
+			final Button buttonsuiv = (Button) findViewById(R.id.accepter);
+	        buttonsuiv.setOnClickListener(new View.OnClickListener() {
+
+	        @Override
+	        public void onClick(View v) {
+	          Intent SolutionIntent = new Intent(NotificationReceiverActivity.this, SolutionActivity.class);
+	          
+		      Bundle dataBundle = new Bundle();
+		      dataBundle.putInt("solutionID",(int)id);		      
+			  SolutionIntent.putExtras(dataBundle);
+			  
+			  startActivity(SolutionIntent);
+	          }
+	        });
 	}
 
 

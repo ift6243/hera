@@ -21,9 +21,11 @@
     <string name="start_note">Start Notification</string>
     <string name="cancel_note">Cancel Notification</string>
     <string name="update_note">Update Notification</string>
-	<string name="accepter">Accepter la solution</string>
-	<string name="refuser">Refuser la solution</string>
-	
+    <string name="accepter">Accepter la solution</string>
+    <string name="refuser">Refuser la solution</string>
+    <string name="son">Relaxer vous en ecoutant cette douce musique</string>
+    <string name="play">Jouer le son</string>
+
     <string-array name="age_arrays">
         <item>0&#8211;9 ans</item>
         <item>10&#8211;19 ans</item>
@@ -71,6 +73,8 @@
 
     <string name="title_activity_paul">PaulActivity</string>
     <string name="title_activity_notification">NotificationActivity</string>
-    <string name="title_activity_notification_receiver">Solution</string>
+    <string name="title_activity_notification_receiver">Proposition de Solution</string>
+    <string name="title_activity_solution">Solution</string>
+    <string name="title_activity_multimedia">Solution Multimedia</string>
 
 </resources>

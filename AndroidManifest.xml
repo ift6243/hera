@@ -47,6 +47,14 @@
             android:name=".NotificationReceiverActivity"
             android:label="@string/title_activity_notification_receiver" >
         </activity>
+        <activity
+            android:name=".SolutionActivity"
+            android:label="@string/title_activity_solution" >
+        </activity>
+        <activity
+            android:name=".MultimediaActivity"
+            android:label="@string/title_activity_multimedia" >
+        </activity>
     </application>
 
 </manifest>
