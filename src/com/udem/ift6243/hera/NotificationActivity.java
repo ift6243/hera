@@ -20,7 +20,7 @@ import android.widget.Button;
 @SuppressLint("NewApi")
 public class NotificationActivity extends Activity {
 	   private NotificationManager mNotificationManager;
-	   private int notificationID = 100;
+	   private int notificationID = 4;
 	   private int numMessages = 0;
 	   
 	@Override
@@ -102,9 +102,16 @@ public class NotificationActivity extends Activity {
 	      
 	      /* Creates an explicit intent for an Activity in your app */
 	      Intent resultIntent = new Intent(this, NotificationReceiverActivity.class);
-	      String TEXTE ="MAMAN" ;
-		  resultIntent.putExtra("keyName", TEXTE);
 	      
+	      //String s = "solution";
+	      //resultIntent.putExtra("solution", s);
+	      
+	      Bundle dataBundle = new Bundle();
+	      dataBundle.putInt("notificationID",(int)notificationID);
+	      
+		  resultIntent.putExtras(dataBundle);
+		  
+		  
 	      TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
 	      stackBuilder.addParentStack(NotificationReceiverActivity.class);
 

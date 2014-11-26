@@ -131,14 +131,14 @@
         android:orientation="horizontal" >
 
         <RadioButton
-            android:id="@+id/radio0"
+            android:id="@+id/radio_W"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="true"
             android:text="@string/woman" />
 
         <RadioButton
-            android:id="@+id/radio1"
+            android:id="@+id/radio_M"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/man" />

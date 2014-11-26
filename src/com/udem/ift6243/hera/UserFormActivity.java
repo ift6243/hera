@@ -1,9 +1,15 @@
 package com.udem.ift6243.hera;
 
 
+
+import com.udem.ift6243.model.User;
+
+
+import com.udem.ift6243.dao.UserDao;
 import android.app.Activity;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.view.View.OnClickListener;
 import android.view.View;
@@ -16,6 +22,7 @@ public class UserFormActivity extends Activity implements OnClickListener {
 	
 	private Spinner spinner1, spinner2, spinner3, spinner4, spinner5, spinner6;
 	private EditText editText1,editText2;
+	private RadioButton radioButton;
 	private Button btnSubmit;
 	  
 	// get the selected dropdown list value
@@ -29,6 +36,7 @@ public class UserFormActivity extends Activity implements OnClickListener {
 		  	spinner4 = (Spinner) findViewById(R.id.spinner4);
 		  	spinner5 = (Spinner) findViewById(R.id.spinner5);
 		  	spinner6 = (Spinner) findViewById(R.id.spinner6);
+		  	radioButton = (RadioButton) findViewById(R.id.radio_W);
 		  	btnSubmit = (Button) findViewById(R.id.btnSubmit);
 		  	btnSubmit.setOnClickListener(this);
 	   
@@ -63,9 +71,10 @@ public class UserFormActivity extends Activity implements OnClickListener {
     }
 
 
-	@Override
+    @Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
+    	//la valeur du bouton radio à récuperer
 		Toast.makeText(UserFormActivity.this,
 		  		"OnClickListener : " + 
 		                  "\nSpinner 1 : "+ String.valueOf(spinner1.getSelectedItem()) + 
@@ -76,13 +85,51 @@ public class UserFormActivity extends Activity implements OnClickListener {
 		                  "\nSpinner 6 : "+ String.valueOf(spinner6.getSelectedItem()),
 		  			Toast.LENGTH_SHORT).show();
 		
-		
-		//User One = new User(NULL,)
-		
 		//Traduire les elements string spinner en entiers
-	
+		String firstName= String.valueOf(editText1.getText());
+		String lastName = String.valueOf(editText2.getText());
+		Integer gender=0;
+		Integer age = 0;
+		Integer maritalStatus = 0;
+		Integer professionalStatus = 0;
+		Boolean sport = false;
+		Boolean meditation = false;
+		Boolean woman = false;
+		Integer expression = 0;
 		
+		//gender
+		woman = radioButton.isChecked();
+		gender = woman ? 1 : 0;
+		
+		//Age
+		age = spinner1.getSelectedItemPosition();
+		
+		// maritalStatus 
+		maritalStatus = spinner2.getSelectedItemPosition()+1;
+		
+		//professionalStatus		
+		professionalStatus = spinner3.getSelectedItemPosition() +1;
+		
+		
+		//sport
+		if (spinner4.getSelectedItemPosition() == 0)
+			sport = true;
+		
+		//meditation	
+		if (spinner5.getSelectedItemPosition()== 0)
+			meditation = true;
+			
+		//expression
+		expression = spinner6.getSelectedItemPosition();
+		
+		User userOne = new User(null, firstName, lastName, gender, age, maritalStatus, professionalStatus, sport, meditation, expression);
+		UserDao user = new UserDao(this);
+		user.createUser(userOne);
+		//Intent inten = new Intent(getApplicationContext(),showUser.class);
+  	    //startActivity(inten);
+		//Log.e("user", String.valueOf(One.getAge()));
 	}
+    
     
  
 

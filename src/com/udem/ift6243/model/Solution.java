@@ -1,6 +1,6 @@
 package com.udem.ift6243.model;
 
-public class Solution
+public class Solution 
 {
 	private Integer id;
 	private Integer categoryId;

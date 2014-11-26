@@ -11,7 +11,7 @@ import com.udem.ift6243.sql.schema.SolutionSchema;
 
 public class SolutionDao
 {
-	private Context context;
+	private static Context context;
 	
 	public SolutionDao(Context context)
 	{
@@ -27,7 +27,7 @@ public class SolutionDao
 	{
 		Solution solution = null;
 		
-		DatabaseHandler dbHandler = new DatabaseHandler(this.context);
+		DatabaseHandler dbHandler = new DatabaseHandler(context);
 		SQLiteDatabase db = dbHandler.getReadableDatabase();
 		Cursor cursor_solution = null;
 		
