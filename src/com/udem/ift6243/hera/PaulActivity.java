@@ -1,9 +1,13 @@
 package com.udem.ift6243.hera;
 
+import com.udem.ift6243.oracle.Oracle;
+import com.udem.ift6243.sensor.Sensor;
+
 import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -11,8 +15,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.os.Build;
 
-public class PaulActivity extends Activity {
-
+public class PaulActivity extends Activity
+{
+	private static String packageName;
+	
+	public static String getApplicationPackageName()
+	{
+		return PaulActivity.packageName;
+	}
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -21,6 +32,20 @@ public class PaulActivity extends Activity {
 			getFragmentManager().beginTransaction()
 					.add(R.id.container, new PlaceholderFragment()).commit();
 		}
+
+		
+//		Log.e("Activity", String.valueOf(android.os.Process.myTid()));
+		
+		//// INITIALIZE
+		PaulActivity.packageName = getApplicationContext().getPackageName();
+		
+		Oracle.getInstance().setContext(getApplicationContext());
+		Oracle.getInstance().setActivity(this);
+		
+		Sensor sensor = new Sensor();
+			new Thread(sensor).start();
+		//// INITIALIZE
+		
 	}
 
 	@Override
