@@ -50,11 +50,11 @@ public class Sensor implements Runnable
 		                
 		                if(currentStressLevel != null)
 		                {
-		                	Log.e("Stress Level", currentStressLevel.toString());
+//		                	Log.e("Stress Level", currentStressLevel.toString());
 		                	Oracle.getInstance().start();
 		                }
 		                
-		                Thread.sleep(10000);
+		                Thread.sleep(1000);
 		            }
 		        } catch (InterruptedException e) {
 		            e.printStackTrace();
