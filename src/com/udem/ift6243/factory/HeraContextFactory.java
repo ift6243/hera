@@ -7,6 +7,7 @@ import java.util.Locale;
 import android.content.Context;
 import android.location.Location;
 import android.location.LocationManager;
+import android.util.Log;
 
 import com.udem.ift6243.dao.DayPartDao;
 import com.udem.ift6243.dao.WeekPartDao;
@@ -20,12 +21,22 @@ public final class HeraContextFactory
 		Double latitude = null;
 		Double longitude = null;
 		
-		LocationManager lm = (LocationManager)context.getSystemService(Context.LOCATION_SERVICE); 
-		Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+		String locationService = Context.LOCATION_SERVICE;
+		LocationManager locationManager = (LocationManager) context.getSystemService(locationService);
+		
+		String provider = LocationManager.GPS_PROVIDER;
+		Location location = locationManager.getLastKnownLocation(provider);
+		
+		if(location == null)
+		{
+			provider = LocationManager.NETWORK_PROVIDER;
+			location = locationManager.getLastKnownLocation(provider);
+		}
+
 		if(location != null)
 		{
-			latitude = location.getLatitude();
-			longitude = location.getLongitude();
+			latitude = Double.valueOf(location.getLatitude());
+			longitude = Double.valueOf(location.getLongitude());
 		}
 		
 		// Init calendar
