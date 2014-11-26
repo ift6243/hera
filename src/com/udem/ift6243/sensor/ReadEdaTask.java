@@ -37,12 +37,15 @@ public class ReadEdaTask extends AsyncTask<String, Integer, String>
     // Expected : Only 1 url
     protected String doInBackground(String... urls)
     {
+//    	Log.e("ReadEdaTask", String.valueOf(android.os.Process.myTid()));
+    	
     	this.url = urls[0];
     	StringBuilder builder = new StringBuilder();
 		HttpClient client = new DefaultHttpClient();
 		HttpGet httpGet = new HttpGet(this.url);
 		
-		try {
+		try
+		{
 			HttpResponse response = client.execute(httpGet);
 			StatusLine statusLine = response.getStatusLine();
 			int statusCode = statusLine.getStatusCode();
@@ -80,7 +83,7 @@ public class ReadEdaTask extends AsyncTask<String, Integer, String>
 							}
 							
 //							Log.e("currentLineNumber", String.valueOf(i));
-							Log.e("newValue", String.valueOf(eda.get(eda.size()-1)));
+//							Log.e("newValue", String.valueOf(eda.get(eda.size()-1)));
 							
 							ReadEdaTask.lastLineNumber++;
 							i++;
@@ -95,7 +98,7 @@ public class ReadEdaTask extends AsyncTask<String, Integer, String>
 			}
 			else
 			{
-				Log.e(ReadEdaTask.class.toString(), "Failed to download json file");
+				Log.e(ReadEdaTask.class.toString(), "Failed to download EDA file");
 			}
 		}
 		catch (ClientProtocolException e) {
@@ -122,30 +125,33 @@ public class ReadEdaTask extends AsyncTask<String, Integer, String>
     {
     	Integer returnedValue = null;
     	
-    	int firstIndex = (this.eda.size() < 100) ? 0 : (this.eda.size() - 100);
-    	int lastIndex = (this.eda.size() - 1);
-    	
-    	double startValue = ((this.eda.get(firstIndex).doubleValue() 
-    			+ this.eda.get(firstIndex+1).doubleValue() 
-    			+ this.eda.get(firstIndex+2).doubleValue()) / 3);
-    	double endValue = ((this.eda.get(lastIndex).doubleValue() 
-    			+ this.eda.get(lastIndex+1).doubleValue() 
-    			+ this.eda.get(lastIndex+2).doubleValue()) / 3);
-    	
-    	Double min = Collections.min(this.eda);
-    	Double max = Collections.max(this.eda);
-    	
-    	if(endValue - startValue <= 0)
+    	if(this.eda != null && this.eda.size() > 10)
     	{
-    		returnedValue = Constant.STRESS_LEVEL_NEGATIVE_OR_CONSTANT;
-    	}
-    	else if(min * Constant.STRESS_VARIATION_ALERT < max)
-    	{
-    		returnedValue = Constant.STRESS_LEVEL_HIGH;
-    	}
-    	else
-    	{
-    		returnedValue = Constant.STRESS_LEVEL_LOW;
+	    	int firstIndex = (this.eda.size() < 100) ? 0 : (this.eda.size() - 100);
+	    	int lastIndex = (this.eda.size() - 1);
+	    	
+	    	double startValue = ((this.eda.get(firstIndex).doubleValue() 
+	    			+ this.eda.get(firstIndex+1).doubleValue() 
+	    			+ this.eda.get(firstIndex+2).doubleValue()) / 3);
+	    	double endValue = ((this.eda.get(lastIndex).doubleValue() 
+	    			+ this.eda.get(lastIndex-1).doubleValue() 
+	    			+ this.eda.get(lastIndex-2).doubleValue()) / 3);
+	    	
+	    	Double min = Collections.min(this.eda.subList(firstIndex, lastIndex));
+	    	Double max = Collections.max(this.eda.subList(firstIndex, lastIndex));
+	    	
+	    	if(endValue - startValue <= 0)
+	    	{
+	    		returnedValue = Constant.STRESS_LEVEL_NEGATIVE_OR_CONSTANT;
+	    	}
+	    	else if(min * Constant.STRESS_VARIATION_ALERT < max)
+	    	{
+	    		returnedValue = Constant.STRESS_LEVEL_HIGH;
+	    	}
+	    	else
+	    	{
+	    		returnedValue = Constant.STRESS_LEVEL_LOW;
+	    	}
     	}
     	
     	return returnedValue;

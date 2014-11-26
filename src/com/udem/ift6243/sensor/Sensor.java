@@ -2,23 +2,25 @@ package com.udem.ift6243.sensor;
 
 import java.util.ArrayList;
 
+import com.udem.ift6243.oracle.Oracle;
 import com.udem.ift6243.utility.Constant;
 
 import android.util.Log;
 
-public class Sensor 
+public class Sensor implements Runnable
 {
-	private final ReadEdaTask edaTask = (ReadEdaTask) new ReadEdaTask().execute(Constant.SOURCE_DATA_EDA);
+	private ReadEdaTask edaTask;
 	
 	public Sensor()
 	{
-		startCapturing();
-		startListening();
 	}
 	
 	private void startCapturing()
 	{
-		try	{
+		try
+		{
+			this.edaTask.execute(Constant.SOURCE_DATA_EDA);
+			
 			String mesures = edaTask.get();
 
 			ArrayList<Double> d = edaTask.getEdaList();
@@ -34,18 +36,25 @@ public class Sensor
 	
 	private void startListening()
 	{
+		final ReadEdaTask edaTask = this.edaTask;
+		
 		Thread thread = new Thread()
 		{
 		    @Override
 		    public void run() {
-		        try {
+		        try
+		        {
 		            while(true)
 		            {
 		                Integer currentStressLevel = edaTask.getStressLevel();
 		                
-		                Log.e("Stress Level", currentStressLevel.toString());
+		                if(currentStressLevel != null)
+		                {
+		                	Log.e("Stress Level", currentStressLevel.toString());
+		                	Oracle.getInstance().start();
+		                }
 		                
-		                Thread.sleep(1000);
+		                Thread.sleep(10000);
 		            }
 		        } catch (InterruptedException e) {
 		            e.printStackTrace();
@@ -54,5 +63,16 @@ public class Sensor
 		};
 
 		thread.start();
+	}
+
+	@Override
+	public void run()
+	{
+//		Log.e("Sensor", String.valueOf(android.os.Process.myTid()));
+
+		this.edaTask = (ReadEdaTask) new ReadEdaTask();
+		
+		startListening();
+		startCapturing();
 	}
 }
