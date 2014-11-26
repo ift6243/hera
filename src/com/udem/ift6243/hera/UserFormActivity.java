@@ -3,6 +3,7 @@ package com.udem.ift6243.hera;
 
 
 import com.udem.ift6243.model.User;
+import com.udem.ift6243.utility.Constant;
 
 
 import com.udem.ift6243.dao.UserDao;
@@ -99,35 +100,86 @@ public class UserFormActivity extends Activity implements OnClickListener {
 		
 		//gender
 		woman = radioButton.isChecked();
-		gender = woman ? 1 : 0;
+		gender = woman ? Constant.GENDER_FEMALE : Constant.GENDER_MALE;
 		
 		//Age
-		age = spinner1.getSelectedItemPosition();
-		
+		if(spinner1.getSelectedItemPosition()==0)
+			age = Constant.AGE_0_9;
+		if(spinner1.getSelectedItemPosition()==1)
+			age = Constant.AGE_10_19;
+		if(spinner1.getSelectedItemPosition()==2)
+			age = Constant.AGE_20_29;
+		if(spinner1.getSelectedItemPosition()==3)
+			age = Constant.AGE_30_39;
+		if(spinner1.getSelectedItemPosition()==4)
+			age = Constant.AGE_40_49;
+		if(spinner1.getSelectedItemPosition()==5)
+			age = Constant.AGE_50_59;
+		if(spinner1.getSelectedItemPosition()==6)
+			age = Constant.AGE_60_69;
+		if(spinner1.getSelectedItemPosition()==7)
+			age = Constant.AGE_70_79;
+		if(spinner1.getSelectedItemPosition()==8)
+			age = Constant.AGE_80_89;
+		if(spinner1.getSelectedItemPosition()==9)
+			age = Constant.AGE_90_99;
+		if(spinner1.getSelectedItemPosition()==10)
+			age = Constant.AGE_100;
+	
 		// maritalStatus 
-		maritalStatus = spinner2.getSelectedItemPosition()+1;
+		if(spinner2.getSelectedItemPosition()==0)
+			maritalStatus = Constant.SINGLE;
+		if(spinner2.getSelectedItemPosition()==1)
+			maritalStatus = Constant.MARRIED;
+		if(spinner2.getSelectedItemPosition()==2)
+			maritalStatus = Constant.DIVORCED;
 		
-		//professionalStatus		
-		professionalStatus = spinner3.getSelectedItemPosition() +1;
-		
+		//professionalStatus
+		if(spinner3.getSelectedItemPosition()==0)
+			professionalStatus = Constant.CAT_1;
+		if(spinner3.getSelectedItemPosition()==1)
+			professionalStatus = Constant.CAT_2;
+		if(spinner3.getSelectedItemPosition()==2)
+			professionalStatus = Constant.CAT_3;
+		if(spinner3.getSelectedItemPosition()==3)
+			professionalStatus = Constant.CAT_4;
+		if(spinner3.getSelectedItemPosition()==4)
+			professionalStatus = Constant.CAT_4;
+		if(spinner3.getSelectedItemPosition()==5)
+			professionalStatus = Constant.CAT_5;
+		if(spinner3.getSelectedItemPosition()==6)
+			professionalStatus = Constant.CAT_6;
+		if(spinner3.getSelectedItemPosition()==7)
+			professionalStatus = Constant.CAT_7;
+		if(spinner3.getSelectedItemPosition()==8)
+			professionalStatus = Constant.CAT_8;
+		if(spinner3.getSelectedItemPosition()==9)
+			professionalStatus = Constant.CAT_9;
 		
 		//sport
-		if (spinner4.getSelectedItemPosition() == 0)
+		if (spinner4.getSelectedItemPosition()==0)
 			sport = true;
 		
 		//meditation	
-		if (spinner5.getSelectedItemPosition()== 0)
+		if (spinner5.getSelectedItemPosition()==0)
 			meditation = true;
 			
 		//expression
-		expression = spinner6.getSelectedItemPosition();
+		if(spinner6.getSelectedItemPosition()==0)
+			expression = Constant.READING;
+		if(spinner6.getSelectedItemPosition()==1)
+			expression = Constant.WRITING;
+		if(spinner6.getSelectedItemPosition()==2)
+			expression = Constant.DRAWING;
+		if(spinner6.getSelectedItemPosition()==3)
+			expression = Constant.SINGING;
+		if(spinner6.getSelectedItemPosition()==4)
+			expression = Constant.DANCING;
 		
 		User userOne = new User(null, firstName, lastName, gender, age, maritalStatus, professionalStatus, sport, meditation, expression);
 		UserDao user = new UserDao(this);
 		user.createUser(userOne);
-		//Intent inten = new Intent(getApplicationContext(),showUser.class);
-  	    //startActivity(inten);
-		//Log.e("user", String.valueOf(One.getAge()));
+		
 	}
     
     
