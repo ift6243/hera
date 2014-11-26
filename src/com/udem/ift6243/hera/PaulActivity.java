@@ -1,5 +1,7 @@
 package com.udem.ift6243.hera;
 
+import com.udem.ift6243.factory.HeraContextFactory;
+import com.udem.ift6243.model.HeraContext;
 import com.udem.ift6243.oracle.Oracle;
 import com.udem.ift6243.sensor.Sensor;
 
@@ -37,6 +39,7 @@ public class PaulActivity extends Activity
 //		Log.e("Activity", String.valueOf(android.os.Process.myTid()));
 		
 		//// INITIALIZE
+		// A DEPLACER POUR LA VERSION FINALE
 		PaulActivity.packageName = getApplicationContext().getPackageName();
 		
 		Oracle.getInstance().setContext(getApplicationContext());
@@ -45,6 +48,10 @@ public class PaulActivity extends Activity
 		Sensor sensor = new Sensor();
 			new Thread(sensor).start();
 		//// INITIALIZE
+			
+		// TEST
+		HeraContext heraContext = HeraContextFactory.fromContext(getApplicationContext());
+//		Log.e("text_context", heraContext.toString());
 		
 	}
 
