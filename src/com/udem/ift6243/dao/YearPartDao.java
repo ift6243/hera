@@ -37,7 +37,7 @@ public class YearPartDao
 					null, 
 					YearPartSchema.TABLE_COL_START_DATE + " <= ? AND "
 					+ YearPartSchema.TABLE_COL_END_DATE + " >= ?", 
-					new String[] { currentDate }, 
+					new String[] { currentDate, currentDate }, 
 					null, null, null, null);
 			
 			if (cursor_year_part != null && cursor_year_part.moveToLast())
