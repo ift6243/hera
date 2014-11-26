@@ -3,6 +3,8 @@ package com.udem.ift6243.dao;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteQueryBuilder;
+import android.util.Log;
 
 import com.udem.ift6243.model.DayPart;
 import com.udem.ift6243.sql.schema.DayPartSchema;
@@ -20,6 +22,7 @@ public class DayPartDao
 	 * Get DayPart from current hour
 	 * @param currentHour Heure courante
 	 * @return
+	 * @throws Exception 
 	 */
 	public DayPart getDayPart(Integer currentHour)
 	{
@@ -34,10 +37,14 @@ public class DayPartDao
 		{
 			cursor_day_part = db.query(DayPartSchema.TABLE_NAME, 
 					null, 
-					DayPartSchema.TABLE_COL_START_HOUR + " >= ? AND "
-					+ DayPartSchema.TABLE_COL_END_HOUR + " <= ?", 
-					new String[] { String.valueOf(currentHour.intValue()) }, 
+					DayPartSchema.TABLE_COL_START_HOUR + " <= ? AND "
+					+ DayPartSchema.TABLE_COL_END_HOUR + " >= ?", 
+					new String[] {
+						String.valueOf(currentHour.intValue()), 
+						String.valueOf(currentHour.intValue()) }, 
 					null, null, null, null);
+			
+//			Log.e("dayPart", db.);
 			
 			if (cursor_day_part != null && cursor_day_part.moveToLast())
 			{
@@ -50,6 +57,10 @@ public class DayPartDao
 			}
 			
 			db.setTransactionSuccessful();
+		}
+		catch(Exception e)
+		{
+			Log.e(DayPartDao.class.toString(), e.getMessage());
 		}
 		finally
 		{

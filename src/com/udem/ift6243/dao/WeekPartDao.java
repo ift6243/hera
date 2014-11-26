@@ -34,8 +34,8 @@ public class WeekPartDao
 		{
 			cursor_week_part = db.query(WeekPartSchema.TABLE_NAME, 
 					null, 
-					WeekPartSchema.TABLE_COL_START_DAY + " >= ? AND "
-					+ WeekPartSchema.TABLE_COL_END_DAY + " <= ?", 
+					WeekPartSchema.TABLE_COL_START_DAY + " <= ? AND "
+					+ WeekPartSchema.TABLE_COL_END_DAY + " >= ?", 
 					new String[] { String.valueOf(currentDay.intValue()) }, 
 					null, null, null, null);
 			

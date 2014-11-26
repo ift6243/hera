@@ -34,8 +34,8 @@ public class YearPartDao
 		{
 			cursor_year_part = db.query(YearPartSchema.TABLE_NAME, 
 					null, 
-					YearPartSchema.TABLE_COL_START_DATE + " >= ? AND "
-					+ YearPartSchema.TABLE_COL_END_DATE + " <= ?", 
+					YearPartSchema.TABLE_COL_START_DATE + " <= ? AND "
+					+ YearPartSchema.TABLE_COL_END_DATE + " >= ?", 
 					new String[] { currentDate }, 
 					null, null, null, null);
 			
