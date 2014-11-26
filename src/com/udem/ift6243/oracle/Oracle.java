@@ -24,9 +24,10 @@ import com.udem.ift6243.model.Solution;
 public final class Oracle
 {
     private static volatile Oracle instance = null;
-    private int messageNb = 0;
     private Context context;
     private Activity activity;
+    private int messageNb = 0;
+    private volatile boolean isRunning = false;
     
     /**
      * Constructeur de l'objet.
@@ -73,54 +74,67 @@ public final class Oracle
      */
     public void start()
     {
-    	Solution solution = Oracle.instance.findSolution();
-    	
-    	if(solution != null)
+    	if(!this.isRunning)
     	{
-    		NotificationCompat.Builder  mBuilder = 
-			  new NotificationCompat.Builder(Oracle.instance.context);
-			  
-			PendingIntent pIntent = PendingIntent.getActivity(Oracle.instance.context, 0, 
-					Oracle.instance.activity.getIntent(), PendingIntent.FLAG_CANCEL_CURRENT);
-			
-			  mBuilder.setSmallIcon(R.drawable.ic_launcher);
-			  mBuilder.setContentTitle("Hera");
-			  mBuilder.setContentText("Vous etes stresse");
-			  mBuilder.setTicker("Stress detecte");
-			  
-			  Uri uri= RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-			  mBuilder.setSound(Uri.parse("android.resource://" + PaulActivity.getApplicationPackageName() + "/"+ R.raw.cristal));
-			  
-			  /* Increase notification number every time a new notification arrives */
-			  mBuilder.setNumber(++this.messageNb);
-			  
-			  /* Creates an explicit intent for an Activity in your app */
-			  Intent resultIntent = new Intent(Oracle.instance.context, Oracle.class);
-			  
-			  Bundle dataBundle = new Bundle();
-			  dataBundle.putInt("notificationID", solution.getId().intValue());
-			  resultIntent.putExtras(dataBundle);
-			  
-			  
-			  TaskStackBuilder stackBuilder = TaskStackBuilder.create(Oracle.instance.context);
-			  stackBuilder.addParentStack(NotificationReceiverActivity.class);
-			
-			  /* Adds the Intent that starts the Activity to the top of the stack */
-			  stackBuilder.addNextIntent(resultIntent);
-			  PendingIntent resultPendingIntent =
-			     stackBuilder.getPendingIntent(
-			        0,
-			        PendingIntent.FLAG_UPDATE_CURRENT
-			     );
-			
-			  mBuilder.setContentIntent(resultPendingIntent);
-			
-			  NotificationManager mNotificationManager =
-					  (NotificationManager) Oracle.instance.context.getSystemService(Context.NOTIFICATION_SERVICE);
-			
-			  /* notificationID allows you to update the notification later on. */
-			  mNotificationManager.notify(solution.getId().intValue(), mBuilder.build());
+	    	this.isRunning = true;
+	    	
+	    	Solution solution = Oracle.instance.findSolution();
+	    	
+	    	if(solution != null)
+	    	{
+	    		NotificationCompat.Builder  mBuilder = 
+				  new NotificationCompat.Builder(Oracle.instance.context);
+				  
+				PendingIntent pIntent = PendingIntent.getActivity(Oracle.instance.context, 0, 
+						Oracle.instance.activity.getIntent(), PendingIntent.FLAG_CANCEL_CURRENT);
+				
+				  mBuilder.setSmallIcon(R.drawable.ic_launcher);
+				  mBuilder.setContentTitle("Hera");
+				  mBuilder.setContentText("Vous etes stresse");
+				  mBuilder.setTicker("Stress detecte");
+				  
+				  Uri uri= RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+				  mBuilder.setSound(Uri.parse("android.resource://" + PaulActivity.getApplicationPackageName() + "/"+ R.raw.cristal));
+				  
+				  /* Increase notification number every time a new notification arrives */
+				  mBuilder.setNumber(++this.messageNb);
+				  
+				  /* Creates an explicit intent for an Activity in your app */
+				  Intent resultIntent = new Intent(Oracle.instance.context, Oracle.class);
+				  
+				  Bundle dataBundle = new Bundle();
+				  dataBundle.putInt("notificationID", solution.getId().intValue());
+				  resultIntent.putExtras(dataBundle);
+				  
+				  
+				  TaskStackBuilder stackBuilder = TaskStackBuilder.create(Oracle.instance.context);
+				  stackBuilder.addParentStack(NotificationReceiverActivity.class);
+				
+				  /* Adds the Intent that starts the Activity to the top of the stack */
+				  stackBuilder.addNextIntent(resultIntent);
+				  PendingIntent resultPendingIntent =
+				     stackBuilder.getPendingIntent(
+				        0,
+				        PendingIntent.FLAG_UPDATE_CURRENT
+				     );
+				
+				  mBuilder.setContentIntent(resultPendingIntent);
+				
+				  NotificationManager mNotificationManager =
+						  (NotificationManager) Oracle.instance.context.getSystemService(Context.NOTIFICATION_SERVICE);
+				
+				  /* notificationID allows you to update the notification later on. */
+				  mNotificationManager.notify(solution.getId().intValue(), mBuilder.build());
+	    	}
     	}
+    }
+    
+    /**
+     * Stop Oracle
+     */
+    public void stop()
+    {
+    	this.isRunning = false;
     }
     
     private Solution findSolution()
