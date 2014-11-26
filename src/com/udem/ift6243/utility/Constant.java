@@ -24,7 +24,30 @@ public final class Constant
 	public static Integer AGE_90_99 = Integer.valueOf(10);
 	public static Integer AGE_100 = Integer.valueOf(11);
 	
-	/// Solution
+	// Marital Status
+	public static Integer SINGLE = Integer.valueOf(1);
+	public static Integer MARRIED = Integer.valueOf(2);
+	public static Integer DIVORCED = Integer.valueOf(3);
+	
+	// Professionnal Status
+	public static Integer CAT_1 = Integer.valueOf(1);
+	public static Integer CAT_2 = Integer.valueOf(2);
+	public static Integer CAT_3 = Integer.valueOf(3);
+	public static Integer CAT_4 = Integer.valueOf(4);
+	public static Integer CAT_5 = Integer.valueOf(5);
+	public static Integer CAT_6 = Integer.valueOf(6);
+	public static Integer CAT_7 = Integer.valueOf(7);
+	public static Integer CAT_8 = Integer.valueOf(8);
+	public static Integer CAT_9 = Integer.valueOf(9);
+	
+	// Expression
+	public static Integer READING = Integer.valueOf(1);
+	public static Integer WRITING = Integer.valueOf(2);
+	public static Integer DRAWING = Integer.valueOf(3);
+	public static Integer SINGING = Integer.valueOf(4);
+	public static Integer DANCING = Integer.valueOf(5);
+	
+	// Solution
 	public static Integer SOLUTION_CATEGORY_SPORT = Integer.valueOf(1);
 	public static Integer SOLUTION_CATEGORY_ACTION = Integer.valueOf(2);
 	public static Integer SOLUTION_CATEGORY_MEDICAL = Integer.valueOf(3);
