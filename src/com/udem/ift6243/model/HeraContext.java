@@ -50,4 +50,12 @@ public class HeraContext
 	public String getDate() {
 		return date;
 	}
+
+	@Override
+	public String toString() {
+		return "HeraContext [id=" + id + ", latitude=" + latitude
+				+ ", longitude=" + longitude + ", dayPart=" + dayPart
+				+ ", weekPart=" + weekPart + ", yearPart=" + yearPart
+				+ ", date=" + date + "]";
+	}
 }
