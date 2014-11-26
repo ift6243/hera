@@ -3,6 +3,7 @@ package com.udem.ift6243.dao;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.udem.ift6243.model.YearPart;
 import com.udem.ift6243.sql.schema.YearPartSchema;
@@ -50,6 +51,10 @@ public class YearPartDao
 			}
 			
 			db.setTransactionSuccessful();
+		}
+		catch(Exception e)
+		{
+			Log.e(YearPartDao.class.toString(), e.getMessage());
 		}
 		finally
 		{

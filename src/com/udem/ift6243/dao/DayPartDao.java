@@ -40,11 +40,9 @@ public class DayPartDao
 					DayPartSchema.TABLE_COL_START_HOUR + " <= ? AND "
 					+ DayPartSchema.TABLE_COL_END_HOUR + " >= ?", 
 					new String[] {
-						String.valueOf(currentHour.intValue()), 
+						String.valueOf(currentHour.intValue()),
 						String.valueOf(currentHour.intValue()) }, 
 					null, null, null, null);
-			
-//			Log.e("dayPart", db.);
 			
 			if (cursor_day_part != null && cursor_day_part.moveToLast())
 			{
