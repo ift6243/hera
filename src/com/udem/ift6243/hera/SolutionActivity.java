@@ -2,6 +2,7 @@ package com.udem.ift6243.hera;
 
 import com.udem.ift6243.dao.SolutionDao;
 import com.udem.ift6243.model.Solution;
+import com.udem.ift6243.utility.Constant;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -30,10 +31,9 @@ public class SolutionActivity extends Activity {
 	      SolutionDao s = new SolutionDao(this);
 	      Solution solution = s.getSolution(id);
 	      
-	      Solution sol = new Solution(id, id, null, null);
-	      Integer category_id = sol.getCategoryId();
+	      Integer category_id = solution.getCategoryId();
 	      
-	      if(category_id == 5){
+	      if(category_id == Constant.SOLUTION_CATEGORY_MULTIMEDIA){
 	    	  Intent MulIntent = new Intent(this, MultimediaActivity.class);
 	    	  startActivity(MulIntent);
 	    		}
