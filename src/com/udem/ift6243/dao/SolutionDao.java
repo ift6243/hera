@@ -42,12 +42,7 @@ public class SolutionDao
 			
 			if (cursor_solution != null && cursor_solution.moveToLast())
 			{
-				Integer solutionId = Integer.valueOf(cursor_solution.getInt(0));
-				Integer categoryId = Integer.valueOf(cursor_solution.getInt(1));
-				String name = cursor_solution.getString(2);
-				String description = cursor_solution.getString(3);
-				
-				solution = new Solution(solutionId, categoryId, name, description);
+				solution = this.createSolutionFromCursor(cursor_solution);
 			}
 			
 			db.setTransactionSuccessful();
@@ -81,12 +76,7 @@ public class SolutionDao
 			{
 	            while (cursor_solution.isAfterLast() == false)
 	            {
-	            	Integer solutionId = Integer.valueOf(cursor_solution.getInt(0));
-					Integer categoryId = Integer.valueOf(cursor_solution.getInt(1));
-					String name = cursor_solution.getString(2);
-					String description = cursor_solution.getString(3);
-					
-					solution = new Solution(solutionId, categoryId, name, description);
+	            	solution = this.createSolutionFromCursor(cursor_solution);
 	                
 					solutionList.add(solution);
 	                cursor_solution.moveToNext();
@@ -103,5 +93,22 @@ public class SolutionDao
 		}
 		
 		return solutionList;
+	}
+	
+	private Solution createSolutionFromCursor(Cursor cursor_solution)
+	{
+		Solution solution = null;
+		
+		Integer solutionId = Integer.valueOf(cursor_solution.getInt(0));
+		Integer categoryId = Integer.valueOf(cursor_solution.getInt(1));
+		String name = cursor_solution.getString(2);
+		String description = cursor_solution.getString(3);
+		Double duration = Double.valueOf(cursor_solution.getDouble(4));
+		Double priority = Double.valueOf(cursor_solution.getDouble(5));
+		
+		solution = new Solution(solutionId, categoryId, name, description,
+				duration, priority);
+		
+		return solution;
 	}
 }

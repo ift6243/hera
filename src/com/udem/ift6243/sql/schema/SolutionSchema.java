@@ -12,6 +12,8 @@ public final class SolutionSchema
 	public static final String TABLE_COL_CATEGORY_ID = "category_id";
 	public static final String TABLE_COL_NAME = "name";
 	public static final String TABLE_COL_DESCRIPTION = "description";
+	public static final String TABLE_COL_DURATION = "duration";
+	public static final String TABLE_COL_PRIORITY = "priority";
 	
 	public static String getCreateTableSchema()
 	{
@@ -19,7 +21,9 @@ public final class SolutionSchema
 				+ "`id`	INTEGER PRIMARY KEY AUTOINCREMENT,"
 				+ "`category_id`	INTEGER,"
 				+ "`name`	TEXT UNIQUE,"
-				+ "`description`	TEXT"
+				+ "`description`	TEXT,"
+				+ "`duration`	REAL," // in minutes
+				+ "`priority`	REAL"
 				+ ");";
 	}
 	
@@ -28,19 +32,19 @@ public final class SolutionSchema
 		ArrayList<String> queryList = new ArrayList<String>();
 		
 		queryList.add("INSERT INTO " + TABLE_NAME + " VALUES (NULL, " + 
-				Constant.SOLUTION_CATEGORY_SPORT + ", 'Courir', 'Courrez pendant 2 minutes.');");
+				Constant.SOLUTION_CATEGORY_SPORT + ", 'Courir', 'Courrez pendant 2 minutes.', 2, 0.5);");
 		
 		queryList.add("INSERT INTO " + TABLE_NAME + " VALUES (NULL, " + 
-				Constant.SOLUTION_CATEGORY_ACTION + ", 'Action', 'Faites une sieste de 15 minutes.');");
+				Constant.SOLUTION_CATEGORY_ACTION + ", 'Action', 'Faites une sieste de 15 minutes.', 15, 0.5);");
 		
 		queryList.add("INSERT INTO " + TABLE_NAME + " VALUES (NULL, " + 
-				Constant.SOLUTION_CATEGORY_MEDICAL + ", 'Consulter un médecin', 'Calmez-vous, reposez-vous et pensez à consulter un médecin');");
+				Constant.SOLUTION_CATEGORY_MEDICAL + ", 'Consulter un médecin', 'Calmez-vous, reposez-vous et pensez à consulter un médecin', 0, 0.5);");
 		
 		queryList.add("INSERT INTO " + TABLE_NAME + " VALUES (NULL, " + 
-				Constant.SOLUTION_CATEGORY_EXPRESSION + ", 'Dessin', 'Faites un petit dessin.');");
+				Constant.SOLUTION_CATEGORY_EXPRESSION + ", 'Dessin', 'Faites un petit dessin.', 2, 0.5);");
 		
 		queryList.add("INSERT INTO " + TABLE_NAME + " VALUES (NULL, " + 
-				Constant.SOLUTION_CATEGORY_MULTIMEDIA + ", 'Son de relaxation', 'Relaxez-vous en écoutant cette douce musique');");
+				Constant.SOLUTION_CATEGORY_MULTIMEDIA + ", 'Son de relaxation', 'Relaxez-vous en écoutant cette douce musique', 5, 0.5);");
 		return queryList;
 	}
 	
