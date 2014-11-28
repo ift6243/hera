@@ -8,10 +8,12 @@ public class HeraContext
 	private Integer dayPart;
 	private Integer weekPart;
 	private Integer yearPart;
+	private Integer stressLevel;
 	private String date;
 	
 	public HeraContext(Integer id, Double latitude, Double longitude,
-			Integer dayPart, Integer weekPart, Integer yearPart, String date)
+			Integer dayPart, Integer weekPart, Integer yearPart, 
+			Integer stressLevel, String date)
 	{
 		super();
 		this.id = id;
@@ -20,6 +22,7 @@ public class HeraContext
 		this.dayPart = dayPart;
 		this.weekPart = weekPart;
 		this.yearPart = yearPart;
+		this.stressLevel = stressLevel;
 		this.date = date;
 	}
 
@@ -53,6 +56,14 @@ public class HeraContext
 		return yearPart;
 	}
 
+	public Integer getStressLevel() {
+		return stressLevel;
+	}
+
+	public void setStressLevel(Integer stressLevel) {
+		this.stressLevel = stressLevel;
+	}
+
 	public String getDate() {
 		return date;
 	}
@@ -62,6 +73,6 @@ public class HeraContext
 		return "HeraContext [id=" + id + ", latitude=" + latitude
 				+ ", longitude=" + longitude + ", dayPart=" + dayPart
 				+ ", weekPart=" + weekPart + ", yearPart=" + yearPart
-				+ ", date=" + date + "]";
+				+ ", stressLevel=" + stressLevel + ", date=" + date + "]";
 	}
 }

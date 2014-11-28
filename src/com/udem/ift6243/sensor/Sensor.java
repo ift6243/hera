@@ -1,11 +1,7 @@
 package com.udem.ift6243.sensor;
 
-import java.util.ArrayList;
-
 import com.udem.ift6243.oracle.Oracle;
 import com.udem.ift6243.utility.Constant;
-
-import android.util.Log;
 
 public class Sensor implements Runnable
 {
@@ -21,13 +17,9 @@ public class Sensor implements Runnable
 		{
 			this.edaTask.execute(Constant.SOURCE_DATA_EDA);
 			
-			String mesures = edaTask.get();
-
-			ArrayList<Double> d = edaTask.getEdaList();
-			Log.e("ValeurTest", d.get(0).toString());
-		}
-		catch (InterruptedException e) {
-			e.printStackTrace();
+//			String mesures = edaTask.get();
+//
+//			ArrayList<Double> d = edaTask.getEdaList();
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -48,7 +40,8 @@ public class Sensor implements Runnable
 		            {
 		                Integer currentStressLevel = edaTask.getStressLevel();
 		                
-		                if(currentStressLevel != null)
+		                if(currentStressLevel != null 
+		                		&& currentStressLevel >= Constant.STRESS_LEVEL_LOW)
 		                {
 //		                	Log.e("Stress Level", currentStressLevel.toString());
 		                	Oracle.getInstance().start();

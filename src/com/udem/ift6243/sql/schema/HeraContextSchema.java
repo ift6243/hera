@@ -10,6 +10,7 @@ public class HeraContextSchema
 	public static final String TABLE_COL_DAY_PART = "day_part";
 	public static final String TABLE_COL_WEEK_PART = "week_part";
 	public static final String TABLE_COL_YEAR_PART = "year_part";
+	public static final String TABLE_COL_STRESS_LEVEL = "stress_level";
 	public static final String TABLE_COL_DATE = "date";
 	
 	public static String getCreateTableSchema()
@@ -21,6 +22,7 @@ public class HeraContextSchema
 				+ "`day_part`	INTEGER,"
 				+ "`week_part`	INTEGER,"
 				+ "`year_part`	INTEGER,"
+				+ "`stress_level`	INTEGER,"
 				+ "`date`	TEXT"
 				+ ");";
 	}
