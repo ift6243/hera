@@ -4,6 +4,7 @@ import com.udem.ift6243.factory.HeraContextFactory;
 import com.udem.ift6243.model.HeraContext;
 import com.udem.ift6243.oracle.Oracle;
 import com.udem.ift6243.sensor.Sensor;
+import com.udem.ift6243.utility.Constant;
 
 import android.app.Activity;
 import android.app.ActionBar;
@@ -50,7 +51,7 @@ public class PaulActivity extends Activity
 		//// INITIALIZE
 			
 		// TEST
-		HeraContext heraContext = HeraContextFactory.fromContext(getApplicationContext());
+//		HeraContext heraContext = HeraContextFactory.fromContext(getApplicationContext(), Constant.STRESS_LEVEL_HIGH);
 //		Log.e("text_context", heraContext.toString());
 		
 	}
