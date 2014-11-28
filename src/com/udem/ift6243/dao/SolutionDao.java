@@ -103,7 +103,7 @@ public class SolutionDao
 		Integer categoryId = Integer.valueOf(cursor_solution.getInt(1));
 		String name = cursor_solution.getString(2);
 		String description = cursor_solution.getString(3);
-		long duration = Long.valueOf(cursor_solution.getLong(4));
+		Double duration = Double.valueOf(cursor_solution.getDouble(4));
 		Double priority = Double.valueOf(cursor_solution.getDouble(5));
 		
 		solution = new Solution(solutionId, categoryId, name, description,

@@ -21,7 +21,7 @@ import android.widget.Button;
 public class NotificationActivity extends Activity {
 	   private NotificationManager mNotificationManager;
 	   
-	   private int notificationID = 5;
+	   private int notificationID = 1;
 	   private int numMessages = 0;
 	   
 	@Override

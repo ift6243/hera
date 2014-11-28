@@ -63,7 +63,7 @@ private static String packageName;
 		Oracle.getInstance().setActivity(this);
 		
 		Sensor sensor = new Sensor();
-			new Thread(sensor).start();
+		new Thread(sensor).start();
 		//// INITIALIZE
 		
 /*	 GifImage class call
