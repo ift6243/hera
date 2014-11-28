@@ -23,6 +23,12 @@ public class HeraContext
 		this.date = date;
 	}
 
+	public HeraContext setId(Integer id) {
+		this.id = id;
+		
+		return this;
+	}
+
 	public Integer getId() {
 		return id;
 	}
