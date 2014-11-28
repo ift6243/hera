@@ -61,18 +61,6 @@ public class NotificationReceiverActivity extends Activity {
 	        @Override
 	        public void onClick(View v) {
 	          Intent SolutionRefusIntent = new Intent(NotificationReceiverActivity.this, WaitingActivity.class);
-	  		
-	        PaulActivity.packageName = getApplicationContext().getPackageName();
-			Oracle.getInstance().setContext(getApplicationContext());
-			//Oracle.getInstance().setActivity(this);
-			
-			//Sensor sensor = new Sensor();
-			//	new Thread(sensor).start();
-			//// INITIALIZE
-				
-			// TEST
-			HeraContext heraContext = HeraContextFactory.fromContext(getApplicationContext());
-            //Log.e("text_context", heraContext.toString());
 			
 	          Oracle.getInstance().stop();
 			  startActivity(SolutionRefusIntent);
