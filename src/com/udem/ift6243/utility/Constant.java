@@ -57,8 +57,9 @@ public final class Constant
 	/// State
 	public static Integer STATE_ACCEPTED = Integer.valueOf(1);
 	public static Integer STATE_REFUSED = Integer.valueOf(2);
-	public static Integer STATE_SUCCEED = Integer.valueOf(3);
-	public static Integer STATE_FAILED = Integer.valueOf(4);
+	public static Integer STATE_TERMINATED = Integer.valueOf(3);
+	public static Integer STATE_SUCCEED = Integer.valueOf(4);
+	public static Integer STATE_FAILED = Integer.valueOf(5);
 	
 	/// Stress
 	public static Integer STRESS_LEVEL_NEGATIVE_OR_CONSTANT = Integer.valueOf(1);
