@@ -41,24 +41,38 @@ public class Solution
 		return duration;
 	}
 	
-	public Solution increasePriority(Double value) throws Exception {
+	public Solution increasePriority(double value) throws NumberFormatException {
 		if(value <= 0 || value > 1)
 		{
-			throw new Exception("Incorrect priority value");
+			throw new NumberFormatException("Incorrect priority value");
 		}
 		
-		this.priority += value;
+		if(this.priority.doubleValue() + value > 1.0)
+		{
+			this.priority = Double.valueOf(1.0);
+		}
+		else
+		{
+			this.priority = Double.valueOf(this.priority.doubleValue() + value);
+		}
 		
 		return this;
 	}
 	
-	public Solution decreasePriority(Double value) throws Exception {
-		if(value <= 0 || value > 1)
+	public Solution decreasePriority(double value) throws NumberFormatException {
+		if(value <= 0.0 || value > 1.0)
 		{
-			throw new Exception("Incorrect priority value");
+			throw new NumberFormatException("Incorrect priority value");
 		}
 		
-		this.priority -= value;
+		if(this.priority.doubleValue() - value < 0.0)
+		{
+			this.priority = Double.valueOf(0.0);
+		}
+		else
+		{
+			this.priority = Double.valueOf(this.priority.doubleValue() - value);
+		}
 		
 		return this;
 	}
