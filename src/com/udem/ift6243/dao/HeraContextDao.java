@@ -34,6 +34,7 @@ public class HeraContextDao
 			values.put(HeraContextSchema.TABLE_COL_DAY_PART, heraContext.getDayPart());
 			values.put(HeraContextSchema.TABLE_COL_WEEK_PART, heraContext.getWeekPart());
 			values.put(HeraContextSchema.TABLE_COL_YEAR_PART, heraContext.getYearPart());
+			values.put(HeraContextSchema.TABLE_COL_STRESS_LEVEL, heraContext.getStressLevel());
 			values.put(HeraContextSchema.TABLE_COL_DATE, heraContext.getDate());
 			
 		    long insertedId = db.insert(HeraContextSchema.TABLE_NAME, null, values);
@@ -80,10 +81,11 @@ public class HeraContextDao
 				Integer dayPart = Integer.valueOf(cursor_hera_context.getInt(4));
 				Integer weekPart = Integer.valueOf(cursor_hera_context.getInt(5));
 				Integer yearPart = Integer.valueOf(cursor_hera_context.getInt(6));
-				String date = cursor_hera_context.getString(7);
+				Integer stressLevel = Integer.valueOf(cursor_hera_context.getInt(7));
+				String date = cursor_hera_context.getString(8);
 				
 				heraContext = new HeraContext(heraContextId, latitude, longitude,
-						dayPart, weekPart, yearPart, date);
+						dayPart, weekPart, yearPart, stressLevel, date);
 			}
 			
 			db.setTransactionSuccessful(); // marks a commit
