@@ -1,7 +1,5 @@
 package com.udem.ift6243.model;
 
-import java.util.Date;
-
 public class Solution 
 {
 	private Integer id;
