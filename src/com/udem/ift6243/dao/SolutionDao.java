@@ -11,7 +11,7 @@ import com.udem.ift6243.sql.schema.SolutionSchema;
 
 public class SolutionDao
 {
-	private static Context context;
+	private Context context;
 	
 	public SolutionDao(Context context)
 	{

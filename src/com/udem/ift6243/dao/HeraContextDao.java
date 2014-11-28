@@ -6,7 +6,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.udem.ift6243.model.HeraContext;
-import com.udem.ift6243.model.HeraContext;
 import com.udem.ift6243.sql.schema.HeraContextSchema;
 
 public class HeraContextDao

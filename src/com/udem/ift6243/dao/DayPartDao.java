@@ -3,7 +3,6 @@ package com.udem.ift6243.dao;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteQueryBuilder;
 import android.util.Log;
 
 import com.udem.ift6243.model.DayPart;
