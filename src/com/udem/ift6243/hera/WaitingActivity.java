@@ -57,6 +57,7 @@ private static String packageName;
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_waiting);
 		
+		//// INITIALIZE
 		PaulActivity.packageName = getApplicationContext().getPackageName();
 		Oracle.getInstance().setContext(getApplicationContext());
 		Oracle.getInstance().setActivity(this);
@@ -64,10 +65,6 @@ private static String packageName;
 		Sensor sensor = new Sensor();
 			new Thread(sensor).start();
 		//// INITIALIZE
-			
-		// TEST
-		HeraContext heraContext = HeraContextFactory.fromContext(getApplicationContext());
-//		Log.e("text_context", heraContext.toString());
 		
 /*	 GifImage class call
 	
@@ -76,10 +73,6 @@ private static String packageName;
 		GifMovieView view = new GifMovieView(this, stream);
 		setContentView(view);
 */
-		
-		Oracle.getInstance().start();
-		
-		
 	}
 	
 
