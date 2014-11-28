@@ -86,15 +86,16 @@ public class MainActivity extends Activity
 		Button starthera = (Button) findViewById(R.id.starthera);
 		starthera.setOnClickListener(new View.OnClickListener() {
 	    	  public void onClick(View v) {
-	    		  if(user == null){
-	    			Intent intent = new Intent(MainActivity.this, UserFormActivity.class);
-	    			startActivity(intent);
-	    			}
-	    		  else{
-	    			Oracle.getInstance().start();
-	    			Intent intent = new Intent(MainActivity.this, WaitingActivity.class);
-		    		startActivity(intent); 
-	    		  }
+				  if(user == null)
+				  {
+					Intent intent = new Intent(MainActivity.this, UserFormActivity.class);
+					startActivity(intent);
+				}
+				  else{
+					Oracle.getInstance().start();
+					Intent intent = new Intent(MainActivity.this, WaitingActivity.class);
+					startActivity(intent); 
+				  }
 	    	  }
 		});
 	}
