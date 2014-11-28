@@ -36,6 +36,26 @@ public class Solution
 	public Double getDuration() {
 		return duration;
 	}
+	public Solution increasePriority(Double value) throws Exception {
+		if(value <= 0 || value > 1)
+		{
+			throw new Exception("Incorrect priority value");
+		}
+		
+		this.priority += value;
+		
+		return this;
+	}
+	public Solution decreasePriority(Double value) throws Exception {
+		if(value <= 0 || value > 1)
+		{
+			throw new Exception("Incorrect priority value");
+		}
+		
+		this.priority -= value;
+		
+		return this;
+	}
 	public Double getPriority() {
 		return priority;
 	}
