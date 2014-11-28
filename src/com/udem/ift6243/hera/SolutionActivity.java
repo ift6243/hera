@@ -29,6 +29,9 @@ public class SolutionActivity extends Activity {
         @Override
         public void run() {
             Oracle.getInstance().stop();
+            Intent Intent = new Intent(SolutionActivity.this, WaitingActivity.class);
+	    	startActivity(Intent);
+            
         }
 	};
 	
@@ -53,7 +56,11 @@ public class SolutionActivity extends Activity {
 	      TextView solutionDisplay = (TextView) findViewById(R.id.textview_solution);
 	      solutionDisplay.setText("--> "+solution.getDescription());
 	      
-	     mHandler.postDelayed(mOracleStop, solution.getDuration()*60000);
+	      Double duration = (solution.getDuration());
+	      long delai = duration.longValue()*60000;
+	      
+	      mHandler.postDelayed(mOracleStop, delai);
+
 	      
 		  
 	}
