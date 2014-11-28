@@ -19,10 +19,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-public class MainActivity extends Activity {
-	
-	Integer u = User.getId();
-	
+public class MainActivity extends Activity
+{
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -55,29 +54,12 @@ public class MainActivity extends Activity {
 	    			startActivity(intent);
 	    			}
 	      });
-	      
-			Button starthera = (Button) findViewById(R.id.starthera);
-			starthera.setOnClickListener(new View.OnClickListener() {
-		    	  public void onClick(View v) {
-
-		    			
-		    		  if(u == null){
-		    			Intent intent = new Intent(MainActivity.this, UserFormActivity.class);
-		    			startActivity(intent);
-		    			}
-		    		  else{
-		    			Oracle.getInstance().start();
-		    			Intent intent = new Intent(MainActivity.this, WaitingActivity.class);
-			    		startActivity(intent); 
-		    		  }
-		    	  }
-		      });
 		
 		// Create Database for the first run
 //		SharedPreferences p = PreferenceManager.getDefaultSharedPreferences(this);
 //        boolean firstRun = p.getBoolean("preference_first_run", true);
 //        if(firstRun)
-        {
+//        {
         	DatabaseHandler db = null;
         	try  
             {
@@ -95,7 +77,26 @@ public class MainActivity extends Activity {
             	// modification des preferences
  //           	p.edit().putBoolean("preference_first_run", false).commit(); 
             }
-        }
+//        }
+
+  	    
+        UserDao userDao = new UserDao(getApplicationContext());
+        final User user = userDao.getUser();
+        
+		Button starthera = (Button) findViewById(R.id.starthera);
+		starthera.setOnClickListener(new View.OnClickListener() {
+	    	  public void onClick(View v) {
+	    		  if(user == null){
+	    			Intent intent = new Intent(MainActivity.this, UserFormActivity.class);
+	    			startActivity(intent);
+	    			}
+	    		  else{
+	    			Oracle.getInstance().start();
+	    			Intent intent = new Intent(MainActivity.this, WaitingActivity.class);
+		    		startActivity(intent); 
+	    		  }
+	    	  }
+		});
 	}
 
 	@Override
