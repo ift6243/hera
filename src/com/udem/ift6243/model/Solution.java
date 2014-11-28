@@ -24,18 +24,23 @@ public class Solution
 	public Integer getId() {
 		return id;
 	}
+	
 	public Integer getCategoryId() {
 		return categoryId;
 	}
+	
 	public String getName() {
 		return name;
 	}
+	
 	public String getDescription() {
 		return description;
 	}
+	
 	public Double getDuration() {
 		return duration;
 	}
+	
 	public Solution increasePriority(Double value) throws Exception {
 		if(value <= 0 || value > 1)
 		{
@@ -46,6 +51,7 @@ public class Solution
 		
 		return this;
 	}
+	
 	public Solution decreasePriority(Double value) throws Exception {
 		if(value <= 0 || value > 1)
 		{
@@ -56,6 +62,7 @@ public class Solution
 		
 		return this;
 	}
+	
 	public Double getPriority() {
 		return priority;
 	}
