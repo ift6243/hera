@@ -15,7 +15,6 @@ import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 
 import com.udem.ift6243.dao.SolutionDao;
-import com.udem.ift6243.hera.NotificationActivity;
 import com.udem.ift6243.hera.NotificationReceiverActivity;
 import com.udem.ift6243.hera.PaulActivity;
 import com.udem.ift6243.hera.R;
@@ -129,6 +128,13 @@ public final class Oracle
     	}
     }
     
+    public Solution feedback(Solution previousSolution, Integer state)
+    {
+    	Solution newSolution = null;
+    	
+    	return newSolution;
+    }
+    
     /**
      * Stop Oracle
      */
@@ -143,7 +149,6 @@ public final class Oracle
     	
     	SolutionDao solutionDao = new SolutionDao(Oracle.instance.context);
     	ArrayList<Solution> solutionList = solutionDao.getSolution();
-    	
     	
     	Random r = new Random();
     	int selectedIndex = r.nextInt(solutionList.size());
