@@ -47,12 +47,18 @@ public final class Constant
 	public static Integer SINGING = Integer.valueOf(4);
 	public static Integer DANCING = Integer.valueOf(5);
 	
-	// Solution
+	/// Solution
 	public static Integer SOLUTION_CATEGORY_SPORT = Integer.valueOf(1);
 	public static Integer SOLUTION_CATEGORY_ACTION = Integer.valueOf(2);
 	public static Integer SOLUTION_CATEGORY_MEDICAL = Integer.valueOf(3);
 	public static Integer SOLUTION_CATEGORY_EXPRESSION = Integer.valueOf(4);
 	public static Integer SOLUTION_CATEGORY_MULTIMEDIA = Integer.valueOf(5);
+	
+	/// State
+	public static Integer STATE_ACCEPTED = Integer.valueOf(1);
+	public static Integer STATE_REFUSED = Integer.valueOf(2);
+	public static Integer STATE_SUCCEED = Integer.valueOf(3);
+	public static Integer STATE_FAILED = Integer.valueOf(4);
 	
 	/// Stress
 	public static Integer STRESS_LEVEL_NEGATIVE_OR_CONSTANT = Integer.valueOf(1);
