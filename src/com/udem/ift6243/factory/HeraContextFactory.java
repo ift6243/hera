@@ -7,7 +7,6 @@ import java.util.Locale;
 import android.content.Context;
 import android.location.Location;
 import android.location.LocationManager;
-import android.util.Log;
 
 import com.udem.ift6243.dao.DayPartDao;
 import com.udem.ift6243.dao.WeekPartDao;
