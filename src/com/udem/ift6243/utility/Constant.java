@@ -61,6 +61,11 @@ public final class Constant
 	public static Integer STATE_SUCCEED = Integer.valueOf(4);
 	public static Integer STATE_FAILED = Integer.valueOf(5);
 	
+	public static Double BONUS_ACCEPTED = Double.valueOf(0.1);
+	public static Double BONUS_REFUSED = Double.valueOf(-0.2);
+	public static Double BONUS_SUCCEED = Double.valueOf(0.3);
+	public static Double BONUS_FAILED = Double.valueOf(-0.3);
+	
 	/// Stress
 	public static Integer STRESS_LEVEL_NEGATIVE_OR_CONSTANT = Integer.valueOf(1);
 	public static Integer STRESS_LEVEL_LOW = Integer.valueOf(2);
