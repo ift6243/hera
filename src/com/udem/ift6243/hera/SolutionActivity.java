@@ -2,12 +2,14 @@ package com.udem.ift6243.hera;
 
 import com.udem.ift6243.dao.SolutionDao;
 import com.udem.ift6243.model.Solution;
+import com.udem.ift6243.oracle.Oracle;
 import com.udem.ift6243.utility.Constant;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,9 +18,19 @@ import android.widget.TextView;
 import android.view.View;
 import android.view.View.OnClickListener;
 
+import java.util.Date;
+import java.util.Timer;
 
 public class SolutionActivity extends Activity {
 	
+	private final Handler mHandler = new Handler();
+	
+	private Runnable mOracleStop = new Runnable() {
+        @Override
+        public void run() {
+            Oracle.getInstance().stop();
+        }
+	};
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -38,11 +50,12 @@ public class SolutionActivity extends Activity {
 	    	  startActivity(MulIntent);
 	    		}
 
-
 	      TextView solutionDisplay = (TextView) findViewById(R.id.textview_solution);
 	      solutionDisplay.setText("--> "+solution.getDescription());
-
-		
+	      
+	     // mHandler.postDelayed(mOracleStop, solution.getDuration());
+	      
+		  
 	}
 
 

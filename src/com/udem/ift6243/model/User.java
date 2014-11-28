@@ -2,7 +2,7 @@ package com.udem.ift6243.model;
 
 public class User
 {
-	private Integer id;
+	private static Integer id;
 	private String firstName;
 	private String lastName;
 	private Integer gender;
@@ -36,7 +36,7 @@ public class User
 		return this;
 	}
 	
-	public Integer getId() {
+	public static Integer getId() {
 		return id;
 	}
 

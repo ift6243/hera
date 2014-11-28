@@ -100,7 +100,7 @@ public final class Oracle
 				  mBuilder.setNumber(++this.messageNb);
 				  
 				  /* Creates an explicit intent for an Activity in your app */
-				  Intent resultIntent = new Intent(Oracle.instance.context, Oracle.class);
+				  Intent resultIntent = new Intent(Oracle.instance.context, NotificationReceiverActivity.class);
 				  
 				  Bundle dataBundle = new Bundle();
 				  dataBundle.putInt("notificationID", solution.getId().intValue());

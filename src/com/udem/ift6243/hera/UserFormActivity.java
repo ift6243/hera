@@ -1,13 +1,13 @@
 package com.udem.ift6243.hera;
 
-
-
 import com.udem.ift6243.model.User;
+import com.udem.ift6243.oracle.Oracle;
 import com.udem.ift6243.utility.Constant;
 
 
 import com.udem.ift6243.dao.UserDao;
 import android.app.Activity;
+import android.content.Intent;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -179,6 +179,9 @@ public class UserFormActivity extends Activity implements OnClickListener {
 		User userOne = new User(null, firstName, lastName, gender, age, maritalStatus, professionalStatus, sport, meditation, expression);
 		UserDao user = new UserDao(this);
 		user.createUser(userOne);
+		
+		Intent intent = new Intent(UserFormActivity.this, WaitingActivity.class);
+		startActivity(intent);
 		
 	}
     

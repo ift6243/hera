@@ -35,6 +35,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="René Activity" />
+        
+        <Button
+            android:id="@+id/starthera"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@+string/starthera" />
     </LinearLayout>
 
 </FrameLayout>

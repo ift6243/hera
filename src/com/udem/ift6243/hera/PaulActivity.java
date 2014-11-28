@@ -19,7 +19,7 @@ import android.os.Build;
 
 public class PaulActivity extends Activity
 {
-	private static String packageName;
+	static String packageName;
 	
 	public static String getApplicationPackageName()
 	{

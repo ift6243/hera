@@ -1,5 +1,7 @@
 package com.udem.ift6243.model;
 
+import java.util.Date;
+
 public class Solution 
 {
 	private Integer id;
@@ -33,10 +35,10 @@ public class Solution
 	public String getDescription() {
 		return description;
 	}
-	public String getDuration() {
-		return description;
+	public Double getDuration() {
+		return duration;
 	}
-	public String getPriority() {
-		return description;
+	public Double getPriority() {
+		return priority;
 	}
 }

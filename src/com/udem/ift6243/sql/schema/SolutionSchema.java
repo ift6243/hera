@@ -22,7 +22,7 @@ public final class SolutionSchema
 				+ "`category_id`	INTEGER,"
 				+ "`name`	TEXT UNIQUE,"
 				+ "`description`	TEXT,"
-				+ "`duration`	REAL," // in minutes
+				+ "`duration`	REAL," // in Milliseconds
 				+ "`priority`	REAL"
 				+ ");";
 	}

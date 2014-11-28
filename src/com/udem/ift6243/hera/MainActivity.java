@@ -2,6 +2,9 @@ package com.udem.ift6243.hera;
 
 //import com.example.notificationdemo.R;
 import com.udem.ift6243.dao.DatabaseHandler;
+import com.udem.ift6243.dao.UserDao;
+import com.udem.ift6243.model.User;
+import com.udem.ift6243.oracle.Oracle;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -17,7 +20,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 public class MainActivity extends Activity {
-
+	
+	Integer u = User.getId();
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -50,12 +55,29 @@ public class MainActivity extends Activity {
 	    			startActivity(intent);
 	    			}
 	      });
+	      
+			Button starthera = (Button) findViewById(R.id.starthera);
+			starthera.setOnClickListener(new View.OnClickListener() {
+		    	  public void onClick(View v) {
+
+		    			
+		    		  if(u == null){
+		    			Intent intent = new Intent(MainActivity.this, UserFormActivity.class);
+		    			startActivity(intent);
+		    			}
+		    		  else{
+		    			Oracle.getInstance().start();
+		    			Intent intent = new Intent(MainActivity.this, WaitingActivity.class);
+			    		startActivity(intent); 
+		    		  }
+		    	  }
+		      });
 		
 		// Create Database for the first run
 //		SharedPreferences p = PreferenceManager.getDefaultSharedPreferences(this);
 //        boolean firstRun = p.getBoolean("preference_first_run", true);
 //        if(firstRun)
-//        {
+        {
         	DatabaseHandler db = null;
         	try  
             {
@@ -71,9 +93,9 @@ public class MainActivity extends Activity {
             	if(db != null) db.close();
             	
             	// modification des preferences
-//            	p.edit().putBoolean("preference_first_run", false).commit(); 
+ //           	p.edit().putBoolean("preference_first_run", false).commit(); 
             }
-//        }
+        }
 	}
 
 	@Override

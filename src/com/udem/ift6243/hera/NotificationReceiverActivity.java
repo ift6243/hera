@@ -1,7 +1,10 @@
 package com.udem.ift6243.hera;
 
 import com.udem.ift6243.dao.*;
+import com.udem.ift6243.factory.HeraContextFactory;
 import com.udem.ift6243.model.*;
+import com.udem.ift6243.oracle.Oracle;
+import com.udem.ift6243.sensor.Sensor;
 import com.udem.ift6243.sql.schema.*;
 
 import android.app.Activity;
@@ -30,49 +33,15 @@ public class NotificationReceiverActivity extends Activity {
 		
 		  Bundle extras = getIntent().getExtras();
 		  final int id = extras.getInt("notificationID");
-		  
-		  //int data = getIntent().getExtras().getInt("notificationId");
-		  //System.out.print(+id);
-	      //String dataS = getIntent().getExtras().getString("solution");
-	      
-	      //TextView solutionDisplay = (TextView) findViewById(R.id.solution);
-	      //solutionDisplay.setText("La solution "+id);
-	      
+		  	      
 	      SolutionDao s = new SolutionDao(this);
 	      Solution solution = s.getSolution(id);
 
 	      TextView solutionDisplay = (TextView) findViewById(R.id.solution);
 	      solutionDisplay.setText("Nous vous proposons la solution suivante : \n"+solution.getName());
 
-	      /*Solution printing in a ListView
-	            
-	      Solution s = com.udem.ift6243.dao.SolutionDao.getSolution(id);
-	      SolutionDao s = new SolutionDao(this);
-	      Cursor cursor = s.getSolution(id);
-	      
-	      String[] columns = new String[] {
-	    		  	SolutionSchema.TABLE_COL_NAME,
-	    		  	SolutionSchema.TABLE_COL_DESCRIPTION
-	    		  };
-	      int[] to = new int[] { 
-	    		    R.id.name,
-	    		    R.id.description
-	    		  };
-	      
-	      SimpleCursorAdapter dataAdapter = new SimpleCursorAdapter(
-	    		    this, R.layout.activity_list_row, 
-	    		    cursor, 
-	    		    columns, 
-	    		    to,
-	    		    0);
-	    		 
-	    		  ListView listView = (ListView) findViewById(R.id.listView1);
-	    		  // Assign adapter to ListView
-	    		  listView.setAdapter(dataAdapter);	
-	    		  */	 
-	      
-			final Button buttonsuiv = (Button) findViewById(R.id.accepter);
-	        buttonsuiv.setOnClickListener(new View.OnClickListener() {
+		  final Button buttonacc = (Button) findViewById(R.id.accepter);
+	      buttonacc.setOnClickListener(new View.OnClickListener() {
 
 	        @Override
 	        public void onClick(View v) {
@@ -83,6 +52,30 @@ public class NotificationReceiverActivity extends Activity {
 			  SolutionIntent.putExtras(dataBundle);
 			  
 			  startActivity(SolutionIntent);
+	          }
+	        });
+	      
+	      final Button buttonrefus = (Button) findViewById(R.id.refus);
+	      buttonrefus.setOnClickListener(new View.OnClickListener() {
+
+	        @Override
+	        public void onClick(View v) {
+	          Intent SolutionRefusIntent = new Intent(NotificationReceiverActivity.this, WaitingActivity.class);
+	  		
+	        PaulActivity.packageName = getApplicationContext().getPackageName();
+			Oracle.getInstance().setContext(getApplicationContext());
+			//Oracle.getInstance().setActivity(this);
+			
+			//Sensor sensor = new Sensor();
+			//	new Thread(sensor).start();
+			//// INITIALIZE
+				
+			// TEST
+			HeraContext heraContext = HeraContextFactory.fromContext(getApplicationContext());
+            //Log.e("text_context", heraContext.toString());
+			
+	          Oracle.getInstance().stop();
+			  startActivity(SolutionRefusIntent);
 	          }
 	        });
 	}

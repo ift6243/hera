@@ -25,6 +25,8 @@
     <string name="refuser">Refuser la solution</string>
     <string name="son">Relaxer vous en ecoutant cette douce musique</string>
     <string name="play">Jouer le son</string>
+    <string name="starthera">Démarrer HERA</string>
+    <string name="waiting">Veuillez patienter Héra analyse vos données</string>
 
     <string-array name="age_arrays">
         <item>0&#8211;9 ans</item>
@@ -76,5 +78,6 @@
     <string name="title_activity_notification_receiver">Proposition de Solution</string>
     <string name="title_activity_solution">Solution</string>
     <string name="title_activity_multimedia">Solution Multimedia</string>
+    <string name="title_activity_waiting">Détection de stress</string>
 
 </resources>
