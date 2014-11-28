@@ -128,7 +128,7 @@ public final class Oracle
     	}
     }
     
-    public Solution feedback(Solution previousSolution, Integer state)
+    public Solution feedback(Solution currentSolution, Integer state)
     {
     	Solution newSolution = null;
     	
