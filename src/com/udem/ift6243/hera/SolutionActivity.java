@@ -53,7 +53,7 @@ public class SolutionActivity extends Activity {
 	      TextView solutionDisplay = (TextView) findViewById(R.id.textview_solution);
 	      solutionDisplay.setText("--> "+solution.getDescription());
 	      
-	     // mHandler.postDelayed(mOracleStop, solution.getDuration());
+	     mHandler.postDelayed(mOracleStop, solution.getDuration()*60000);
 	      
 		  
 	}

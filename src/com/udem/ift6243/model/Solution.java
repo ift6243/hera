@@ -8,12 +8,12 @@ public class Solution
 	private Integer categoryId;
 	private String name;
 	private String description;
-	private Double duration;
+	private long duration;
 	private Double priority;
 	
 	public Solution(Integer id, Integer categoryId, 
 			String name, String description,
-			Double duration, Double priority) {
+			long duration, Double priority) {
 		super();
 		this.id = id;
 		this.categoryId = categoryId;
@@ -35,7 +35,7 @@ public class Solution
 	public String getDescription() {
 		return description;
 	}
-	public Double getDuration() {
+	public long getDuration() {
 		return duration;
 	}
 	public Double getPriority() {

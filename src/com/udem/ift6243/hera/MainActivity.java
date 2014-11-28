@@ -92,7 +92,7 @@ public class MainActivity extends Activity
 					startActivity(intent);
 				}
 				  else{
-					Oracle.getInstance().start();
+					//Oracle.getInstance().start();
 					Intent intent = new Intent(MainActivity.this, WaitingActivity.class);
 					startActivity(intent); 
 				  }
