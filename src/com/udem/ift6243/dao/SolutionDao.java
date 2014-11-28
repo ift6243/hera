@@ -2,6 +2,7 @@ package com.udem.ift6243.dao;
 
 import java.util.ArrayList;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -16,6 +17,43 @@ public class SolutionDao
 	public SolutionDao(Context context)
 	{
 		this.context = context;
+	}
+	
+	public boolean updateSolution(Solution solution)
+	{
+		boolean error = true;
+	    
+	    DatabaseHandler dbHandler = new DatabaseHandler(this.context);
+	    SQLiteDatabase db = dbHandler.getReadableDatabase();
+		
+		db.beginTransaction();
+		try
+		{
+			ContentValues values = new ContentValues();
+			values.put(SolutionSchema.TABLE_COL_CATEGORY_ID, solution.getCategoryId());
+			values.put(SolutionSchema.TABLE_COL_NAME, solution.getName());
+			values.put(SolutionSchema.TABLE_COL_DESCRIPTION, solution.getDescription());
+			values.put(SolutionSchema.TABLE_COL_DURATION, solution.getDuration());
+			values.put(SolutionSchema.TABLE_COL_PRIORITY, solution.getPriority());
+			
+		    int nbRows = db.update(SolutionSchema.TABLE_NAME, values, 
+		    		SolutionSchema.TABLE_COL_ID + " = ?", 
+		    		new String[] { String.valueOf(solution.getId()) });
+			
+			db.setTransactionSuccessful();
+			
+			if(nbRows > 0)
+			{
+				error = false;
+			}
+		}
+		finally
+		{
+			db.endTransaction();
+			db.close();
+		}
+		
+		return !error;
 	}
 	
 	/**
@@ -103,7 +141,7 @@ public class SolutionDao
 		Integer categoryId = Integer.valueOf(cursor_solution.getInt(1));
 		String name = cursor_solution.getString(2);
 		String description = cursor_solution.getString(3);
-		long duration = Long.valueOf(cursor_solution.getLong(4));
+		Double duration = Double.valueOf(cursor_solution.getDouble(4));
 		Double priority = Double.valueOf(cursor_solution.getDouble(5));
 		
 		solution = new Solution(solutionId, categoryId, name, description,
