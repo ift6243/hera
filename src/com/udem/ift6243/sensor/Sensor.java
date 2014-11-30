@@ -30,6 +30,8 @@ public class Sensor implements Runnable
 	{
 		final ReadEdaTask edaTask = this.edaTask;
 		
+		Oracle.getInstance().start(edaTask);
+		
 		Thread thread = new Thread()
 		{
 		    @Override
@@ -44,7 +46,7 @@ public class Sensor implements Runnable
 		                		&& currentStressLevel >= Constant.STRESS_LEVEL_LOW)
 		                {
 //		                	Log.e("Stress Level", currentStressLevel.toString());
-		                	Oracle.getInstance().start();
+		                	Oracle.getInstance().notifyUser();
 		                }
 		                
 		                Thread.sleep(1000);
