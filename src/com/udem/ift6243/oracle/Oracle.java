@@ -19,6 +19,8 @@ import com.udem.ift6243.hera.NotificationReceiverActivity;
 import com.udem.ift6243.hera.PaulActivity;
 import com.udem.ift6243.hera.R;
 import com.udem.ift6243.model.Solution;
+import com.udem.ift6243.sensor.ReadEdaTask;
+import com.udem.ift6243.utility.Constant;
 
 public final class Oracle
 {
@@ -26,13 +28,16 @@ public final class Oracle
     private Context context;
     private Activity activity;
     private int messageNb = 0;
-    private volatile boolean isRunning = false;
+    private boolean isRunning = false;
+    private ArrayList<Integer> proposedSolutionList;
+    private ReadEdaTask edaTask;
     
     /**
      * Constructeur de l'objet.
      */
     private Oracle() {
         super();
+        proposedSolutionList = new ArrayList<Integer>();
     }
 
     /**
@@ -71,7 +76,12 @@ public final class Oracle
     /**
      * Demarrage de l'Oracle
      */
-    public void start()
+    public void start(final ReadEdaTask edaTask)
+    {
+    	this.edaTask = edaTask;
+    }
+    
+    public void notifyUser()
     {
     	if(!this.isRunning)
     	{
@@ -84,15 +94,15 @@ public final class Oracle
 	    		NotificationCompat.Builder  mBuilder = 
 				  new NotificationCompat.Builder(Oracle.instance.context);
 				  
-				PendingIntent pIntent = PendingIntent.getActivity(Oracle.instance.context, 0, 
-						Oracle.instance.activity.getIntent(), PendingIntent.FLAG_CANCEL_CURRENT);
+//				PendingIntent pIntent = PendingIntent.getActivity(Oracle.instance.context, 0, 
+//						Oracle.instance.activity.getIntent(), PendingIntent.FLAG_CANCEL_CURRENT);
 				
 				  mBuilder.setSmallIcon(R.drawable.ic_launcher);
 				  mBuilder.setContentTitle("Hera");
 				  mBuilder.setContentText("Vous etes stresse");
 				  mBuilder.setTicker("Stress detecte");
 				  
-				  Uri uri= RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+//				  Uri uri= RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
 				  mBuilder.setSound(Uri.parse("android.resource://" + PaulActivity.getApplicationPackageName() + "/"+ R.raw.cristal));
 				  
 				  /* Increase notification number every time a new notification arrives */
@@ -132,6 +142,36 @@ public final class Oracle
     {
     	Solution newSolution = null;
     	
+    	if(state.equals(Constant.STATE_ACCEPTED))
+    	{
+    		saveSolution(currentSolution, Constant.BONUS_ACCEPTED);
+    	}
+    	else if(state.equals(Constant.STATE_REFUSED))
+    	{
+    		saveSolution(currentSolution, Constant.BONUS_REFUSED);
+    		
+    		newSolution = Oracle.instance.findSolution();
+    	}
+    	else if(state.equals(Constant.STATE_TERMINATED))
+    	{
+    		Integer currentStressLevel = this.edaTask.getStressLevel();
+    		if(currentStressLevel.equals(Constant.STRESS_LEVEL_NEGATIVE_OR_CONSTANT)) // succeed
+    		{
+        		saveSolution(currentSolution, Constant.BONUS_SUCCEED);
+    			
+    		}
+    		else // failed
+    		{
+        		saveSolution(currentSolution, Constant.BONUS_FAILED);
+        		
+        		newSolution = Oracle.instance.findSolution();
+    		}
+    	}
+    	else
+    	{
+    		throw new IllegalArgumentException("Wrong state");
+    	}
+    	
     	return newSolution;
     }
     
@@ -140,6 +180,7 @@ public final class Oracle
      */
     public void stop()
     {
+    	proposedSolutionList.clear();
     	this.isRunning = false;
     }
     
@@ -147,13 +188,27 @@ public final class Oracle
     {
     	Solution solution = null;
     	
+    	// Recuperation de toutes les solutions
     	SolutionDao solutionDao = new SolutionDao(Oracle.instance.context);
     	ArrayList<Solution> solutionList = solutionDao.getSolution();
     	
-    	Random r = new Random();
-    	int selectedIndex = r.nextInt(solutionList.size());
-    	solution = solutionList.get(selectedIndex);
+    	// Choix de la solution
+    	do
+    	{
+	    	Random r = new Random();
+	    	int selectedIndex = r.nextInt(solutionList.size());
+	    	solution = solutionList.get(selectedIndex);
+    	} while(proposedSolutionList.contains(solution.getId()) 
+    			&& solutionList.size() > proposedSolutionList.size());
+    	
+    	// Ajout a la liste des solutions deja proposees
+    	proposedSolutionList.add(solution.getId());
     	
     	return solution;
+    }
+    
+    private void saveSolution(Solution solution, Double bonus)
+    {
+    	// TODO : Save in Database
     }
 }
