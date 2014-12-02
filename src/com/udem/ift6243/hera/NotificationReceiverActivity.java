@@ -6,6 +6,7 @@ import com.udem.ift6243.model.*;
 import com.udem.ift6243.oracle.Oracle;
 import com.udem.ift6243.sensor.Sensor;
 import com.udem.ift6243.sql.schema.*;
+import com.udem.ift6243.utility.Constant;
 
 import android.app.Activity;
 import android.content.Context;
@@ -35,7 +36,7 @@ public class NotificationReceiverActivity extends Activity {
 		  final int id = extras.getInt("notificationID");
 		  	      
 	      SolutionDao s = new SolutionDao(this);
-	      Solution solution = s.getSolution(id);
+	      final Solution solution = s.getSolution(id);
 
 	      TextView solutionDisplay = (TextView) findViewById(R.id.solution);
 	      solutionDisplay.setText("Nous vous proposons la solution suivante : \n"+solution.getName());
@@ -51,6 +52,8 @@ public class NotificationReceiverActivity extends Activity {
 		      dataBundle.putInt("solutionID",(int)id);		      
 			  SolutionIntent.putExtras(dataBundle);
 			  
+			  Oracle.getInstance().feedback(solution, Constant.STATE_ACCEPTED);
+			  
 			  startActivity(SolutionIntent);
 	          }
 	        });
@@ -60,10 +63,16 @@ public class NotificationReceiverActivity extends Activity {
 
 	        @Override
 	        public void onClick(View v) {
-	          Intent SolutionRefusIntent = new Intent(NotificationReceiverActivity.this, WaitingActivity.class);
+	          Intent SolutionRefusIntent = new Intent(NotificationReceiverActivity.this, NotificationReceiverActivity.class);
 			
-	          Oracle.getInstance().stop();
+	          Solution newsolution =Oracle.getInstance().feedback(solution, Constant.STATE_REFUSED);
+	          
+		      Bundle dataBundle = new Bundle();
+		      dataBundle.putInt("notificationID",(int)newsolution.getId());		      
+		      SolutionRefusIntent.putExtras(dataBundle);
+			  
 			  startActivity(SolutionRefusIntent);
+			  
 	          }
 	        });
 	}

@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:text="@+string/waiting"
+        
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
 </RelativeLayout>

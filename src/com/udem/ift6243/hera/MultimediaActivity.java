@@ -1,6 +1,7 @@
 package com.udem.ift6243.hera;
 
 import android.app.Activity;
+import android.app.TaskStackBuilder;
 import android.content.Context;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -43,6 +44,9 @@ public class MultimediaActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_multimedia);
 		playSound(R.raw.test);
+		
+	      TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
+	      stackBuilder.addParentStack(SolutionActivity.class);
 		
 		imageSwitcher = (ImageSwitcher)findViewById(R.id.imageSwitcher1);
 
@@ -101,18 +105,7 @@ public class MultimediaActivity extends Activity {
 				// TODO Auto-generated method stub
 				
 		//	}
-       // }); 
- 
-	/*	Button btn_sound = (Button) findViewById(R.id.play);
-		btn_sound.setOnClickListener(new OnClickListener() {
- 
-			@Override
-			public void onClick(View v) {
-				playSound(R.raw.test);
-			}
- 
-		}); */
-	
+       // }); 	
  
 	@Override
 	public void onPause() {

@@ -6,6 +6,8 @@ import com.udem.ift6243.oracle.Oracle;
 import com.udem.ift6243.utility.Constant;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -15,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.view.View;
 import android.view.View.OnClickListener;
 
@@ -25,12 +28,69 @@ public class SolutionActivity extends Activity {
 	
 	private final Handler mHandler = new Handler();
 	
-	private Runnable mOracleStop = new Runnable() {
-        @Override
+	private Runnable mOracleFeedback = new Runnable() {
+        @SuppressWarnings("deprecation")
+		@Override
         public void run() {
-            Oracle.getInstance().stop();
-            Intent Intent = new Intent(SolutionActivity.this, WaitingActivity.class);
-	    	startActivity(Intent);
+  		  Bundle extras = getIntent().getExtras();
+  		  final int id = extras.getInt("solutionID");
+          SolutionDao s = new SolutionDao(getApplicationContext());
+	      Solution solution = s.getSolution(id);
+	      
+		  if(Oracle.getInstance().feedback(solution, Constant.STATE_TERMINATED)== null){
+			  
+			  AlertDialog alertDialog = new AlertDialog.Builder(
+				        SolutionActivity.this).create();
+
+				alertDialog.setTitle("Succes");
+
+				alertDialog.setMessage("Bravo, vous avez surmonté votre stress ");
+
+				alertDialog.setIcon(android.R.drawable.btn_star);
+
+				alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
+				    public void onClick(DialogInterface dialog, int which) {
+				    	
+				    	Intent i = new Intent(getApplicationContext(), WaitingActivity.class);
+				    	startActivity(i);
+
+				    }
+				});
+				alertDialog.show();
+		  }
+		  else {
+			  AlertDialog.Builder alertDialog = new AlertDialog.Builder(
+				        SolutionActivity.this);
+
+				alertDialog.setTitle("Echec");
+
+				alertDialog.setMessage("Essayer une autre solution ?");
+
+				alertDialog.setIcon(android.R.drawable.ic_delete);
+				 
+				// Le premier bouton "Oui" 
+				alertDialog.setPositiveButton("OUI",
+				        new DialogInterface.OnClickListener() {
+				            public void onClick(DialogInterface dialog, int which) {
+				                Toast.makeText(getApplicationContext(),
+				                        "'Oui'", Toast.LENGTH_SHORT)
+				                        .show();
+				            }
+				        });
+				 
+				// Le deuxième bouton "NON"
+				alertDialog.setNegativeButton("NON",
+				        new DialogInterface.OnClickListener() {
+				            public void onClick(DialogInterface dialog, int which) {
+						    	Intent i = new Intent(getApplicationContext(), WaitingActivity.class);
+						    	startActivity(i);
+
+				            }
+				        });
+				 
+				// Affiche la boite du dialogue
+				alertDialog.show();
+		  }
             
         }
 	};
@@ -59,7 +119,7 @@ public class SolutionActivity extends Activity {
 	      Double duration = (solution.getDuration());
 	      long delai = duration.longValue()*60000;
 	      
-	      mHandler.postDelayed(mOracleStop, delai);
+	      mHandler.postDelayed(mOracleFeedback, delai);
 
 	      
 		  
