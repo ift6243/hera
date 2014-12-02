@@ -73,4 +73,7 @@ public final class Constant
 	
 	public static double STRESS_VARIATION_WARNING = 1.5;
 	public static double STRESS_VARIATION_ALERT = 3;
+	
+	// Hera Context
+	public static double HERA_CONTEXT_MAXIMUM_DISTANCE = 5; // in kilometers
 }
