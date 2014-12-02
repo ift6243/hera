@@ -66,12 +66,13 @@ public class NotificationReceiverActivity extends Activity {
 	          Intent SolutionRefusIntent = new Intent(NotificationReceiverActivity.this, NotificationReceiverActivity.class);
 			
 	          Solution newsolution =Oracle.getInstance().feedback(solution, Constant.STATE_REFUSED);
-	          ;
+	          
 		      Bundle dataBundle = new Bundle();
 		      dataBundle.putInt("notificationID",(int)newsolution.getId());		      
 		      SolutionRefusIntent.putExtras(dataBundle);
 			  
 			  startActivity(SolutionRefusIntent);
+			  
 	          }
 	        });
 	}
