@@ -1,12 +1,14 @@
 package com.udem.ift6243.sql.schema;
 
-public class SolutionFailedSchema
+public class SolutionProposedSchema
 {
-	public static final String TABLE_NAME = "solution_failed";
+	public static final String TABLE_NAME = "solution_proposed";
 	
 	public static final String TABLE_COL_ID = "id";
 	public static final String TABLE_COL_CONTEXT_ID = "context_id";
 	public static final String TABLE_COL_SOLUTION_ID = "solution_id";
+	public static final String TABLE_COL_BONUS = "bonus";
+	public static final String TABLE_COL_DATE = "date";
 	
 	public static String getCreateTableSchema()
 	{
@@ -14,7 +16,8 @@ public class SolutionFailedSchema
 				+ "`id`	INTEGER PRIMARY KEY AUTOINCREMENT,"
 				+ "`context_id` INTEGER,"
 				+ "`solution_id` INTEGER,"
-				+ "`date`	TEXT"
+				+ "`bonus` REAL,"
+				+ "`date` TEXT"
 				+ ");";
 	}
 	
