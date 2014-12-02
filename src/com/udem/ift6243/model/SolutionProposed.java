@@ -21,6 +21,11 @@ public class SolutionProposed
 	public Integer getId() {
 		return id;
 	}
+	public SolutionProposed setId(Integer id) {
+		this.id = id;
+		
+		return this;
+	}
 	public Integer getHeraContextId() {
 		return heraContextId;
 	}
