@@ -25,7 +25,7 @@ public class SolutionActivity extends Activity {
 	
 	private final Handler mHandler = new Handler();
 	
-	private Runnable mOracleStop = new Runnable() {
+	private Runnable mOracleFeedback = new Runnable() {
         @Override
         public void run() {
             Oracle.getInstance().stop();
@@ -59,7 +59,7 @@ public class SolutionActivity extends Activity {
 	      Double duration = (solution.getDuration());
 	      long delai = duration.longValue()*60000;
 	      
-	      mHandler.postDelayed(mOracleStop, delai);
+	      mHandler.postDelayed(mOracleFeedback, delai);
 
 	      
 		  
