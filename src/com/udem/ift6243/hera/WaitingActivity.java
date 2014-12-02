@@ -3,8 +3,12 @@ package com.udem.ift6243.hera;
 import java.io.IOException;
 import java.io.InputStream;
 
+import com.udem.ift6243.dao.SolutionDao;
+import com.udem.ift6243.dao.UserDao;
 import com.udem.ift6243.factory.HeraContextFactory;
 import com.udem.ift6243.model.HeraContext;
+import com.udem.ift6243.model.Solution;
+import com.udem.ift6243.model.User;
 import com.udem.ift6243.oracle.Oracle;
 import com.udem.ift6243.sensor.Sensor;
 
@@ -18,6 +22,7 @@ import android.os.SystemClock;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 /* Class for the Gif Image
  
  
@@ -56,6 +61,12 @@ private static String packageName;
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_waiting);
+		
+	      UserDao u = new UserDao(this);
+	      User user = u.getUser();
+		
+	      TextView NameDisplay = (TextView) findViewById(R.id.textView1);
+	      NameDisplay.setText("Veuillez patienter "+user.getLastName()+" "+user.getFirstName()+"Héra analyse vos données.");
 		
 		//// INITIALIZE
 		PaulActivity.packageName = getApplicationContext().getPackageName();
