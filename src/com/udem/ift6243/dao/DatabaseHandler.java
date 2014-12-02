@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import com.udem.ift6243.sql.schema.HeraContextSchema;
 import com.udem.ift6243.sql.schema.DayPartSchema;
 import com.udem.ift6243.sql.schema.SolutionCategorySchema;
-import com.udem.ift6243.sql.schema.SolutionFailedSchema;
+import com.udem.ift6243.sql.schema.SolutionProposedSchema;
 import com.udem.ift6243.sql.schema.SolutionSchema;
 import com.udem.ift6243.sql.schema.UserSchema;
 import com.udem.ift6243.sql.schema.WeekPartSchema;
@@ -52,7 +52,7 @@ public class DatabaseHandler extends SQLiteOpenHelper
 		db.execSQL(WeekPartSchema.getCreateTableSchema());
 		db.execSQL(YearPartSchema.getCreateTableSchema());
 		db.execSQL(HeraContextSchema.getCreateTableSchema());
-		db.execSQL(SolutionFailedSchema.getCreateTableSchema());
+		db.execSQL(SolutionProposedSchema.getCreateTableSchema());
 		
 		/// Insert datas
 		ArrayList<String> solutionQueries = SolutionSchema.getInsertDataList();
@@ -98,7 +98,7 @@ public class DatabaseHandler extends SQLiteOpenHelper
 		db.execSQL(WeekPartSchema.getDropTableSchema());
 		db.execSQL(YearPartSchema.getDropTableSchema());
 		db.execSQL(HeraContextSchema.getDropTableSchema());
-		db.execSQL(SolutionFailedSchema.getDropTableSchema());
+		db.execSQL(SolutionProposedSchema.getDropTableSchema());
 		
 		/// Create tables
 		onCreate(db);
