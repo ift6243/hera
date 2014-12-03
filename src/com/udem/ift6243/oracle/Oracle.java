@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
+import java.util.Random;
 
 import android.app.Activity;
 import android.app.NotificationManager;
@@ -246,25 +247,41 @@ public final class Oracle
 			}
 		}
 		
+		// Reset proposedSolutionList
+		if(proposedSolutionList.size() >= solutionList.size())
+		{
+			proposedSolutionList.clear();
+		}
+		
     	// Choix de la solution
-    	do
-    	{
-			// Meilleure solution
-    		int maxPriority = 0;
-    		for(Solution solution : solutionList)
-    		{
+		ArrayList<Solution> bestSolutionList = new ArrayList<Solution>();
+
+		// Meilleure solution
+		int maxPriority = 0;
+		for(Solution solution : solutionList)
+		{
+			if(!proposedSolutionList.contains(solution.getId()))
+			{
 //    			Log.e("Solution" + String.valueOf(solution.getId()), String.valueOf(solution.getPriority()));
-    			int currentPriority = solution.getPriority().intValue();
-    			if(currentPriority >= maxPriority)
-    			{
-    				solutionSelected = solution;
-    				
-    				maxPriority = currentPriority;
-    			}
-    		}
-    		
-    	} while(proposedSolutionList.contains(solutionSelected.getId()) 
-    			&& solutionList.size() > proposedSolutionList.size());
+				int currentPriority = solution.getPriority().intValue();
+				if(currentPriority > maxPriority)
+				{
+					bestSolutionList.clear();
+					bestSolutionList.add(solution);
+					
+					maxPriority = currentPriority;
+				}
+				else if(currentPriority == maxPriority)
+				{
+					bestSolutionList.add(solution);
+				}
+			}
+		}
+		
+		// Choix au hasard parmi les meilleures
+		Random r = new Random();
+		int selectedIndex = r.nextInt(bestSolutionList.size());
+		solutionSelected = bestSolutionList.get(selectedIndex);
     	
     	// Ajout a la liste des solutions deja proposees
     	proposedSolutionList.add(solutionSelected.getId());
