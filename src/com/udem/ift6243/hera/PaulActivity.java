@@ -1,7 +1,9 @@
 package com.udem.ift6243.hera;
 
+import com.udem.ift6243.dao.SolutionDao;
 import com.udem.ift6243.factory.HeraContextFactory;
 import com.udem.ift6243.model.HeraContext;
+import com.udem.ift6243.model.Solution;
 import com.udem.ift6243.oracle.Oracle;
 import com.udem.ift6243.sensor.Sensor;
 import com.udem.ift6243.utility.Constant;
@@ -50,9 +52,26 @@ public class PaulActivity extends Activity
 			new Thread(sensor).start();
 		//// INITIALIZE
 			
-		// TEST
+		// TEST creation du heraContext
 //		HeraContext heraContext = HeraContextFactory.fromContext(getApplicationContext(), Constant.STRESS_LEVEL_HIGH);
 //		Log.e("text_context", heraContext.toString());
+			
+		// TEST
+//		SolutionDao solutionDao = new SolutionDao(getApplicationContext());
+//		Solution currentSolution = solutionDao.getSolution(Integer.valueOf(1));
+//		Log.e("currentSolution", String.valueOf(currentSolution));
+//		Solution result = Oracle.getInstance().feedback(currentSolution, Constant.STATE_ACCEPTED);
+//		Log.e("STATE_ACCEPTED", String.valueOf(result == null));
+//		
+//		currentSolution = solutionDao.getSolution(Integer.valueOf(2));
+//		Log.e("currentSolution", String.valueOf(currentSolution));
+//		result = Oracle.getInstance().feedback(currentSolution, Constant.STATE_REFUSED);
+//		Log.e("STATE_REFUSED", result.toString());
+//		
+//		currentSolution = solutionDao.getSolution(Integer.valueOf(3));
+//		Log.e("currentSolution", String.valueOf(currentSolution));
+//		result = Oracle.getInstance().feedback(currentSolution, Constant.STATE_TERMINATED);
+//		Log.e("STATE_TERMINATED", String.valueOf(result));
 		
 	}
 
