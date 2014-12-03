@@ -83,15 +83,15 @@ public class UserFormActivity extends Activity implements OnClickListener {
 	public void onClick(View v) {
 		
     	//la valeur du bouton radio à récuperer
-		Toast.makeText(UserFormActivity.this,
-		  		"OnClickListener : " + 
-		                  "\nSpinner 1 : "+ String.valueOf(spinner1.getSelectedItem()) + 
-		                  "\nSpinner 2 : "+ String.valueOf(spinner2.getSelectedItem())+ 
-		                  "\nSpinner 3 : "+ String.valueOf(spinner3.getSelectedItem())+ 
-		                  "\nSpinner 4 : "+ String.valueOf(spinner4.getSelectedItem())+ 
-		                  "\nSpinner 5 : "+ String.valueOf(spinner5.getSelectedItem())+ 
-		                  "\nSpinner 6 : "+ String.valueOf(spinner6.getSelectedItem()),
-		  			Toast.LENGTH_SHORT).show();
+//		Toast.makeText(UserFormActivity.this,
+//		  		"OnClickListener : " + 
+//		                  "\nSpinner 1 : "+ String.valueOf(spinner1.getSelectedItem()) + 
+//		                  "\nSpinner 2 : "+ String.valueOf(spinner2.getSelectedItem())+ 
+//		                  "\nSpinner 3 : "+ String.valueOf(spinner3.getSelectedItem())+ 
+//		                  "\nSpinner 4 : "+ String.valueOf(spinner4.getSelectedItem())+ 
+//		                  "\nSpinner 5 : "+ String.valueOf(spinner5.getSelectedItem())+ 
+//		                  "\nSpinner 6 : "+ String.valueOf(spinner6.getSelectedItem()),
+//		  			Toast.LENGTH_SHORT).show();
 		
 		//Traduire les elements string spinner en entiers
 		String firstName= String.valueOf(editText1.getText());
