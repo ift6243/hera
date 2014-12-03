@@ -23,8 +23,8 @@ import com.udem.ift6243.dao.SolutionDao;
 import com.udem.ift6243.dao.SolutionProposedDao;
 import com.udem.ift6243.factory.HeraContextFactory;
 import com.udem.ift6243.hera.NotificationReceiverActivity;
-import com.udem.ift6243.hera.PaulActivity;
 import com.udem.ift6243.hera.R;
+import com.udem.ift6243.hera.WaitingActivity;
 import com.udem.ift6243.model.HeraContext;
 import com.udem.ift6243.model.Solution;
 import com.udem.ift6243.model.SolutionProposed;
@@ -39,7 +39,7 @@ public final class Oracle
     private int messageNb = 0;
     private boolean isRunning = false;
     private ArrayList<Integer> proposedSolutionList;
-    private ReadEdaTask edaTask;
+    private ReadEdaTask edaTask = null;
     
     /**
      * Constructeur de l'objet.
@@ -90,6 +90,11 @@ public final class Oracle
     	this.edaTask = edaTask;
     }
     
+    public boolean isStarting()
+    {
+    	return (this.edaTask != null);
+    }
+    
     public void notifyUser(Integer stressLevel)
     {
     	if(!this.isRunning)
@@ -112,7 +117,7 @@ public final class Oracle
 				  mBuilder.setTicker("Stress detecte");
 				  
 //				  Uri uri= RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-				  mBuilder.setSound(Uri.parse("android.resource://" + PaulActivity.getApplicationPackageName() + "/"+ R.raw.cristal));
+				  mBuilder.setSound(Uri.parse("android.resource://" + WaitingActivity.getApplicationPackageName() + "/"+ R.raw.cristal));
 				  
 				  /* Increase notification number every time a new notification arrives */
 				  mBuilder.setNumber(++this.messageNb);
