@@ -335,7 +335,6 @@ public class UserFormActivity extends Activity implements OnClickListener {
 		
 		Intent intent = new Intent(UserFormActivity.this, WaitingActivity.class);
 		startActivity(intent);
-		
 	}
     
     
