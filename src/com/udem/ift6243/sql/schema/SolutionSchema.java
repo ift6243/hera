@@ -41,10 +41,10 @@ public final class SolutionSchema
 				Constant.SOLUTION_CATEGORY_MEDICAL + ", 'Consulter un medecin', 'Calmez-vous, reposez-vous et pensez a consulter un medecin', 0, 0.5);");
 		
 		queryList.add("INSERT INTO " + TABLE_NAME + " VALUES (NULL, " + 
-				Constant.SOLUTION_CATEGORY_EXPRESSION + ", 'Dessin', 'Faites un petit dessin.', 2, 0.5);");
+				Constant.SOLUTION_CATEGORY_EXPRESSION + ", 'Dessin', 'Faites un petit dessin.', 1, 0.5);");
 		
 		queryList.add("INSERT INTO " + TABLE_NAME + " VALUES (NULL, " + 
-				Constant.SOLUTION_CATEGORY_MULTIMEDIA + ", 'Son de relaxation', 'Relaxez-vous en ecoutant cette douce musique', 5, 0.5);");
+				Constant.SOLUTION_CATEGORY_MULTIMEDIA + ", 'Son de relaxation', 'Relaxez-vous en ecoutant cette douce musique', 1, 0.5);");
 		return queryList;
 	}
 	
