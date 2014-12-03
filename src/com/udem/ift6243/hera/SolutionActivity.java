@@ -65,12 +65,12 @@ public class SolutionActivity extends Activity {
 
 				alertDialog.setTitle("Echec");
 
-				alertDialog.setMessage("Essayer une autre solution ?");
+				alertDialog.setMessage("Essayez une autre solution");
 
 				alertDialog.setIcon(android.R.drawable.ic_delete);
 				 
 				// Le premier bouton "Oui" 
-				alertDialog.setPositiveButton("OUI",
+				alertDialog.setPositiveButton("OK",
 				        new DialogInterface.OnClickListener() {
 				            public void onClick(DialogInterface dialog, int which) {
 						      
@@ -82,18 +82,6 @@ public class SolutionActivity extends Activity {
 						      dataBundle.putInt("notificationID",(int)newsolution.getId());		      
 						      i.putExtras(dataBundle);
 						      
-				            }
-				        });
-				 
-				// Le deuxième bouton "NON"
-				alertDialog.setNegativeButton("NON",
-				        new DialogInterface.OnClickListener() {
-				            public void onClick(DialogInterface dialog, int which) {
-				            	
-				            	Oracle.getInstance().reset();
-						    	Intent i = new Intent(getApplicationContext(), WaitingActivity.class);
-						    	startActivity(i);
-
 				            }
 				        });
 				 
