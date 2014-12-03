@@ -38,13 +38,13 @@ public final class SolutionSchema
 				Constant.SOLUTION_CATEGORY_ACTION + ", 'Action', 'Faites une sieste de 15 minutes.', 15, 0.5);");
 		
 		queryList.add("INSERT INTO " + TABLE_NAME + " VALUES (NULL, " + 
-				Constant.SOLUTION_CATEGORY_MEDICAL + ", 'Consulter un médecin', 'Calmez-vous, reposez-vous et pensez à consulter un médecin', 0, 0.5);");
+				Constant.SOLUTION_CATEGORY_MEDICAL + ", 'Consulter un medecin', 'Calmez-vous, reposez-vous et pensez a consulter un medecin', 0, 0.5);");
 		
 		queryList.add("INSERT INTO " + TABLE_NAME + " VALUES (NULL, " + 
 				Constant.SOLUTION_CATEGORY_EXPRESSION + ", 'Dessin', 'Faites un petit dessin.', 2, 0.5);");
 		
 		queryList.add("INSERT INTO " + TABLE_NAME + " VALUES (NULL, " + 
-				Constant.SOLUTION_CATEGORY_MULTIMEDIA + ", 'Son de relaxation', 'Relaxez-vous en écoutant cette douce musique', 5, 0.5);");
+				Constant.SOLUTION_CATEGORY_MULTIMEDIA + ", 'Son de relaxation', 'Relaxez-vous en ecoutant cette douce musique', 5, 0.5);");
 		return queryList;
 	}
 	
