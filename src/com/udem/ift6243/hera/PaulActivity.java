@@ -70,7 +70,6 @@ public class PaulActivity extends Activity
 //		Log.e("currentSolution", String.valueOf(currentSolution));
 //		result = Oracle.getInstance().feedback(currentSolution, Constant.STATE_TERMINATED);
 //		Log.e("STATE_TERMINATED", String.valueOf(result));
-		
 	}
 
 	@Override
