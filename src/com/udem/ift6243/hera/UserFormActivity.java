@@ -1,17 +1,24 @@
 package com.udem.ift6243.hera;
 
+import java.util.ArrayList;
+
+
+import com.udem.ift6243.model.Solution;
+import com.udem.ift6243.dao.SolutionDao;
+import com.udem.ift6243.dao.UserDao;
 import com.udem.ift6243.model.User;
-import com.udem.ift6243.oracle.Oracle;
 import com.udem.ift6243.utility.Constant;
 
 
-import com.udem.ift6243.dao.UserDao;
+
+
 import android.app.Activity;
 import android.content.Intent;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Spinner;
+import android.util.Log;
 import android.view.View.OnClickListener;
 import android.view.View;
 import android.widget.Toast;
@@ -98,83 +105,225 @@ public class UserFormActivity extends Activity implements OnClickListener {
 		Boolean woman = false;
 		Integer expression = 0;
 		
+		//Récupérer la base de solution
+		SolutionDao solutionDao = new SolutionDao(this);
+		ArrayList<Solution> solutionList = solutionDao.getSolution();
+		
 		//gender
 		woman = radioButton.isChecked();
 		gender = woman ? Constant.GENDER_FEMALE : Constant.GENDER_MALE;
 		
+		//Cas des femmes ménopausées : a partir de 70 = sport doux
+		if(woman == true && spinner1.getSelectedItemPosition()>4 && spinner1.getSelectedItemPosition()<8){
+			Solution solutionSport = solutionList.get(0);
+			solutionSport.increasePriority(0.1);
+		}
+		
 		//Age
-		if(spinner1.getSelectedItemPosition()==0)
+		if(spinner1.getSelectedItemPosition()==0) {
 			age = Constant.AGE_0_9;
-		if(spinner1.getSelectedItemPosition()==1)
+			Solution solutionSport = solutionList.get(0);
+			solutionSport.increasePriority(0.1);
+		}
+		if(spinner1.getSelectedItemPosition()==1){
 			age = Constant.AGE_10_19;
-		if(spinner1.getSelectedItemPosition()==2)
+			Solution solutionSport = solutionList.get(0);
+			solutionSport.increasePriority(0.1);
+		}
+		if(spinner1.getSelectedItemPosition()==2){
 			age = Constant.AGE_20_29;
-		if(spinner1.getSelectedItemPosition()==3)
+			Solution solutionSport = solutionList.get(0);
+			solutionSport.increasePriority(0.1);
+		}
+		if(spinner1.getSelectedItemPosition()==3){
 			age = Constant.AGE_30_39;
-		if(spinner1.getSelectedItemPosition()==4)
+			Solution solutionSport = solutionList.get(0);
+			solutionSport.increasePriority(0.1);
+		}
+		if(spinner1.getSelectedItemPosition()==4){
 			age = Constant.AGE_40_49;
-		if(spinner1.getSelectedItemPosition()==5)
+			Solution solutionSport = solutionList.get(0);
+			solutionSport.increasePriority(0.1);
+		}
+		if(spinner1.getSelectedItemPosition()==5){
 			age = Constant.AGE_50_59;
-		if(spinner1.getSelectedItemPosition()==6)
+			Solution solutionSport = solutionList.get(0);
+			solutionSport.increasePriority(0.1);
+			Solution solutionMedicale = solutionList.get(2);
+			solutionMedicale.increasePriority(0.1);
+		}
+		if(spinner1.getSelectedItemPosition()==6){
 			age = Constant.AGE_60_69;
-		if(spinner1.getSelectedItemPosition()==7)
+			Solution solutionSport = solutionList.get(0);
+			solutionSport.decreasePriority(0.1);
+			Solution solutionMedicale = solutionList.get(2);
+			solutionMedicale.increasePriority(0.1);
+		}
+		if(spinner1.getSelectedItemPosition()==7){
 			age = Constant.AGE_70_79;
-		if(spinner1.getSelectedItemPosition()==8)
+			Solution solutionSport = solutionList.get(0);
+			solutionSport.decreasePriority(0.2);
+			Solution solutionMedicale = solutionList.get(2);
+			solutionMedicale.increasePriority(0.2);
+		}
+		if(spinner1.getSelectedItemPosition()==8){
 			age = Constant.AGE_80_89;
-		if(spinner1.getSelectedItemPosition()==9)
+			Solution solutionSport = solutionList.get(0);
+			solutionSport.decreasePriority(0.3);
+			Solution solutionMedicale = solutionList.get(2);
+			solutionMedicale.increasePriority(0.2);
+		}
+		if(spinner1.getSelectedItemPosition()==9){
 			age = Constant.AGE_90_99;
-		if(spinner1.getSelectedItemPosition()==10)
+			Solution solution = solutionList.get(0);
+			solution.decreasePriority(0.3);
+			Solution solutionMedicale = solutionList.get(2);
+			solutionMedicale.increasePriority(0.3);
+		}
+		if(spinner1.getSelectedItemPosition()==10){
 			age = Constant.AGE_100;
+			Solution solutionSport = solutionList.get(0);
+			solutionSport.decreasePriority(0.4);
+			Solution solutionMedicale = solutionList.get(2);
+			solutionMedicale.increasePriority(0.3);
+			//Log.e("test position 10 : ", String.valueOf(spinner1.getSelectedItemPosition()));
+		}
 	
 		// maritalStatus 
-		if(spinner2.getSelectedItemPosition()==0)
+		if(spinner2.getSelectedItemPosition()==0){
 			maritalStatus = Constant.SINGLE;
-		if(spinner2.getSelectedItemPosition()==1)
+			Solution solutionSport = solutionList.get(0);
+			solutionSport.increasePriority(0.2);
+			
+		}
+		if(spinner2.getSelectedItemPosition()==1){
 			maritalStatus = Constant.MARRIED;
-		if(spinner2.getSelectedItemPosition()==2)
+			Solution solutionSport = solutionList.get(0);
+			solutionSport.increasePriority(0.2);
+		}
+		if(spinner2.getSelectedItemPosition()==2){
 			maritalStatus = Constant.DIVORCED;
+			Solution solutionSport = solutionList.get(0);
+			solutionSport.increasePriority(0.2);
+		}
 		
 		//professionalStatus
-		if(spinner3.getSelectedItemPosition()==0)
-			professionalStatus = Constant.CAT_1;
-		if(spinner3.getSelectedItemPosition()==1)
-			professionalStatus = Constant.CAT_2;
-		if(spinner3.getSelectedItemPosition()==2)
-			professionalStatus = Constant.CAT_3;
-		if(spinner3.getSelectedItemPosition()==3)
-			professionalStatus = Constant.CAT_4;
-		if(spinner3.getSelectedItemPosition()==4)
-			professionalStatus = Constant.CAT_4;
-		if(spinner3.getSelectedItemPosition()==5)
-			professionalStatus = Constant.CAT_5;
-		if(spinner3.getSelectedItemPosition()==6)
-			professionalStatus = Constant.CAT_6;
-		if(spinner3.getSelectedItemPosition()==7)
-			professionalStatus = Constant.CAT_7;
-		if(spinner3.getSelectedItemPosition()==8)
-			professionalStatus = Constant.CAT_8;
-		if(spinner3.getSelectedItemPosition()==9)
-			professionalStatus = Constant.CAT_9;
+		if(spinner3.getSelectedItemPosition()==0){
+			professionalStatus = Constant.CAT_1;//agro
+			Solution solutionSport = solutionList.get(0);
+			solutionSport.increasePriority(0.1);
+			Solution solutionActionRepos = solutionList.get(1);
+			solutionActionRepos.increasePriority(0.2);
+			
+		}
+		if(spinner3.getSelectedItemPosition()==1){
+			professionalStatus = Constant.CAT_2;//artisans, chefs d'entreprise stressés
+			Solution solutionSport = solutionList.get(0);
+			solutionSport.increasePriority(0.1);
+			Solution solutionActionRepos = solutionList.get(1);
+			solutionActionRepos.increasePriority(0.2);
+		}
+		if(spinner3.getSelectedItemPosition()==2){
+			professionalStatus = Constant.CAT_3;//cadres stressés
+			Solution solutionSport = solutionList.get(0);
+			solutionSport.increasePriority(0.1);
+			Solution solutionActionRepos = solutionList.get(1);
+			solutionActionRepos.increasePriority(0.2);
+		}
+		if(spinner3.getSelectedItemPosition()==3){
+			professionalStatus = Constant.CAT_4;//professions intermédiaires stressés
+			Solution solutionSport = solutionList.get(0);
+			solutionSport.increasePriority(0.1);
+			Solution solutionActionRepos = solutionList.get(1);
+			solutionActionRepos.increasePriority(0.2);
+		}
+		if(spinner3.getSelectedItemPosition()==4){
+			professionalStatus = Constant.CAT_5;//employés très stressés
+			Solution solutionSport= solutionList.get(0);
+			solutionSport.increasePriority(0.2);
+			Solution solutionActionRepos = solutionList.get(1);
+			solutionActionRepos.increasePriority(0.3);
+		}
+		if(spinner3.getSelectedItemPosition()==5){
+			professionalStatus = Constant.CAT_6;//ouvriers fatigués très stressés
+			Solution solutionSport= solutionList.get(0);
+			solutionSport.decreasePriority(0.2);
+			Solution solutionActionRepos = solutionList.get(1);
+			solutionActionRepos.increasePriority(0.3);
+		}
+		if(spinner3.getSelectedItemPosition()==6){
+			professionalStatus = Constant.CAT_7;//retraités fatigués
+			Solution solutionSport= solutionList.get(0);
+			solutionSport.decreasePriority(0.2);
+			Solution solutionActionRepos = solutionList.get(1);
+			solutionActionRepos.increasePriority(0.1);
+		}
+		if(spinner3.getSelectedItemPosition()==7){
+			professionalStatus = Constant.CAT_8;//sans emplois
+			Solution solutionSport= solutionList.get(0);
+			solutionSport.increasePriority(0.2);
+		}
+		if(spinner3.getSelectedItemPosition()==8){
+			professionalStatus = Constant.CAT_9;//étudiants
+			Solution solutionSport= solutionList.get(0);
+			solutionSport.increasePriority(0.2);
+			Solution solutionActionRepos = solutionList.get(1);
+			solutionActionRepos.increasePriority(0.1);
+			
+		}
+		
 		
 		//sport
-		if (spinner4.getSelectedItemPosition()==0)
+		if (spinner4.getSelectedItemPosition()== 0){
 			sport = true;
-		
+			Solution solutionSport= solutionList.get(0);
+			solutionSport.increasePriority(0.2);
+		}else{
+			Solution solutionSport= solutionList.get(0);
+			solutionSport.decreasePriority(0.2);
+			//Log.e("test sport", String.valueOf(sport));
+		}
+		//Log.e("test priority sport", String.valueOf(solutionList.get(0).getPriority()));
 		//meditation	
-		if (spinner5.getSelectedItemPosition()==0)
+		if (spinner5.getSelectedItemPosition()== 0){
 			meditation = true;
+			Solution solution = solutionList.get(4);//multimédia
+			solution.increasePriority(0.2);
+		}else{//if false
+			Solution solution = solutionList.get(4);
+			solution.decreasePriority(0.2);
+		}
 			
 		//expression
-		if(spinner6.getSelectedItemPosition()==0)
+		if(spinner6.getSelectedItemPosition()==0){
 			expression = Constant.READING;
-		if(spinner6.getSelectedItemPosition()==1)
+			Solution solution = solutionList.get(3);//créativité
+			solution.increasePriority(0.2);
+		}
+		if(spinner6.getSelectedItemPosition()==1){
 			expression = Constant.WRITING;
-		if(spinner6.getSelectedItemPosition()==2)
+			Solution solution = solutionList.get(3);
+			solution.increasePriority(0.2);
+		}
+		if(spinner6.getSelectedItemPosition()==2){
 			expression = Constant.DRAWING;
-		if(spinner6.getSelectedItemPosition()==3)
+			Solution solution = solutionList.get(3);
+			solution.increasePriority(0.2);
+		}
+		if(spinner6.getSelectedItemPosition()==3){
 			expression = Constant.SINGING;
-		if(spinner6.getSelectedItemPosition()==4)
+			Solution solution = solutionList.get(3);
+			solution.increasePriority(0.2);
+		}
+		if(spinner6.getSelectedItemPosition()==4){
 			expression = Constant.DANCING;
+			Solution solution3 = solutionList.get(3);//créativité
+			solution3.increasePriority(0.2);
+			Log.e("List.get(3)", solution3.getName());
+			Solution sol0 = solutionList.get(0); //sport
+			sol0.increasePriority(0.1);
+		}
+		
 		
 		User userOne = new User(null, firstName, lastName, gender, age, maritalStatus, professionalStatus, sport, meditation, expression);
 		UserDao user = new UserDao(this);
