@@ -59,14 +59,6 @@ public class WaitingActivity extends Activity {
 			Oracle.getInstance().reset();
 		}
 		//// INITIALIZE
-		
-/*	 GifImage class call
-	
-		InputStream stream = null;
-		stream =getResources().openRawResource(R.raw.radar);
-		GifMovieView view = new GifMovieView(this, stream);
-		setContentView(view);
-*/
 	}
 	
 
