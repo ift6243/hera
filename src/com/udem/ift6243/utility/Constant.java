@@ -61,18 +61,18 @@ public final class Constant
 //	public static Integer STATE_SUCCEED = Integer.valueOf(4);
 //	public static Integer STATE_FAILED = Integer.valueOf(5);
 	
-	public static Double BONUS_ACCEPTED = Double.valueOf(0.1);
-	public static Double BONUS_REFUSED = Double.valueOf(-0.2);
-	public static Double BONUS_SUCCEED = Double.valueOf(0.3);
-	public static Double BONUS_FAILED = Double.valueOf(-0.3);
+	public static Double BONUS_ACCEPTED = Double.valueOf(0.1d);
+	public static Double BONUS_REFUSED = Double.valueOf(-0.2d);
+	public static Double BONUS_SUCCEED = Double.valueOf(0.3d);
+	public static Double BONUS_FAILED = Double.valueOf(-0.3d);
 	
 	/// Stress
 	public static Integer STRESS_LEVEL_NEGATIVE_OR_CONSTANT = Integer.valueOf(1);
 	public static Integer STRESS_LEVEL_LOW = Integer.valueOf(2);
 	public static Integer STRESS_LEVEL_HIGH = Integer.valueOf(3);
 	
-	public static double STRESS_VARIATION_WARNING = 1.5;
-	public static double STRESS_VARIATION_ALERT = 3;
+	public static double STRESS_VARIATION_WARNING = 1.5d;
+	public static double STRESS_VARIATION_ALERT = 3.0d;
 	
 	// Hera Context
 	public static double HERA_CONTEXT_MAXIMUM_DISTANCE = 5; // in kilometers
