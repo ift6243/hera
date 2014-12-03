@@ -23,38 +23,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-/* Class for the Gif Image
- 
- 
-class GifMovieView extends View{
 
-    private Movie mMovie; 
-    
-    public GifMovieView(Context context, InputStream stream) {   
-    	super(context);        
-    	InputStream mStream = stream;      
-    	mMovie = Movie.decodeStream(mStream);   
-    } 
-    @Override protected void onDraw(Canvas canvas) { 
-    	canvas.drawColor(Color.TRANSPARENT); 
-    	super.onDraw(canvas);
-    	final long now = SystemClock.uptimeMillis();
-    	long mMoviestart = 0;
-		if (mMoviestart == 0) { 
-    		mMoviestart = now;
-    		} 
-    	final int relTime = (int)((now - mMoviestart) % mMovie.duration());
-    	mMovie.setTime(relTime);
-    	mMovie.draw(canvas, 10, 10); 
-    	this.invalidate(); } 
-}
-*/
 public class WaitingActivity extends Activity {
-private static String packageName;
+	
+	private static String packageName;
 	
 	public static String getApplicationPackageName()
 	{
-		return PaulActivity.packageName;
+		return WaitingActivity.packageName;
 	}
 
 	@Override
@@ -66,15 +42,22 @@ private static String packageName;
 	      User user = u.getUser();
 		
 	      TextView NameDisplay = (TextView) findViewById(R.id.textView1);
-	      NameDisplay.setText("Veuillez patienter "+user.getLastName()+" "+user.getFirstName()+", Héra analyse vos données.");
-		
+	      NameDisplay.setText("Veuillez patienter "+user.getLastName()+" "+user.getFirstName()+", HERA analyse vos donnees.");
+			
 		//// INITIALIZE
-		PaulActivity.packageName = getApplicationContext().getPackageName();
-		Oracle.getInstance().setContext(getApplicationContext());
-		Oracle.getInstance().setActivity(this);
-		
-		Sensor sensor = new Sensor();
-		new Thread(sensor).start();
+      	if(!Oracle.getInstance().isStarting())
+      	{
+			WaitingActivity.packageName = getApplicationContext().getPackageName();
+			Oracle.getInstance().setContext(getApplicationContext());
+			Oracle.getInstance().setActivity(this);
+			
+			Sensor sensor = new Sensor();
+				new Thread(sensor).start();
+      	}
+      	else
+		{
+			Oracle.getInstance().reset();
+		}
 		//// INITIALIZE
 		
 /*	 GifImage class call
