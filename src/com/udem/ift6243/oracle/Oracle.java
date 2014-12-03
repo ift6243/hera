@@ -265,9 +265,9 @@ public final class Oracle
 		int maxPriority = 0;
 		for(Solution solution : solutionList)
 		{
+			Log.e("Solution" + String.valueOf(solution.getId()), String.valueOf(solution.getPriority()));
 			if(!proposedSolutionList.contains(solution.getId()))
 			{
-//    			Log.e("Solution" + String.valueOf(solution.getId()), String.valueOf(solution.getPriority()));
 				int currentPriority = solution.getPriority().intValue();
 				if(currentPriority > maxPriority)
 				{
