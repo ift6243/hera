@@ -58,8 +58,8 @@ public final class Constant
 	public static Integer STATE_ACCEPTED = Integer.valueOf(1);
 	public static Integer STATE_REFUSED = Integer.valueOf(2);
 	public static Integer STATE_TERMINATED = Integer.valueOf(3);
-	public static Integer STATE_SUCCEED = Integer.valueOf(4);
-	public static Integer STATE_FAILED = Integer.valueOf(5);
+//	public static Integer STATE_SUCCEED = Integer.valueOf(4);
+//	public static Integer STATE_FAILED = Integer.valueOf(5);
 	
 	public static Double BONUS_ACCEPTED = Double.valueOf(0.1);
 	public static Double BONUS_REFUSED = Double.valueOf(-0.2);
