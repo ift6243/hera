@@ -163,7 +163,7 @@ public final class Oracle
     		if(currentStressLevel.equals(Constant.STRESS_LEVEL_NEGATIVE_OR_CONSTANT)) // succeed
     		{
         		saveSolution(currentSolution, Constant.BONUS_SUCCEED, state);
-    			
+    			reset();
     		}
     		else // failed
     		{
@@ -181,11 +181,11 @@ public final class Oracle
     }
     
     /**
-     * Stop Oracle
+     * Reset Oracle
      */
-    public void stop()
+    public void reset()
     {
-    	proposedSolutionList.clear();
+    	this.proposedSolutionList.clear();
     	this.isRunning = false;
     }
     
@@ -202,7 +202,6 @@ public final class Oracle
 		try {
 			currentHeraContext = HeraContextFactory.fromContext(this.context, stressLevel);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
