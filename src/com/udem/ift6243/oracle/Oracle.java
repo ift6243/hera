@@ -1,6 +1,10 @@
 package com.udem.ift6243.oracle;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Locale;
 import java.util.Random;
 
 import android.app.Activity;
@@ -13,12 +17,19 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
+import android.util.Log;
+import android.util.SparseArray;
 
+import com.udem.ift6243.dao.HeraContextDao;
 import com.udem.ift6243.dao.SolutionDao;
+import com.udem.ift6243.dao.SolutionProposedDao;
+import com.udem.ift6243.factory.HeraContextFactory;
 import com.udem.ift6243.hera.NotificationReceiverActivity;
 import com.udem.ift6243.hera.PaulActivity;
 import com.udem.ift6243.hera.R;
+import com.udem.ift6243.model.HeraContext;
 import com.udem.ift6243.model.Solution;
+import com.udem.ift6243.model.SolutionProposed;
 import com.udem.ift6243.sensor.ReadEdaTask;
 import com.udem.ift6243.utility.Constant;
 
@@ -81,13 +92,13 @@ public final class Oracle
     	this.edaTask = edaTask;
     }
     
-    public void notifyUser()
+    public void notifyUser(Integer stressLevel)
     {
     	if(!this.isRunning)
     	{
 	    	this.isRunning = true;
 	    	
-	    	Solution solution = Oracle.instance.findSolution();
+	    	Solution solution = Oracle.instance.findSolution(stressLevel);
 	    	
 	    	if(solution != null)
 	    	{
@@ -122,10 +133,7 @@ public final class Oracle
 				  /* Adds the Intent that starts the Activity to the top of the stack */
 				  stackBuilder.addNextIntent(resultIntent);
 				  PendingIntent resultPendingIntent =
-				     stackBuilder.getPendingIntent(
-				        0,
-				        PendingIntent.FLAG_UPDATE_CURRENT
-				     );
+						  stackBuilder.getPendingIntent( 0, PendingIntent.FLAG_UPDATE_CURRENT );
 				
 				  mBuilder.setContentIntent(resultPendingIntent);
 				
@@ -144,27 +152,27 @@ public final class Oracle
     	
     	if(state.equals(Constant.STATE_ACCEPTED))
     	{
-    		saveSolution(currentSolution, Constant.BONUS_ACCEPTED);
+    		saveSolution(currentSolution, Constant.BONUS_ACCEPTED, state);
     	}
     	else if(state.equals(Constant.STATE_REFUSED))
     	{
-    		saveSolution(currentSolution, Constant.BONUS_REFUSED);
+    		saveSolution(currentSolution, Constant.BONUS_REFUSED, state);
     		
-    		newSolution = Oracle.instance.findSolution();
+    		newSolution = Oracle.instance.findSolution(state);
     	}
     	else if(state.equals(Constant.STATE_TERMINATED))
     	{
     		Integer currentStressLevel = this.edaTask.getStressLevel();
     		if(currentStressLevel.equals(Constant.STRESS_LEVEL_NEGATIVE_OR_CONSTANT)) // succeed
     		{
-        		saveSolution(currentSolution, Constant.BONUS_SUCCEED);
+        		saveSolution(currentSolution, Constant.BONUS_SUCCEED, state);
     			
     		}
     		else // failed
     		{
-        		saveSolution(currentSolution, Constant.BONUS_FAILED);
+        		saveSolution(currentSolution, Constant.BONUS_FAILED, state);
         		
-        		newSolution = Oracle.instance.findSolution();
+        		newSolution = Oracle.instance.findSolution(state);
     		}
     	}
     	else
@@ -184,31 +192,117 @@ public final class Oracle
     	this.isRunning = false;
     }
     
-    private Solution findSolution()
+    private Solution findSolution(Integer stressLevel)
     {
-    	Solution solution = null;
+    	Solution solutionSelected = null;
     	
     	// Recuperation de toutes les solutions
     	SolutionDao solutionDao = new SolutionDao(Oracle.instance.context);
     	ArrayList<Solution> solutionList = solutionDao.getSolution();
     	
+    	// Creation du contexte courant
+    	HeraContext currentHeraContext = null;
+		try {
+			currentHeraContext = HeraContextFactory.fromContext(this.context, stressLevel);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		HeraContext similarHeraContext = null;
+		if(currentHeraContext != null)
+		{
+			HeraContextDao heraContextDao = new HeraContextDao(this.context);
+			similarHeraContext = heraContextDao.getSimilarHeraContext(currentHeraContext);
+		}
+		
+		if(similarHeraContext != null)
+		{
+	    	// Recuperation des solutions proposees dans ce meme contexte
+			SolutionProposedDao solutionProposedDao = new SolutionProposedDao(this.context);
+	    	ArrayList<SolutionProposed> solutionProposedList = solutionProposedDao
+	    			.getSolutionProposedFromHeraContext(similarHeraContext.getId());
+	    	
+	    	SparseArray<SolutionProposed> solutionProposedMapBySolutionId = new SparseArray<SolutionProposed>();
+	    	for(SolutionProposed solutionProposed : solutionProposedList)
+	    	{
+	    		solutionProposedMapBySolutionId.put(solutionProposed.getSolutionId().intValue(), solutionProposed);
+	    	}
+	    	
+	    	// Mise a jour des priorites
+	    	SolutionProposed solutionProposed = null;
+	    	double bonus = 0;
+	    	for(Solution solution : solutionList)
+			{
+	    		if(solutionProposedMapBySolutionId.indexOfKey(solution.getId().intValue()) >= 0)
+	    		{
+	    			solutionProposed = solutionProposedMapBySolutionId.get(solution.getId().intValue());
+	    			bonus = solutionProposed.getBonus().doubleValue();
+	    			if(bonus > 0)
+	    			{
+	    				solution.increasePriority(bonus);
+	    			}
+	    			else if(bonus < 0)
+	    			{
+	    				solution.decreasePriority(Math.abs(bonus));
+	    			}
+	    		}
+			}
+		}
+		
     	// Choix de la solution
     	do
     	{
-	    	Random r = new Random();
-	    	int selectedIndex = r.nextInt(solutionList.size());
-	    	solution = solutionList.get(selectedIndex);
-    	} while(proposedSolutionList.contains(solution.getId()) 
+			// Meilleure solution
+    		int maxPriority = 0;
+    		for(Solution solution : solutionList)
+    		{
+//    			Log.e("Solution" + String.valueOf(solution.getId()), String.valueOf(solution.getPriority()));
+    			int currentPriority = solution.getPriority().intValue();
+    			if(currentPriority >= maxPriority)
+    			{
+    				solutionSelected = solution;
+    				
+    				maxPriority = currentPriority;
+    			}
+    		}
+    		
+    	} while(proposedSolutionList.contains(solutionSelected.getId()) 
     			&& solutionList.size() > proposedSolutionList.size());
     	
     	// Ajout a la liste des solutions deja proposees
-    	proposedSolutionList.add(solution.getId());
+    	proposedSolutionList.add(solutionSelected.getId());
     	
-    	return solution;
+    	return solutionSelected;
     }
     
-    private void saveSolution(Solution solution, Double bonus)
+    private void saveSolution(Solution solution, Double bonus, Integer stressLevel)
     {
-    	// TODO : Save in Database
+    	// Create HeraContext
+    	HeraContext heraContext = null;
+		try
+		{
+			heraContext = HeraContextFactory.fromContext(this.context, stressLevel);
+		} 
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+    	
+    	// Save heraContext in db
+    	HeraContextDao heraContextDao = new HeraContextDao(this.context);
+    	heraContextDao.createHeraContext(heraContext);
+    	
+    	// Create SolutionProposed
+    	Calendar currentDate = Calendar.getInstance();
+    	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.FRANCE);
+		String date = sdf.format(currentDate.getTime());
+		
+    	SolutionProposed solutionProposed = new SolutionProposed(null, 
+    			heraContext.getId(), solution.getId(), bonus, date);
+    	
+    	// Save solution proposed
+    	SolutionProposedDao solutionProposedDao = new SolutionProposedDao(this.context);
+    	solutionProposedDao.createSolutionProposed(solutionProposed);
     }
 }
