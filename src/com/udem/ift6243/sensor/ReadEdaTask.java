@@ -123,7 +123,7 @@ public class ReadEdaTask extends AsyncTask<String, Integer, String>
     
     public Integer getStressLevel()
     {
-    	Integer returnedValue = null;
+    	Integer returnedValue = Constant.STRESS_LEVEL_NEGATIVE_OR_CONSTANT;
     	
     	if(this.eda != null && this.eda.size() > 10)
     	{
