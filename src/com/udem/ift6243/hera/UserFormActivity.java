@@ -116,216 +116,222 @@ public class UserFormActivity extends Activity implements OnClickListener {
 		//Cas des femmes ménopausées :
 		if(woman == true && spinner1.getSelectedItemPosition()>4 && spinner1.getSelectedItemPosition()<8){
 			Solution solutionSport = solutionList.get(0);
-			solutionSport.increasePriority(0.1);
+			solutionSport.increasePriority(0.1d);
 		}
-		
+
 		//Age
 		if(spinner1.getSelectedItemPosition()==0) {
 			age = Constant.AGE_0_9;
 			Solution solutionSport = solutionList.get(0);
-			solutionSport.increasePriority(0.1);
+			solutionSport.increasePriority(0.1d);
 		}
 		if(spinner1.getSelectedItemPosition()==1){
 			age = Constant.AGE_10_19;
 			Solution solutionSport = solutionList.get(0);
-			solutionSport.increasePriority(0.1);
+			solutionSport.increasePriority(0.1d);
 		}
 		if(spinner1.getSelectedItemPosition()==2){
 			age = Constant.AGE_20_29;
 			Solution solutionSport = solutionList.get(0);
-			solutionSport.increasePriority(0.1);
+			solutionSport.increasePriority(0.1d);
 		}
 		if(spinner1.getSelectedItemPosition()==3){
 			age = Constant.AGE_30_39;
 			Solution solutionSport = solutionList.get(0);
-			solutionSport.increasePriority(0.1);
+			solutionSport.increasePriority(0.1d);
 		}
 		if(spinner1.getSelectedItemPosition()==4){
 			age = Constant.AGE_40_49;
 			Solution solutionSport = solutionList.get(0);
-			solutionSport.increasePriority(0.1);
+			solutionSport.increasePriority(0.1d);
 		}
 		if(spinner1.getSelectedItemPosition()==5){
 			age = Constant.AGE_50_59;
 			Solution solutionSport = solutionList.get(0);
-			solutionSport.increasePriority(0.1);
+			solutionSport.increasePriority(0.1d);
 			Solution solutionMedicale = solutionList.get(2);
-			solutionMedicale.increasePriority(0.1);
+			solutionMedicale.increasePriority(0.1d);
 		}
 		if(spinner1.getSelectedItemPosition()==6){
 			age = Constant.AGE_60_69;
 			Solution solutionSport = solutionList.get(0);
-			solutionSport.decreasePriority(0.1);
+			solutionSport.decreasePriority(0.1d);
 			Solution solutionMedicale = solutionList.get(2);
-			solutionMedicale.increasePriority(0.1);
+			solutionMedicale.increasePriority(0.1d);
 		}
 		if(spinner1.getSelectedItemPosition()==7){
 			age = Constant.AGE_70_79;
 			Solution solutionSport = solutionList.get(0);
-			solutionSport.decreasePriority(0.2);
+			solutionSport.decreasePriority(0.2d);
 			Solution solutionMedicale = solutionList.get(2);
-			solutionMedicale.increasePriority(0.2);
+			solutionMedicale.increasePriority(0.2d);
 		}
 		if(spinner1.getSelectedItemPosition()==8){
 			age = Constant.AGE_80_89;
 			Solution solutionSport = solutionList.get(0);
-			solutionSport.decreasePriority(0.3);
+			solutionSport.decreasePriority(0.3d);
 			Solution solutionMedicale = solutionList.get(2);
-			solutionMedicale.increasePriority(0.2);
+			solutionMedicale.increasePriority(0.2d);
 		}
 		if(spinner1.getSelectedItemPosition()==9){
 			age = Constant.AGE_90_99;
 			Solution solution = solutionList.get(0);
-			solution.decreasePriority(0.3);
+			solution.decreasePriority(0.3d);
 			Solution solutionMedicale = solutionList.get(2);
-			solutionMedicale.increasePriority(0.3);
+			solutionMedicale.increasePriority(0.3d);
 		}
 		if(spinner1.getSelectedItemPosition()==10){
 			age = Constant.AGE_100;
 			Solution solutionSport = solutionList.get(0);
-			solutionSport.decreasePriority(0.4);
+			solutionSport.decreasePriority(0.4d);
 			Solution solutionMedicale = solutionList.get(2);
-			solutionMedicale.increasePriority(0.3);
+			solutionMedicale.increasePriority(0.3d);
 		}
-	
+
 		// maritalStatus 
 		if(spinner2.getSelectedItemPosition()==0){
 			maritalStatus = Constant.SINGLE;
 			Solution solutionSport = solutionList.get(0);
-			solutionSport.increasePriority(0.2);
+			solutionSport.increasePriority(0.2d);
 			
 		}
 		if(spinner2.getSelectedItemPosition()==1){
 			maritalStatus = Constant.MARRIED;
 			Solution solutionSport = solutionList.get(0);
-			solutionSport.increasePriority(0.2);
+			solutionSport.increasePriority(0.2d);
 		}
 		if(spinner2.getSelectedItemPosition()==2){
 			maritalStatus = Constant.DIVORCED;
 			Solution solutionSport = solutionList.get(0);
-			solutionSport.increasePriority(0.2);
+			solutionSport.increasePriority(0.2d);
 		}
-		
+
 		//professionalStatus
 		if(spinner3.getSelectedItemPosition()==0){
 			professionalStatus = Constant.CAT_1;//agro
 			Solution solutionSport = solutionList.get(0);
-			solutionSport.increasePriority(0.1);
+			solutionSport.increasePriority(0.1d);
 			Solution solutionActionRepos = solutionList.get(1);
-			solutionActionRepos.increasePriority(0.2);
+			solutionActionRepos.increasePriority(0.2d);
 			
 		}
 		if(spinner3.getSelectedItemPosition()==1){
 			professionalStatus = Constant.CAT_2;//artisans, chefs d'entreprise stressés
 			Solution solutionSport = solutionList.get(0);
-			solutionSport.increasePriority(0.1);
+			solutionSport.increasePriority(0.1d);
 			Solution solutionActionRepos = solutionList.get(1);
-			solutionActionRepos.increasePriority(0.2);
+			solutionActionRepos.increasePriority(0.2d);
 		}
 		if(spinner3.getSelectedItemPosition()==2){
 			professionalStatus = Constant.CAT_3;//cadres stressés
 			Solution solutionSport = solutionList.get(0);
-			solutionSport.increasePriority(0.1);
+			solutionSport.increasePriority(0.1d);
 			Solution solutionActionRepos = solutionList.get(1);
-			solutionActionRepos.increasePriority(0.2);
+			solutionActionRepos.increasePriority(0.2d);
 		}
 		if(spinner3.getSelectedItemPosition()==3){
 			professionalStatus = Constant.CAT_4;//professions intermédiaires stressés
 			Solution solutionSport = solutionList.get(0);
-			solutionSport.increasePriority(0.1);
+			solutionSport.increasePriority(0.1d);
 			Solution solutionActionRepos = solutionList.get(1);
-			solutionActionRepos.increasePriority(0.2);
+			solutionActionRepos.increasePriority(0.2d);
 		}
 		if(spinner3.getSelectedItemPosition()==4){
 			professionalStatus = Constant.CAT_5;//employés très stressés
 			Solution solutionSport= solutionList.get(0);
-			solutionSport.increasePriority(0.2);
+			solutionSport.increasePriority(0.2d);
 			Solution solutionActionRepos = solutionList.get(1);
-			solutionActionRepos.increasePriority(0.3);
+			solutionActionRepos.increasePriority(0.3d);
 		}
 		if(spinner3.getSelectedItemPosition()==5){
 			professionalStatus = Constant.CAT_6;//ouvriers fatigués très stressés
 			Solution solutionSport= solutionList.get(0);
-			solutionSport.decreasePriority(0.2);
+			solutionSport.decreasePriority(0.2d);
 			Solution solutionActionRepos = solutionList.get(1);
-			solutionActionRepos.increasePriority(0.3);
+			solutionActionRepos.increasePriority(0.3d);
 		}
 		if(spinner3.getSelectedItemPosition()==6){
 			professionalStatus = Constant.CAT_7;//retraités fatigués
 			Solution solutionSport= solutionList.get(0);
-			solutionSport.decreasePriority(0.2);
+			solutionSport.decreasePriority(0.2d);
 			Solution solutionActionRepos = solutionList.get(1);
-			solutionActionRepos.increasePriority(0.1);
+			solutionActionRepos.increasePriority(0.1d);
 		}
 		if(spinner3.getSelectedItemPosition()==7){
 			professionalStatus = Constant.CAT_8;//sans emplois
 			Solution solutionSport= solutionList.get(0);
-			solutionSport.increasePriority(0.2);
+			solutionSport.increasePriority(0.2d);
 		}
 		if(spinner3.getSelectedItemPosition()==8){
 			professionalStatus = Constant.CAT_9;//étudiants
 			Solution solutionSport= solutionList.get(0);
-			solutionSport.increasePriority(0.2);
+			solutionSport.increasePriority(0.2d);
 			Solution solutionActionRepos = solutionList.get(1);
-			solutionActionRepos.increasePriority(0.1);
+			solutionActionRepos.increasePriority(0.1d);
 			
 		}
-		
-		
+
+
 		//sport
 		if (spinner4.getSelectedItemPosition()== 0){
 			sport = true;
 			Solution solutionSport= solutionList.get(0);
-			solutionSport.increasePriority(0.2);
+			solutionSport.increasePriority(0.2d);
 		}else{
 			Solution solutionSport= solutionList.get(0);
-			solutionSport.decreasePriority(0.2);
+			solutionSport.decreasePriority(0.2d);
 		}
-		
 		
 		//meditation	
 		if (spinner5.getSelectedItemPosition()== 0){
 			meditation = true;
 			Solution solution = solutionList.get(4);//multimédia
-			solution.increasePriority(0.2);
+			solution.increasePriority(0.2d);
 		}else{//if false
 			Solution solution = solutionList.get(4);
-			solution.decreasePriority(0.2);
+			solution.decreasePriority(0.2d);
 		}
-			
+
 		//expression
 		if(spinner6.getSelectedItemPosition()==0){
 			expression = Constant.READING;
 			Solution solutionCreativity = solutionList.get(3);//créativité
-			solutionCreativity.increasePriority(0.2);
+			solutionCreativity.increasePriority(0.2d);
 		}
 		if(spinner6.getSelectedItemPosition()==1){
 			expression = Constant.WRITING;
 			Solution solutionCreativity = solutionList.get(3);
-			solutionCreativity.increasePriority(0.2);
+			solutionCreativity.increasePriority(0.2d);
 		}
 		if(spinner6.getSelectedItemPosition()==2){
 			expression = Constant.DRAWING;
 			Solution solutionCreativity = solutionList.get(3);
-			solutionCreativity.increasePriority(0.2);
+			solutionCreativity.increasePriority(0.2d);
 		}
 		if(spinner6.getSelectedItemPosition()==3){
 			expression = Constant.SINGING;
 			Solution solutionCreativity = solutionList.get(3);
-			solutionCreativity.increasePriority(0.2);
+			solutionCreativity.increasePriority(0.2d);
 		}
 		if(spinner6.getSelectedItemPosition()==4){
 			expression = Constant.DANCING;
 			Solution solutionCreativity = solutionList.get(3);//créativité
-			solutionCreativity.increasePriority(0.2);
+			solutionCreativity.increasePriority(0.2d);
 			Solution solutionSport = solutionList.get(0); //sport
-			solutionSport.increasePriority(0.1);
+			solutionSport.increasePriority(0.1d);
 		}
 		
 		
 		User userOne = new User(null, firstName, lastName, gender, age, maritalStatus, professionalStatus, sport, meditation, expression);
 		UserDao user = new UserDao(this);
 		user.createUser(userOne);
+		
+		// Mise a jour des solutions en bdd
+		for(Solution solutionUpdated : solutionList)
+		{
+//			Log.e("_Solution" + String.valueOf(solutionUpdated.getId()), String.valueOf(solutionUpdated.getPriority()));
+			solutionDao.updateSolution(solutionUpdated);
+		}
 		
 		Intent intent = new Intent(UserFormActivity.this, WaitingActivity.class);
 		startActivity(intent);
