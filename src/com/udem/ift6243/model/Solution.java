@@ -42,7 +42,7 @@ public class Solution
 	}
 	
 	public Solution increasePriority(double value) throws NumberFormatException {
-		if(value <= 0 || value > 1)
+		if(value < 0 || value > 1)
 		{
 			throw new NumberFormatException("Incorrect priority value");
 		}
@@ -60,7 +60,7 @@ public class Solution
 	}
 	
 	public Solution decreasePriority(double value) throws NumberFormatException {
-		if(value <= 0.0 || value > 1.0)
+		if(value < 0.0 || value > 1.0)
 		{
 			throw new NumberFormatException("Incorrect priority value");
 		}
