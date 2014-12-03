@@ -81,7 +81,7 @@ public class UserFormActivity extends Activity implements OnClickListener {
 
     @Override
 	public void onClick(View v) {
-		// TODO Auto-generated method stub
+		
     	//la valeur du bouton radio à récuperer
 		Toast.makeText(UserFormActivity.this,
 		  		"OnClickListener : " + 
@@ -105,7 +105,7 @@ public class UserFormActivity extends Activity implements OnClickListener {
 		Boolean woman = false;
 		Integer expression = 0;
 		
-		//Récupérer la base de solution
+		//Récupérer la base de solutions
 		SolutionDao solutionDao = new SolutionDao(this);
 		ArrayList<Solution> solutionList = solutionDao.getSolution();
 		
@@ -113,7 +113,7 @@ public class UserFormActivity extends Activity implements OnClickListener {
 		woman = radioButton.isChecked();
 		gender = woman ? Constant.GENDER_FEMALE : Constant.GENDER_MALE;
 		
-		//Cas des femmes ménopausées : a partir de 70 = sport doux
+		//Cas des femmes ménopausées :
 		if(woman == true && spinner1.getSelectedItemPosition()>4 && spinner1.getSelectedItemPosition()<8){
 			Solution solutionSport = solutionList.get(0);
 			solutionSport.increasePriority(0.1);
@@ -186,7 +186,6 @@ public class UserFormActivity extends Activity implements OnClickListener {
 			solutionSport.decreasePriority(0.4);
 			Solution solutionMedicale = solutionList.get(2);
 			solutionMedicale.increasePriority(0.3);
-			//Log.e("test position 10 : ", String.valueOf(spinner1.getSelectedItemPosition()));
 		}
 	
 		// maritalStatus 
@@ -281,9 +280,9 @@ public class UserFormActivity extends Activity implements OnClickListener {
 		}else{
 			Solution solutionSport= solutionList.get(0);
 			solutionSport.decreasePriority(0.2);
-			//Log.e("test sport", String.valueOf(sport));
 		}
-		//Log.e("test priority sport", String.valueOf(solutionList.get(0).getPriority()));
+		
+		
 		//meditation	
 		if (spinner5.getSelectedItemPosition()== 0){
 			meditation = true;
@@ -297,31 +296,30 @@ public class UserFormActivity extends Activity implements OnClickListener {
 		//expression
 		if(spinner6.getSelectedItemPosition()==0){
 			expression = Constant.READING;
-			Solution solution = solutionList.get(3);//créativité
-			solution.increasePriority(0.2);
+			Solution solutionCreativity = solutionList.get(3);//créativité
+			solutionCreativity.increasePriority(0.2);
 		}
 		if(spinner6.getSelectedItemPosition()==1){
 			expression = Constant.WRITING;
-			Solution solution = solutionList.get(3);
-			solution.increasePriority(0.2);
+			Solution solutionCreativity = solutionList.get(3);
+			solutionCreativity.increasePriority(0.2);
 		}
 		if(spinner6.getSelectedItemPosition()==2){
 			expression = Constant.DRAWING;
-			Solution solution = solutionList.get(3);
-			solution.increasePriority(0.2);
+			Solution solutionCreativity = solutionList.get(3);
+			solutionCreativity.increasePriority(0.2);
 		}
 		if(spinner6.getSelectedItemPosition()==3){
 			expression = Constant.SINGING;
-			Solution solution = solutionList.get(3);
-			solution.increasePriority(0.2);
+			Solution solutionCreativity = solutionList.get(3);
+			solutionCreativity.increasePriority(0.2);
 		}
 		if(spinner6.getSelectedItemPosition()==4){
 			expression = Constant.DANCING;
-			Solution solution3 = solutionList.get(3);//créativité
-			solution3.increasePriority(0.2);
-			Log.e("List.get(3)", solution3.getName());
-			Solution sol0 = solutionList.get(0); //sport
-			sol0.increasePriority(0.1);
+			Solution solutionCreativity = solutionList.get(3);//créativité
+			solutionCreativity.increasePriority(0.2);
+			Solution solutionSport = solutionList.get(0); //sport
+			solutionSport.increasePriority(0.1);
 		}
 		
 		
