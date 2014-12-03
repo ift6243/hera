@@ -73,8 +73,8 @@ public class MultimediaActivity extends Activity {
 				alertDialog.setNegativeButton("Quitter",
 				        new DialogInterface.OnClickListener() {
 				            public void onClick(DialogInterface dialog, int which) {
-				            	finish();
-				            	System.exit(0);
+				            	android.os.Process.killProcess(android.os.Process.myPid());
+
 				            }
 				        });
 				alertDialog.show();
