@@ -169,7 +169,7 @@ public final class Oracle
     		if(currentStressLevel.equals(Constant.STRESS_LEVEL_NEGATIVE_OR_CONSTANT)) // succeed
     		{
         		saveSolution(currentSolution, Constant.BONUS_SUCCEED, state);
-    			reset();
+//    			reset();
     		}
     		else // failed
     		{
