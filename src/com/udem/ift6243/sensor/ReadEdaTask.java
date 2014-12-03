@@ -137,8 +137,10 @@ public class ReadEdaTask extends AsyncTask<String, Integer, String>
 	    			+ this.eda.get(lastIndex-1).doubleValue() 
 	    			+ this.eda.get(lastIndex-2).doubleValue()) / 3);
 	    	
-	    	Double min = Collections.min(this.eda.subList(firstIndex, lastIndex));
-	    	Double max = Collections.max(this.eda.subList(firstIndex, lastIndex));
+	    	ArrayList<Double> edaMin = new ArrayList<Double>(this.eda);
+	    	Double min = Collections.min(edaMin.subList(firstIndex, lastIndex));
+	    	ArrayList<Double> edaMax = new ArrayList<Double>(this.eda);
+	    	Double max = Collections.max(edaMax.subList(firstIndex, lastIndex));
 	    	
 	    	if(endValue - startValue <= 0)
 	    	{
