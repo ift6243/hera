@@ -262,13 +262,13 @@ public final class Oracle
 		ArrayList<Solution> bestSolutionList = new ArrayList<Solution>();
 
 		// Meilleure solution
-		int maxPriority = 0;
+		double maxPriority = -0.1d;
 		for(Solution solution : solutionList)
 		{
 			Log.e("Solution" + String.valueOf(solution.getId()), String.valueOf(solution.getPriority()));
 			if(!proposedSolutionList.contains(solution.getId()))
 			{
-				int currentPriority = solution.getPriority().intValue();
+				double currentPriority = solution.getPriority().doubleValue();
 				if(currentPriority > maxPriority)
 				{
 					bestSolutionList.clear();
