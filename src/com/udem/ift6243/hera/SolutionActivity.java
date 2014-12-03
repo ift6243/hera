@@ -82,6 +82,7 @@ public class SolutionActivity extends Activity {
 						      dataBundle.putInt("notificationID",(int)newsolution.getId());		      
 						      i.putExtras(dataBundle);
 						      
+						      startActivity(i);
 				            }
 				        });
 				 
