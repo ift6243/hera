@@ -46,7 +46,7 @@ public class Sensor implements Runnable
 		                		&& currentStressLevel >= Constant.STRESS_LEVEL_LOW)
 		                {
 //		                	Log.e("Stress Level", currentStressLevel.toString());
-		                	Oracle.getInstance().notifyUser();
+		                	Oracle.getInstance().notifyUser(currentStressLevel);
 		                }
 		                
 		                Thread.sleep(1000);
