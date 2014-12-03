@@ -7,7 +7,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.udem.ift6243.model.HeraContext;
 import com.udem.ift6243.model.SolutionProposed;
 import com.udem.ift6243.sql.schema.SolutionProposedSchema;
 
@@ -57,7 +56,7 @@ public class SolutionProposedDao
 		return !error;
 	}
 	
-	public ArrayList<SolutionProposed> getSolutionProposedFromHeraContext(HeraContext heraContext)
+	public ArrayList<SolutionProposed> getSolutionProposedFromHeraContext(Integer previousHeraContextId)
 	{
 		ArrayList<SolutionProposed> solutionProposedList = new ArrayList<SolutionProposed>();
 		SolutionProposed solutionProposed = null;
@@ -70,7 +69,9 @@ public class SolutionProposedDao
 		try
 		{
 			cursor_solution_proposed = db.query(SolutionProposedSchema.TABLE_NAME, 
-					null, null, null, null, null, null, null);
+					null, SolutionProposedSchema.TABLE_COL_CONTEXT_ID + " = ?", 
+					new String[] { String.valueOf(previousHeraContextId.intValue()) }, 
+					null, null, null, null);
 
 			if (cursor_solution_proposed != null && cursor_solution_proposed.moveToFirst())
 			{
