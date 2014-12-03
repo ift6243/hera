@@ -110,7 +110,7 @@ public class SolutionActivity extends Activity {
 
 
 	      TextView solutionDisplay = (TextView) findViewById(R.id.textview_solution);
-	      solutionDisplay.setText("--> "+solution.getDescription());
+	      solutionDisplay.setText(solution.getDescription());
 	      
 	      
 	      Double duration = (solution.getDuration());
