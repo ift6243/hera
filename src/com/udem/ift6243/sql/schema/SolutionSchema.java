@@ -38,7 +38,7 @@ public final class SolutionSchema
 				Constant.SOLUTION_CATEGORY_ACTION + ", 'Action', 'Faites une sieste de 15 minutes.', 15, 0.5);");
 		
 		queryList.add("INSERT INTO " + TABLE_NAME + " VALUES (NULL, " + 
-				Constant.SOLUTION_CATEGORY_MEDICAL + ", 'Consulter un medecin', 'Calmez-vous, reposez-vous et pensez a consulter un medecin', 0, 0.5);");
+				Constant.SOLUTION_CATEGORY_MEDICAL + ", 'Consulter un medecin', 'Calmez-vous, reposez-vous et pensez a consulter un medecin', 0, 0.1);");
 		
 		queryList.add("INSERT INTO " + TABLE_NAME + " VALUES (NULL, " + 
 				Constant.SOLUTION_CATEGORY_EXPRESSION + ", 'Dessin', 'Faites un petit dessin.', 1, 0.5);");
