@@ -11,41 +11,39 @@
         android:text="@string/son"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
-<!--     <Button
-        android:id="@+id/play"
-        android:layout_width="match_parent"
+  <!--      <Button
+        android:id="@+id/bouton"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@string/play" />  -->
+        android:text="@string/str_btn_start"
+    />     -->
 
-    <Gallery
-        android:id="@+id/gallery1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+       <ViewFlipper
+        android:id="@+id/flipp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:flipInterval="3000"
+        android:inAnimation="@android:anim/slide_in_left"
+        android:outAnimation="@android:anim/slide_out_right"
+        android:layout_centerInParent="true"
+    >
+    
+           <ImageView
+            android:src="@drawable/ciel"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            
+            android:layout_gravity="center_horizontal"
+        />
+ 
+        <ImageView
+            android:src="@drawable/cocotiers"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            
+            android:layout_gravity="center_horizontal"
+        />
 
-   <ImageSwitcher
-      android:id="@+id/imageSwitcher1"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_centerHorizontal="true"
-      android:layout_centerVertical="true" >
-   </ImageSwitcher>
-   
-      <ImageButton
-      android:id="@+id/imageButton1"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_alignParentTop="true"
-      android:layout_centerHorizontal="true"
-      android:layout_marginTop="54dp"
-      android:onClick="next"
-      android:src="@drawable/ic_launcher" />
-
- <!--    <ImageView
-        android:id="@+id/imageView1"
-        android:layout_marginTop="10dp"
-        android:layout_width="match_parent"
-        android:layout_gravity="center_horizontal"
-        android:layout_height="match_parent"
-        android:src="@drawable/ciel" />  -->
+        </ViewFlipper>
         
 </LinearLayout>

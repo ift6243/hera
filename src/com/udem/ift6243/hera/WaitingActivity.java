@@ -66,7 +66,7 @@ private static String packageName;
 	      User user = u.getUser();
 		
 	      TextView NameDisplay = (TextView) findViewById(R.id.textView1);
-	      NameDisplay.setText("Veuillez patienter "+user.getLastName()+" "+user.getFirstName()+"Héra analyse vos données.");
+	      NameDisplay.setText("Veuillez patienter "+user.getLastName()+" "+user.getFirstName()+", Héra analyse vos données.");
 		
 		//// INITIALIZE
 		PaulActivity.packageName = getApplicationContext().getPackageName();

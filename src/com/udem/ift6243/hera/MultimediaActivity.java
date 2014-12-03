@@ -21,15 +21,21 @@ import android.widget.ImageSwitcher;
 import android.widget.ImageView;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.Toast;
+import android.widget.ViewFlipper;
 import android.widget.ViewSwitcher.ViewFactory;
 
 import com.udem.ift6243.hera.GalleryImageAdapter;
 
 public class MultimediaActivity extends Activity {
+	
+	
+	   int mFlipping = 1 ; // Initially flipping is off
+	   //Button mButton ;  Reference to button available in the layout to start and stop the flipper
+
 	 
  
 	private MediaPlayer mPlayer = null;
-	
+	/*	
 	ImageView selectedImage;  
     private Integer[] mImageIds = {
                R.drawable.ic_launcher,
@@ -38,85 +44,46 @@ public class MultimediaActivity extends Activity {
     };
     
     private ImageSwitcher imageSwitcher;
-    
+    */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_multimedia);
 		playSound(R.raw.test);
 		
-	      TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
-	      stackBuilder.addParentStack(SolutionActivity.class);
-		
-		imageSwitcher = (ImageSwitcher)findViewById(R.id.imageSwitcher1);
-
-	    imageSwitcher.setFactory(new ViewFactory() {
-
-	   @Override
-	   public View makeView() {
-	      ImageView myView = new ImageView(getApplicationContext());
-	      myView.setScaleType(ImageView.ScaleType.FIT_CENTER);
-	      myView.setLayoutParams(new ImageSwitcher.LayoutParams(LayoutParams.
-	      FILL_PARENT,LayoutParams.FILL_PARENT));
-	      return myView;
-	       }
-
-	   });
-
-	   }
-	
-	   public void next(View view){
-		      Toast.makeText(getApplicationContext(), "Next Image", 
-		      Toast.LENGTH_LONG).show();
-		      Animation in = AnimationUtils.loadAnimation(this,
-		      android.R.anim.slide_in_left);
-		      Animation out = AnimationUtils.loadAnimation(this,
-		      android.R.anim.slide_out_right);
-		      imageSwitcher.setInAnimation(in);
-		      imageSwitcher.setOutAnimation(out);
-		      imageSwitcher.setImageResource(R.drawable.ic_launcher);
-		   }
-		   public void previous(View view){
-		      Toast.makeText(getApplicationContext(), "previous Image", 
-		      Toast.LENGTH_LONG).show();
-		      Animation in = AnimationUtils.loadAnimation(this,
-		      android.R.anim.slide_out_right);
-		      Animation out = AnimationUtils.loadAnimation(this,
-		      android.R.anim.slide_in_left);
-		      imageSwitcher.setInAnimation(out);
-		      imageSwitcher.setOutAnimation(in);
-		      imageSwitcher.setImageResource(R.drawable.ic_launcher);
-		   }
-		
-		//Gallery gallery = (Gallery) findViewById(R.id.gallery1);
-        //selectedImage=(ImageView)findViewById(R.id.imageView1);
-        //gallery.setSpacing(1);
-        //gallery.setAdapter(new GalleryImageAdapter(this));
-        
-        // clicklistener for Gallery
-        //gallery.setOnItemClickListener(new OnItemClickListener() {
-          //  public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-                //Toast.makeText(MultimediaActivity.this, "Your selected position = " + position, Toast.LENGTH_SHORT).show();
-                // show the selected Image
-            //    selectedImage.setImageResource(mImageIds[position]);
+        //OnClickListener listener = new OnClickListener() {
+        	 
+            //@Override
+            //public void onClick(View v) {
+                ViewFlipper flipper = (ViewFlipper) findViewById(R.id.flipp);
+ 
+                if(mFlipping==1){
+                    /** Start Flipping */
+                    flipper.startFlipping();
+                    //mFlipping=1;
+                    //mButton.setText(R.string.str_btn_stop);
+                }
+                else{
+                    /** Stop Flipping */
+                    flipper.stopFlipping();
+                    mFlipping=0;
+                    //mButton.setText(R.string.str_btn_start);
+                }
             //}
-
-		//	public void onClick(View v) {
-				// TODO Auto-generated method stub
-				
-		//	}
-       // }); 	
+                
+  		      TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
+  		      stackBuilder.addParentStack(NotificationReceiverActivity.class);
+        };
+       
  
-	@Override
-	public void onPause() {
-		super.onPause();
-		if(mPlayer != null) {
-			mPlayer.stop();
-			mPlayer.release();
-		}
-	}
+        /** Getting a reference to the button available in the resource */
+        //mButton = (Button) findViewById(R.id.bouton);
  
-	private void playSound(int resId) {
+        /** Setting click event listner for the button */
+        //mButton.setOnClickListener(listener);
+	 
+		
+	   private void playSound(int resId) {
 		if(mPlayer != null) {
 			mPlayer.stop();
 			mPlayer.release();

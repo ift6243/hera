@@ -7,6 +7,7 @@ import com.udem.ift6243.utility.Constant;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.TaskStackBuilder;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.MediaPlayer;
@@ -35,7 +36,7 @@ public class SolutionActivity extends Activity {
   		  Bundle extras = getIntent().getExtras();
   		  final int id = extras.getInt("solutionID");
           SolutionDao s = new SolutionDao(getApplicationContext());
-	      Solution solution = s.getSolution(id);
+	      final Solution solution = s.getSolution(id);
 	      
 		  if(Oracle.getInstance().feedback(solution, Constant.STATE_TERMINATED)== null){
 			  
@@ -72,9 +73,15 @@ public class SolutionActivity extends Activity {
 				alertDialog.setPositiveButton("OUI",
 				        new DialogInterface.OnClickListener() {
 				            public void onClick(DialogInterface dialog, int which) {
-				                Toast.makeText(getApplicationContext(),
-				                        "'Oui'", Toast.LENGTH_SHORT)
-				                        .show();
+						      
+				              Intent i = new Intent(getApplicationContext(), NotificationReceiverActivity.class);
+
+				              Solution newsolution =Oracle.getInstance().feedback(solution, Constant.STATE_REFUSED);
+					          
+						      Bundle dataBundle = new Bundle();
+						      dataBundle.putInt("notificationID",(int)newsolution.getId());		      
+						      i.putExtras(dataBundle);
+						      
 				            }
 				        });
 				 
@@ -82,6 +89,8 @@ public class SolutionActivity extends Activity {
 				alertDialog.setNegativeButton("NON",
 				        new DialogInterface.OnClickListener() {
 				            public void onClick(DialogInterface dialog, int which) {
+				            	
+				            	Oracle.getInstance().reset();
 						    	Intent i = new Intent(getApplicationContext(), WaitingActivity.class);
 						    	startActivity(i);
 
@@ -111,6 +120,8 @@ public class SolutionActivity extends Activity {
 	      if(category_id == Constant.SOLUTION_CATEGORY_MULTIMEDIA){
 	    	  Intent MulIntent = new Intent(this, MultimediaActivity.class);
 	    	  startActivity(MulIntent);
+	    	  
+
 	    		}
 
 	      TextView solutionDisplay = (TextView) findViewById(R.id.textview_solution);

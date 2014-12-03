@@ -27,6 +27,9 @@
     <string name="play">Jouer le son</string>
     <string name="starthera">Démarrer HERA</string>
     <string name="waiting">Veuillez patienter Héra analyse vos données</string>
+    
+    <string name="str_btn_start">Start SlideShow</string>
+    <string name="str_btn_stop">Stop SlideShow</string>
 
     <string-array name="age_arrays">
         <item>0&#8211;9 ans</item>
