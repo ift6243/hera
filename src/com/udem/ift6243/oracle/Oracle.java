@@ -3,9 +3,7 @@ package com.udem.ift6243.oracle;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.HashMap;
 import java.util.Locale;
-import java.util.Random;
 
 import android.app.Activity;
 import android.app.NotificationManager;
@@ -13,7 +11,6 @@ import android.app.PendingIntent;
 import android.app.TaskStackBuilder;
 import android.content.Context;
 import android.content.Intent;
-import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
