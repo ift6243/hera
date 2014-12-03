@@ -7,6 +7,7 @@ import java.util.Locale;
 import android.content.Context;
 import android.location.Location;
 import android.location.LocationManager;
+import android.util.Log;
 
 import com.udem.ift6243.dao.DayPartDao;
 import com.udem.ift6243.dao.WeekPartDao;
@@ -59,10 +60,11 @@ public final class HeraContextFactory
 		Integer yearPart = yearPartDao.getYearPart(monthAndDay).getId();
 		
 		// Check stress level
-		if(stressLevel < Constant.STRESS_LEVEL_LOW)
-		{
-			throw new Exception("Incorrect value of stress");
-		}
+//		if(stressLevel < Constant.STRESS_LEVEL_LOW)
+//		{
+//			Log.e("HeraContextFactory", "Incorrect value of stress");
+//			throw new Exception("Incorrect value of stress");
+//		}
 		
 		// Date
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.FRANCE);
