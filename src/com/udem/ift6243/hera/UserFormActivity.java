@@ -149,43 +149,43 @@ public class UserFormActivity extends Activity implements OnClickListener {
 			age = Constant.AGE_50_59;
 			Solution solutionSport = solutionList.get(0);
 			solutionSport.increasePriority(0.1d);
-			Solution solutionMedicale = solutionList.get(2);
-			solutionMedicale.increasePriority(0.1d);
+//			Solution solutionMedicale = solutionList.get(2);
+//			solutionMedicale.increasePriority(0.1d);
 		}
 		if(spinner1.getSelectedItemPosition()==6){
 			age = Constant.AGE_60_69;
 			Solution solutionSport = solutionList.get(0);
 			solutionSport.decreasePriority(0.1d);
-			Solution solutionMedicale = solutionList.get(2);
-			solutionMedicale.increasePriority(0.1d);
+//			Solution solutionMedicale = solutionList.get(2);
+//			solutionMedicale.increasePriority(0.1d);
 		}
 		if(spinner1.getSelectedItemPosition()==7){
 			age = Constant.AGE_70_79;
 			Solution solutionSport = solutionList.get(0);
 			solutionSport.decreasePriority(0.2d);
-			Solution solutionMedicale = solutionList.get(2);
-			solutionMedicale.increasePriority(0.2d);
+//			Solution solutionMedicale = solutionList.get(2);
+//			solutionMedicale.increasePriority(0.2d);
 		}
 		if(spinner1.getSelectedItemPosition()==8){
 			age = Constant.AGE_80_89;
 			Solution solutionSport = solutionList.get(0);
 			solutionSport.decreasePriority(0.3d);
-			Solution solutionMedicale = solutionList.get(2);
-			solutionMedicale.increasePriority(0.2d);
+//			Solution solutionMedicale = solutionList.get(2);
+//			solutionMedicale.increasePriority(0.2d);
 		}
 		if(spinner1.getSelectedItemPosition()==9){
 			age = Constant.AGE_90_99;
 			Solution solution = solutionList.get(0);
 			solution.decreasePriority(0.3d);
-			Solution solutionMedicale = solutionList.get(2);
-			solutionMedicale.increasePriority(0.3d);
+//			Solution solutionMedicale = solutionList.get(2);
+//			solutionMedicale.increasePriority(0.3d);
 		}
 		if(spinner1.getSelectedItemPosition()==10){
 			age = Constant.AGE_100;
 			Solution solutionSport = solutionList.get(0);
 			solutionSport.decreasePriority(0.4d);
-			Solution solutionMedicale = solutionList.get(2);
-			solutionMedicale.increasePriority(0.3d);
+//			Solution solutionMedicale = solutionList.get(2);
+//			solutionMedicale.increasePriority(0.3d);
 		}
 
 		// maritalStatus 
