@@ -7,7 +7,6 @@ import com.udem.ift6243.utility.Constant;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.TaskStackBuilder;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.MediaPlayer;
@@ -15,20 +14,13 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
-import android.view.View;
-import android.view.View.OnClickListener;
-
-import java.util.Date;
-import java.util.Timer;
+import android.widget.ViewFlipper;
 
 public class SolutionActivity extends Activity {
 	
 	private final Handler mHandler = new Handler();
-	
+
 	private Runnable mOracleFeedback = new Runnable() {
         @SuppressWarnings("deprecation")
 		@Override
@@ -40,8 +32,8 @@ public class SolutionActivity extends Activity {
 	      
 		  if(Oracle.getInstance().feedback(solution, Constant.STATE_TERMINATED)== null){
 			  
-			  AlertDialog alertDialog = new AlertDialog.Builder(
-				        SolutionActivity.this).create();
+			  AlertDialog.Builder alertDialog = new AlertDialog.Builder(
+				        SolutionActivity.this);
 
 				alertDialog.setTitle("Succes");
 
@@ -49,7 +41,7 @@ public class SolutionActivity extends Activity {
 
 				alertDialog.setIcon(android.R.drawable.btn_star);
 
-				alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
+				alertDialog.setPositiveButton("Continuer", new DialogInterface.OnClickListener() {
 				    public void onClick(DialogInterface dialog, int which) {
 				    	
 				    	Intent i = new Intent(getApplicationContext(), WaitingActivity.class);
@@ -57,6 +49,13 @@ public class SolutionActivity extends Activity {
 
 				    }
 				});
+				alertDialog.setNegativeButton("Quitter",
+				        new DialogInterface.OnClickListener() {
+				            public void onClick(DialogInterface dialog, int which) {
+				            	finish();
+				            	System.exit(0);
+				            }
+				        });
 				alertDialog.show();
 		  }
 		  else {
@@ -70,7 +69,7 @@ public class SolutionActivity extends Activity {
 				alertDialog.setIcon(android.R.drawable.ic_delete);
 				 
 				// Le premier bouton "Oui" 
-				alertDialog.setPositiveButton("OK",
+				alertDialog.setPositiveButton("Continuer",
 				        new DialogInterface.OnClickListener() {
 				            public void onClick(DialogInterface dialog, int which) {
 						      
@@ -85,7 +84,13 @@ public class SolutionActivity extends Activity {
 						      startActivity(i);
 				            }
 				        });
-				 
+				
+				alertDialog.setNegativeButton("Quitter",
+				        new DialogInterface.OnClickListener() {
+				            public void onClick(DialogInterface dialog, int which) {
+				            	android.os.Process.killProcess(android.os.Process.myPid());
+				            }
+				        });
 				// Affiche la boite du dialogue
 				alertDialog.show();
 		  }
@@ -103,18 +108,11 @@ public class SolutionActivity extends Activity {
 		  
 	      SolutionDao s = new SolutionDao(this);
 	      Solution solution = s.getSolution(id);
-	      
-	      Integer category_id = solution.getCategoryId();
-	      
-	      if(category_id == Constant.SOLUTION_CATEGORY_MULTIMEDIA){
-	    	  Intent MulIntent = new Intent(this, MultimediaActivity.class);
-	    	  startActivity(MulIntent);
-	    	  
 
-	    		}
 
 	      TextView solutionDisplay = (TextView) findViewById(R.id.textview_solution);
 	      solutionDisplay.setText("--> "+solution.getDescription());
+	      
 	      
 	      Double duration = (solution.getDuration());
 	      long delai = duration.longValue()*60000;
@@ -124,7 +122,6 @@ public class SolutionActivity extends Activity {
 	      
 		  
 	}
-
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

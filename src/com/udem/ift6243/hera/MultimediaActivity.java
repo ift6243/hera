@@ -1,10 +1,14 @@
 package com.udem.ift6243.hera;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.TaskStackBuilder;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -24,65 +28,132 @@ import android.widget.Toast;
 import android.widget.ViewFlipper;
 import android.widget.ViewSwitcher.ViewFactory;
 
+import com.udem.ift6243.dao.SolutionDao;
 import com.udem.ift6243.hera.GalleryImageAdapter;
+import com.udem.ift6243.model.Solution;
+import com.udem.ift6243.oracle.Oracle;
+import com.udem.ift6243.utility.Constant;
 
 public class MultimediaActivity extends Activity {
 	
 	
-	   int mFlipping = 1 ; // Initially flipping is off
-	   //Button mButton ;  Reference to button available in the layout to start and stop the flipper
-
-	 
- 
+	int mFlipping = 1 ; 
 	private MediaPlayer mPlayer = null;
-	/*	
-	ImageView selectedImage;  
-    private Integer[] mImageIds = {
-               R.drawable.ic_launcher,
-               R.drawable.ciel,
-               R.drawable.cocotiers
-    };
-    
-    private ImageSwitcher imageSwitcher;
-    */
+	
+	private final Handler mHandler = new Handler();
+
+	private Runnable mOracleFeedback = new Runnable() {
+        @SuppressWarnings("deprecation")
+		@Override
+        public void run() {
+  		  Bundle extras = getIntent().getExtras();
+  		  final int id = extras.getInt("solutionID");
+          SolutionDao s = new SolutionDao(getApplicationContext());
+	      final Solution solution = s.getSolution(id);
+	      
+		  if(Oracle.getInstance().feedback(solution, Constant.STATE_TERMINATED)== null){
+			  
+			  AlertDialog.Builder alertDialog = new AlertDialog.Builder(
+				        MultimediaActivity.this);
+
+				alertDialog.setTitle("Succes");
+
+				alertDialog.setMessage("Bravo, vous avez surmonté votre stress ");
+
+				alertDialog.setIcon(android.R.drawable.btn_star);
+
+				alertDialog.setPositiveButton("Continuer", new DialogInterface.OnClickListener() {
+				    public void onClick(DialogInterface dialog, int which) {
+				    	
+				    	Intent i = new Intent(getApplicationContext(), WaitingActivity.class);
+				    	startActivity(i);
+
+				    }
+				});
+				alertDialog.setNegativeButton("Quitter",
+				        new DialogInterface.OnClickListener() {
+				            public void onClick(DialogInterface dialog, int which) {
+				            	finish();
+				            	System.exit(0);
+				            }
+				        });
+				alertDialog.show();
+		  }
+		  else {
+			  AlertDialog.Builder alertDialog = new AlertDialog.Builder(
+				        MultimediaActivity.this);
+
+				alertDialog.setTitle("Echec");
+
+				alertDialog.setMessage("Essayez une autre solution");
+
+				alertDialog.setIcon(android.R.drawable.ic_delete);
+				 
+				// Le premier bouton "Oui" 
+				alertDialog.setPositiveButton("Continuer",
+				        new DialogInterface.OnClickListener() {
+				            public void onClick(DialogInterface dialog, int which) {
+						      
+				              Intent i = new Intent(getApplicationContext(), NotificationReceiverActivity.class);
+
+				              Solution newsolution =Oracle.getInstance().feedback(solution, Constant.STATE_REFUSED);
+					          
+						      Bundle dataBundle = new Bundle();
+						      dataBundle.putInt("notificationID",(int)newsolution.getId());		      
+						      i.putExtras(dataBundle);
+						      
+						      startActivity(i);
+				            }
+				        });
+				
+				alertDialog.setNegativeButton("Quitter",
+				        new DialogInterface.OnClickListener() {
+				            public void onClick(DialogInterface dialog, int which) {
+				            	android.os.Process.killProcess(android.os.Process.myPid());
+				            }
+				        });
+				// Affiche la boite du dialogue
+				alertDialog.show();
+		  }
+            
+        }
+	};
+	
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_multimedia);
 		playSound(R.raw.test);
 		
-        //OnClickListener listener = new OnClickListener() {
-        	 
-            //@Override
-            //public void onClick(View v) {
+  
                 ViewFlipper flipper = (ViewFlipper) findViewById(R.id.flipp);
  
                 if(mFlipping==1){
                     /** Start Flipping */
                     flipper.startFlipping();
-                    //mFlipping=1;
-                    //mButton.setText(R.string.str_btn_stop);
+
                 }
                 else{
                     /** Stop Flipping */
                     flipper.stopFlipping();
                     mFlipping=0;
-                    //mButton.setText(R.string.str_btn_start);
+
                 }
-            //}
                 
-  		      TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
-  		      stackBuilder.addParentStack(NotificationReceiverActivity.class);
+      		  Bundle extras = getIntent().getExtras();
+    		  final int id = extras.getInt("solutionID");
+    		  
+    	      SolutionDao s = new SolutionDao(this);
+    	      Solution solution = s.getSolution(id);
+    	      
+      	      Double duration = (solution.getDuration());
+    	      long delai = duration.longValue()*60000;
+    	      
+    	      mHandler.postDelayed(mOracleFeedback, delai);
+
         };
-       
- 
-        /** Getting a reference to the button available in the resource */
-        //mButton = (Button) findViewById(R.id.bouton);
- 
-        /** Setting click event listner for the button */
-        //mButton.setOnClickListener(listener);
-	 
-		
+        
 	   private void playSound(int resId) {
 		if(mPlayer != null) {
 			mPlayer.stop();

@@ -37,24 +37,36 @@ public class NotificationReceiverActivity extends Activity {
 		  	      
 	      SolutionDao s = new SolutionDao(this);
 	      final Solution solution = s.getSolution(id);
+	      
+	      final Integer category_id = solution.getCategoryId();
 
 	      TextView solutionDisplay = (TextView) findViewById(R.id.solution);
 	      solutionDisplay.setText("Nous vous proposons la solution suivante : \n"+solution.getName());
-
+	      
 		  final Button buttonacc = (Button) findViewById(R.id.accepter);
 	      buttonacc.setOnClickListener(new View.OnClickListener() {
 
 	        @Override
 	        public void onClick(View v) {
+		          
+			      Bundle dataBundle = new Bundle();
+			      dataBundle.putInt("solutionID",(int)id);		      
+	
+	  	      if(category_id == Constant.SOLUTION_CATEGORY_MULTIMEDIA){
+		          Intent MulIntent = new Intent(getApplicationContext(), MultimediaActivity.class);
+		          MulIntent.putExtras(dataBundle);
+		          startActivity(MulIntent);
+		      }
+	  	      else{
+	  	      
 	          Intent SolutionIntent = new Intent(NotificationReceiverActivity.this, SolutionActivity.class);
-	          
-		      Bundle dataBundle = new Bundle();
-		      dataBundle.putInt("solutionID",(int)id);		      
-			  SolutionIntent.putExtras(dataBundle);
-			  
+
+	          SolutionIntent.putExtras(dataBundle);
 			  Oracle.getInstance().feedback(solution, Constant.STATE_ACCEPTED);
 			  
 			  startActivity(SolutionIntent);
+	  	      }
+	  	      
 	          }
 	        });
 	      

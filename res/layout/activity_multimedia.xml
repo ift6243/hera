@@ -21,28 +21,56 @@
        <ViewFlipper
         android:id="@+id/flipp"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="fill_parent"
         android:flipInterval="3000"
         android:inAnimation="@android:anim/slide_in_left"
         android:outAnimation="@android:anim/slide_out_right"
         android:layout_centerInParent="true"
     >
     
-           <ImageView
-            android:src="@drawable/ciel"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            
-            android:layout_gravity="center_horizontal"
-        />
  
         <ImageView
             android:src="@drawable/cocotiers"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            
-            android:layout_gravity="center_horizontal"
-        />
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center_horizontal" />
+        
+        <ImageView
+            android:src="@drawable/asie"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center_horizontal" />
+        <ImageView
+            android:src="@drawable/bain"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center_horizontal" /> 
+        <ImageView
+            android:src="@drawable/boudah"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center_horizontal" />  
+        <ImageView
+            android:src="@drawable/chutes"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center_horizontal" />       
+        <ImageView
+            android:src="@drawable/montagne"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center_horizontal" />    
+        <ImageView
+            android:src="@drawable/relax"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center_horizontal" />
+        
+        <ImageView
+            android:src="@drawable/zen"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center_horizontal" />        
 
         </ViewFlipper>
         
