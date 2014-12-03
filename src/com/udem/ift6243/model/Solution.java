@@ -42,36 +42,36 @@ public class Solution
 	}
 	
 	public Solution increasePriority(double value) throws NumberFormatException {
-		if(value < 0 || value > 1)
+		if(value < 0.0d || value > 1.0d)
 		{
 			throw new NumberFormatException("Incorrect priority value");
 		}
 		
-		if(this.priority.doubleValue() + value > 1.0)
+		if(this.priority.doubleValue() + value >= 1.0d)
 		{
-			this.priority = Double.valueOf(1.0);
+			this.priority = Double.valueOf(1.0d);
 		}
 		else
 		{
-			this.priority = Double.valueOf(this.priority.doubleValue() + value);
+			this.priority = Double.valueOf(Math.round((this.priority.doubleValue() + value) * 100.0d)) / 100.0d;
 		}
 		
 		return this;
 	}
 	
 	public Solution decreasePriority(double value) throws NumberFormatException {
-		if(value < 0.0 || value > 1.0)
+		if(value < 0.0d || value > 1.0d)
 		{
 			throw new NumberFormatException("Incorrect priority value");
 		}
 		
-		if(this.priority.doubleValue() - value < 0.0)
+		if(this.priority.doubleValue() - value <= 0.0d)
 		{
-			this.priority = Double.valueOf(0.0);
+			this.priority = Double.valueOf(0.0d);
 		}
 		else
 		{
-			this.priority = Double.valueOf(this.priority.doubleValue() - value);
+			this.priority = Double.valueOf(Math.round((this.priority.doubleValue() - value) * 100.0d)) / 100.0d;
 		}
 		
 		return this;
