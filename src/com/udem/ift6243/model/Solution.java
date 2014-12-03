@@ -80,4 +80,11 @@ public class Solution
 	public Double getPriority() {
 		return priority;
 	}
+
+	@Override
+	public String toString() {
+		return "Solution [id=" + id + ", categoryId=" + categoryId + ", name="
+				+ name + ", description=" + description + ", duration="
+				+ duration + ", priority=" + priority + "]";
+	}
 }
