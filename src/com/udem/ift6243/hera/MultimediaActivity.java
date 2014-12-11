@@ -64,7 +64,7 @@ public class MultimediaActivity extends Activity {
 
 				alertDialog.setPositiveButton("Continuer", new DialogInterface.OnClickListener() {
 				    public void onClick(DialogInterface dialog, int which) {
-				    	
+				    	onPause();
 				    	Intent i = new Intent(getApplicationContext(), WaitingActivity.class);
 				    	startActivity(i);
 
@@ -161,6 +161,13 @@ public class MultimediaActivity extends Activity {
 		}
 		mPlayer = MediaPlayer.create(this, resId);
 		mPlayer.start();
+	}
+	   public void onPause() {
+	        super.onPause();
+	    if(mPlayer != null) {
+	        mPlayer.stop();
+	        mPlayer.release();
+	    }
 	}
 
 
