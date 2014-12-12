@@ -44,7 +44,8 @@ public class Sensor implements Runnable
 		            {
 		                Integer currentStressLevel = edaTask.getStressLevel();
 		                
-		                // TODO : Moins de sensibilite en 
+		                // TODO : Moins de sensibilite en remplacant >= par > 
+		                // (detection des stress importants seulement)
 		                if(currentStressLevel != null 
 		                		&& currentStressLevel >= Constant.STRESS_LEVEL_LOW)
 		                {
