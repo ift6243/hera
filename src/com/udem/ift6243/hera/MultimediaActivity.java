@@ -64,8 +64,8 @@ public class MultimediaActivity extends Activity {
 
 				alertDialog.setPositiveButton("Continuer", new DialogInterface.OnClickListener() {
 				    public void onClick(DialogInterface dialog, int which) {
-				    	onPause();
-				    	Intent i = new Intent(getApplicationContext(), WaitingActivity.class);
+				    	stopSound();
+				        Intent i = new Intent(getApplicationContext(), WaitingActivity.class);
 				    	startActivity(i);
 
 				    }
@@ -155,20 +155,23 @@ public class MultimediaActivity extends Activity {
         };
         
 	   private void playSound(int resId) {
-		if(mPlayer != null) {
-			mPlayer.stop();
-			mPlayer.release();
-		}
+		   stopSound();
 		mPlayer = MediaPlayer.create(this, resId);
 		mPlayer.start();
 	}
 	   public void onPause() {
 	        super.onPause();
-	    if(mPlayer != null) {
-	        mPlayer.stop();
-	        mPlayer.release();
-	    }
+	        stopSound();
 	}
+	   
+	   private void stopSound()
+	   {
+		   if(mPlayer != null) {
+		        mPlayer.stop();
+		        mPlayer.release();
+		        mPlayer = null;
+		    }
+	   }
 
 
 

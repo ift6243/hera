@@ -4,7 +4,7 @@ public final class Constant
 {
 	/// Data source
 	// Production URL
-//	public static String SOURCE_DATA_EDA = "http://192.168.0.51:8888/ift6243/data.eda";
+//	public static String SOURCE_DATA_EDA = "http://10.55.197.143:8888/ift6243/LOG_01_AffectivaQ-v2-20D2-SPP.eda";
 	// Development URL
 	public static String SOURCE_DATA_EDA = "http://paul-molins.fr/ift6243/data.eda";
 	

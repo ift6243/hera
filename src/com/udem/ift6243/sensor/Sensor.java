@@ -1,5 +1,7 @@
 package com.udem.ift6243.sensor;
 
+import android.util.Log;
+
 import com.udem.ift6243.oracle.Oracle;
 import com.udem.ift6243.utility.Constant;
 
@@ -42,13 +44,17 @@ public class Sensor implements Runnable
 		            {
 		                Integer currentStressLevel = edaTask.getStressLevel();
 		                
+		                // TODO : Moins de sensibilite en 
 		                if(currentStressLevel != null 
 		                		&& currentStressLevel >= Constant.STRESS_LEVEL_LOW)
 		                {
-//		                	Log.e("Stress Level", currentStressLevel.toString());
+		                	Log.e("currentStressLevel", currentStressLevel.toString());
 		                	Oracle.getInstance().notifyUser(currentStressLevel);
 		                }
-		                
+//		                else if(currentStressLevel != null)
+//		                {
+//		                	Log.e("currentStressLevel", currentStressLevel.toString());
+//		                }
 		                Thread.sleep(1000);
 		            }
 		        } catch (InterruptedException e) {
