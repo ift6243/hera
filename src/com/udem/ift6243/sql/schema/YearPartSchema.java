@@ -27,8 +27,8 @@ public class YearPartSchema
 		
 		// Saisons meteorologiques
 		queryList.add("INSERT INTO " + TABLE_NAME + " VALUES (NULL, 'Printemps', '03-01', '05-31');");
-		queryList.add("INSERT INTO " + TABLE_NAME + " VALUES (NULL, 'Eté', '06-01', '08-31');");
-		queryList.add("INSERT INTO " + TABLE_NAME + " VALUES (NULL, 'Autonme', '09-01', '11-30');");
+		queryList.add("INSERT INTO " + TABLE_NAME + " VALUES (NULL, 'Ete', '06-01', '08-31');");
+		queryList.add("INSERT INTO " + TABLE_NAME + " VALUES (NULL, 'Automne', '09-01', '11-30');");
 		queryList.add("INSERT INTO " + TABLE_NAME + " VALUES (NULL, 'Hiver', '12-01', '02-28');");
 		
 		return queryList;

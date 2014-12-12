@@ -26,7 +26,7 @@ public class DayPartSchema
 		ArrayList<String> queryList = new ArrayList<String>();
 		
 		queryList.add("INSERT INTO " + TABLE_NAME + " VALUES (NULL, 'Matin', 0, 12);");
-		queryList.add("INSERT INTO " + TABLE_NAME + " VALUES (NULL, 'Après-midi', 13, 18);");
+		queryList.add("INSERT INTO " + TABLE_NAME + " VALUES (NULL, 'Apres-midi', 13, 18);");
 		queryList.add("INSERT INTO " + TABLE_NAME + " VALUES (NULL, 'Soir', 19, 23);");
 		
 		return queryList;

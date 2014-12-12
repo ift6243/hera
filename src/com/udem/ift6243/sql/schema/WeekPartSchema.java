@@ -25,7 +25,7 @@ public class WeekPartSchema
 	{
 		ArrayList<String> queryList = new ArrayList<String>();
 		
-		queryList.add("INSERT INTO " + TABLE_NAME + " VALUES (NULL, 'Début', 0, 3);"); // Lundi a jeudi
+		queryList.add("INSERT INTO " + TABLE_NAME + " VALUES (NULL, 'Debut', 0, 3);"); // Lundi a jeudi
 		queryList.add("INSERT INTO " + TABLE_NAME + " VALUES (NULL, 'Milieu', 4, 4);"); // vendredi
 		queryList.add("INSERT INTO " + TABLE_NAME + " VALUES (NULL, 'Fin', 5, 6);"); // samedi et dimanche
 		
